@@ -107,7 +107,7 @@ const Form = styled.form`
 `;
 
 const AriaOnlySpan = styled.span`
-  /* This is the sr-only class from tailwindcss */
+  // This is the sr-only class from tailwindcss
   position: absolute;
   width: 1px;
   height: 1px;
