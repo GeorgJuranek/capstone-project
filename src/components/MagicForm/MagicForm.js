@@ -2,7 +2,7 @@ import {nanoid} from 'nanoid';
 import {useState} from 'react';
 import styled from 'styled-components';
 
-export default function MagicForm({saySpell}) {
+export default function MagicForm({handleTest}) {
   const [savedOrders, SetSavedOrders] = useState([]);
 
   function handleSpell(event) {
@@ -10,11 +10,10 @@ export default function MagicForm({saySpell}) {
     const Form = event.target;
     const {input} = Form.elements;
     //Is it automatically trimmed here? because trim() makes no difference
-
+    handleTest(input.value);
     if (input.value.length > 0) {
       const inputInfo = analyzeSpell(input.value);
       SetSavedOrders([{value: input.value, info: inputInfo}, ...savedOrders]);
-      saySpell(input.value); //this makes a console.log in the app
       Form.reset();
     } //Get an empty string before it runs into analyzeSpell and saySpell
     else {
@@ -52,7 +51,7 @@ export default function MagicForm({saySpell}) {
         ))}
       </SavedOrdersList>
 
-      <Form onSubmit={handleSpell}>
+      <Form onSubmit={handleSpell} role="form">
         <label htmlFor="input">
           <AriaOnlySpan>type in your command</AriaOnlySpan>
         </label>

@@ -4,8 +4,8 @@ import MagicForm from './components/MagicForm/MagicForm';
 
 export default function App() {
   //
-  function saySpell(spellword) {
-    console.log('The Spellword is: ', spellword);
+  function handleTest(spellword) {
+    console.log('spellWord: ', spellword);
   }
 
   return (
@@ -23,7 +23,7 @@ export default function App() {
           Information about this specific command in the zshell:{' '}
         </p>
       </StyledSection>
-      <MagicForm saySpell={saySpell} />
+      <MagicForm handleTest={handleTest} />
     </OrganizingMain>
   );
 }
