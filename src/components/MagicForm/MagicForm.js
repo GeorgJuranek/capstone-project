@@ -10,9 +10,10 @@ export default function MagicForm({analyzeSpell}) {
     const Form = event.target;
     const {input} = Form.elements;
     //is already trimmed() here
-    if (input.value.length > 0) {
-      const inputInfo = analyzeSpell(input.value);
-      SetSavedOrders([{value: input.value, info: inputInfo}, ...savedOrders]);
+    const checkedInput = input.value.toLowerCase();
+    if (checkedInput.length > 0) {
+      const inputInfo = analyzeSpell(checkedInput);
+      SetSavedOrders([{value: checkedInput, info: inputInfo}, ...savedOrders]);
       Form.reset();
     } //Get an empty string before it runs into analyzeSpell
     else {
