@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import MagicForm from './components/MagicForm/MagicForm';
+import {CodeSpan} from './components/Stylesheet/StyledSpans.js';
 
 export default function App() {
   //
@@ -27,7 +28,7 @@ export default function App() {
           learn how to code!)
         </p>
         <p>
-          Please type in <SpanCode>pwd</SpanCode>, <SpanCode>ls</SpanCode> or <SpanCode>cd</SpanCode> to get further
+          Please type in <CodeSpan>pwd</CodeSpan>, <CodeSpan>ls</CodeSpan> or <CodeSpan>cd</CodeSpan> to get further
           Information about this specific command in the zshell:{' '}
         </p>
       </StyledSection>
@@ -44,11 +45,4 @@ const OrganizingMain = styled.main`
 
 const StyledSection = styled.section`
   max-width: 50vw;
-`;
-
-const SpanCode = styled.span`
-  color: white;
-  background-color: grey;
-  padding: 3px;
-  border-radius: 20%;
 `;

@@ -1,6 +1,9 @@
-import {nanoid} from 'nanoid';
+//import {nanoid} from 'nanoid';
 import {useState} from 'react';
 import styled from 'styled-components';
+
+import MagicList from '../MagicList/MagicList.js';
+import {AriaOnlySpan} from '../Stylesheet/StyledSpans.js';
 
 export default function MagicForm({analyzeSpell}) {
   const [savedOrders, SetSavedOrders] = useState([]);
@@ -15,7 +18,7 @@ export default function MagicForm({analyzeSpell}) {
       const inputInfo = analyzeSpell(checkedInput);
       SetSavedOrders([{value: input.value, info: inputInfo}, ...savedOrders]); //input.value means the original string 1:1
       Form.reset();
-    } //Get an empty string before it runs into analyzeSpell
+    } //Fish for empty string before it runs into analyzeSpell
     else {
       SetSavedOrders([
         {
@@ -25,19 +28,15 @@ export default function MagicForm({analyzeSpell}) {
         ...savedOrders,
       ]);
     }
+    // This parts set the scrollingPosition inside the List to bottom on new entry
+    const List = document.querySelector('[role="list"]');
+    const topPos = List.offsetTop;
+    List.scrollTop = topPos;
   }
 
   return (
     <OrganizingDiv>
-      <SavedOrdersList role="list">
-        {savedOrders.map(order => (
-          <SavedOrderListitem key={nanoid()}>
-            <AriaOnlySpan>you</AriaOnlySpan>
-            typed in: {order.value}
-            <p>{order.info}</p>
-          </SavedOrderListitem>
-        ))}
-      </SavedOrdersList>
+      <MagicList savedOrders={savedOrders} />
 
       <Form onSubmit={handleSpell} role="form">
         <label htmlFor="input">
@@ -45,46 +44,40 @@ export default function MagicForm({analyzeSpell}) {
         </label>
         <Button> ❯ ❚ </Button>
         <Input id="input" name="input" autoComplete="off" />
+        <Button> ? {savedOrders.length} </Button>
       </Form>
     </OrganizingDiv>
   );
 }
 
 const OrganizingDiv = styled.div`
-  width: 65vw;
+  width: 85vw;
   max-width: 500px;
   height: auto;
   max-height: 500px;
-  border: 1px solid black;
+  border: 2px ridge #181818;
   border-radius: 5%;
-`;
-
-const SavedOrdersList = styled.ul`
-  border: 1px solid black;
-  list-style-type: 'you ';
-  height: 50vw;
-  max-height: 400px;
-  overflow: scroll;
-  display: flex;
-  flex-direction: column-reverse;
-  justify-content: flex-start;
-  padding-bottom: 0;
-  margin-bottom: 0;
-`;
-
-const SavedOrderListitem = styled.li`
-  word-wrap: break-word;
-  padding-top: 1rem;
-  border-top: 2px solid black;
+  margin: 1em 0;
+  //background-color: #181818;
+  background-image: linear-gradient(#181818, black);
+  box-shadow: 0px 10px 8px #888888;
 `;
 
 const Input = styled.input`
   width: 90%;
+  //background-color: #181818;
+  border: none;
+  color: #65ff00;
+  background-color: black;
+  outline: none;
 `;
 
 const Button = styled.button`
-  background: none;
   white-space: nowrap;
+  border: none;
+  //background: none;
+  background-color: black;
+  color: #65ff00;
 `;
 
 const Form = styled.form`
@@ -92,16 +85,4 @@ const Form = styled.form`
   justify-content: flex-start;
   flex-wrap: nowrap;
   margin-bottom: 1rem;
-`;
-
-const AriaOnlySpan = styled.span`
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
 `;
