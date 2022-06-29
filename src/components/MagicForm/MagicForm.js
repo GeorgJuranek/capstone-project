@@ -13,7 +13,7 @@ export default function MagicForm({analyzeSpell}) {
     const checkedInput = input.value.toLowerCase();
     if (checkedInput.length > 0) {
       const inputInfo = analyzeSpell(checkedInput);
-      SetSavedOrders([{value: checkedInput, info: inputInfo}, ...savedOrders]);
+      SetSavedOrders([{value: input.value, info: inputInfo}, ...savedOrders]); //input.value means the original string 1:1
       Form.reset();
     } //Get an empty string before it runs into analyzeSpell
     else {
@@ -44,7 +44,7 @@ export default function MagicForm({analyzeSpell}) {
           <AriaOnlySpan>type in your command</AriaOnlySpan>
         </label>
         <Button> ❯ ❚ </Button>
-        <Input id="input" name="input" />
+        <Input id="input" name="input" autoComplete="off" />
       </Form>
     </OrganizingDiv>
   );
