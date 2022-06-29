@@ -2,20 +2,19 @@ import {nanoid} from 'nanoid';
 import {useState} from 'react';
 import styled from 'styled-components';
 
-export default function MagicForm({handleTest}) {
+export default function MagicForm({analyzeSpell}) {
   const [savedOrders, SetSavedOrders] = useState([]);
 
   function handleSpell(event) {
     event.preventDefault();
     const Form = event.target;
     const {input} = Form.elements;
-    //Is it automatically trimmed here? because trim() makes no difference
-    handleTest(input.value);
+    //is already trimmed() here
     if (input.value.length > 0) {
       const inputInfo = analyzeSpell(input.value);
       SetSavedOrders([{value: input.value, info: inputInfo}, ...savedOrders]);
       Form.reset();
-    } //Get an empty string before it runs into analyzeSpell and saySpell
+    } //Get an empty string before it runs into analyzeSpell
     else {
       SetSavedOrders([
         {
@@ -24,18 +23,6 @@ export default function MagicForm({handleTest}) {
         },
         ...savedOrders,
       ]);
-    }
-  }
-
-  function analyzeSpell(spellword) {
-    if (spellword === 'cd') {
-      return 'The command "cd" stands for "change directory", so you can jump from one directory in another one. This is so important. ';
-    } else if (spellword === 'ls') {
-      return ' The command "ls" stands for "list items", it shows you all directories and data, that are stored in the directory you are in right now and are not hidden.';
-    } else if (spellword === 'pwd') {
-      return ' The command "pwd" stands for "print working directory", this means that you can ask for your current position and it will tell you the directory you are in right now. ';
-    } else {
-      return '(!)>>> ERROR: please check if you spelled the command correctly, coding is really strict and otherwise it will not work.';
     }
   }
 

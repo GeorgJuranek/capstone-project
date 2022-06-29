@@ -23,7 +23,7 @@ describe('MagicForm', () => {
   it('MagicForm onSubmit function gets called with Enter on keyboard', async () => {
     const user = userEvent.setup();
     const callback = jest.fn();
-    render(<MagicForm handleTest={callback} />);
+    render(<MagicForm analyzeSpell={callback} />);
     const input = screen.getByLabelText('type in your command');
     await user.type(input, 'something should happen{Enter}');
     expect(callback).toHaveBeenCalled();
@@ -32,7 +32,7 @@ describe('MagicForm', () => {
   it('MagicForm onSubmit function gets called with button', async () => {
     const user = userEvent.setup();
     const callback = jest.fn();
-    render(<MagicForm handleTest={callback} />);
+    render(<MagicForm analyzeSpell={callback} />);
     const button = screen.getByRole('button');
     await user.click(button);
     expect(callback).toHaveBeenCalled();
