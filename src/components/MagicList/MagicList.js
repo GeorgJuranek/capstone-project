@@ -20,7 +20,7 @@ export default function MagicList({savedOrders}) {
     </>
   );
 }
-// The AriaOnlySpan "you" reads the changed list-style-type in the ul for screenreader
+// The AriaOnlySpan "you" reads the changed list-style-type: "you", in the <ul> for screenreader
 
 const SavedOrdersList = styled.ul`
   background-color: black;

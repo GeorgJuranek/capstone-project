@@ -1,11 +1,31 @@
+import {useState, useRef} from 'react';
 import styled from 'styled-components';
 
 import MagicForm from './components/MagicForm/MagicForm';
+import MagicList from './components/MagicList/MagicList.js';
 import {CodeSpan} from './components/Stylesheet/StyledSpans.js';
 
 export default function App() {
-  //
-  function analyzeSpell(spellword) {
+  // State // for the archived Spells
+  const [savedOrders, setSavedOrders] = useState([]);
+
+  // useRef is used here to find the MagicList at the End of following saveSpellOrder-function
+  const ref = useRef();
+
+  // ANALYZE SPELL // checks the Input.value from MagicForm and sends back and to: MagicList //
+  function saveSpellOrder(spellword) {
+    const checkedInput = spellword.toLowerCase();
+    const inputInfo = findSpellMessage(checkedInput);
+    const hasError = inputInfo.includes('ERROR'); //the error-prop is used to make specific text red, the string can tell if error has happened
+    setSavedOrders([{value: spellword, info: inputInfo, error: hasError}, ...savedOrders]);
+
+    // This parts set the scrollingPosition inside the List to bottom on new entry
+    const List = ref.current.querySelector('>ul'); //document.querySelector('[role="list"]');
+    const topPos = List.offsetTop;
+    List.scrollTop = topPos;
+  }
+  // ↑ FIND SPELL MESSAGE // is called within analyzeSpell to return a fitting string //
+  function findSpellMessage(spellword) {
     if (spellword === 'cd') {
       return 'The command "cd" stands for "change directory", so you can jump from one directory in another one. This is so important. ';
     } else if (spellword === 'ls') {
@@ -32,7 +52,11 @@ export default function App() {
           Information about this specific command in the zshell:{' '}
         </p>
       </StyledSection>
-      <MagicForm analyzeSpell={analyzeSpell} />
+
+      <ZshellDiv ref={ref}>
+        <MagicList savedOrders={savedOrders} />
+        <MagicForm savedOrders={savedOrders} saveSpellOrder={saveSpellOrder} />
+      </ZshellDiv>
     </OrganizingMain>
   );
 }
@@ -41,6 +65,18 @@ const OrganizingMain = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+const ZshellDiv = styled.div`
+  width: 85vw;
+  max-width: 500px;
+  height: auto;
+  max-height: 500px;
+  border: 2px ridge #181818;
+  border-radius: 5%;
+  margin: 1em 0;
+  background-image: linear-gradient(#181818, black);
+  box-shadow: 0px 10px 8px #888888;
 `;
 
 const StyledSection = styled.section`
