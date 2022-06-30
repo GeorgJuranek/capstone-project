@@ -13,7 +13,7 @@ export default function App() {
     } else if (spellword === 'pwd') {
       return ' The command "pwd" stands for "print working directory", this means that you can ask for your current position and it will tell you the directory you are in right now. ';
     } else {
-      return '(!)>>> ERROR: please check if you spelled the command correctly, coding is really strict and otherwise it will not work.';
+      return '(!) ERROR: please check if you spelled the command correctly, coding is really strict and otherwise it will not work.';
     }
   }
 

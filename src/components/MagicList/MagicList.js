@@ -2,7 +2,7 @@ import {nanoid} from 'nanoid';
 //import {useState} from 'react';
 import styled from 'styled-components';
 
-import {AriaOnlySpan, ColorSpan} from '../Stylesheet/StyledSpans.js';
+import {AriaOnlySpan, ColorSpan, SwitchSpan} from '../Stylesheet/StyledSpans.js';
 
 export default function MagicList({savedOrders}) {
   return (
@@ -12,8 +12,7 @@ export default function MagicList({savedOrders}) {
           <SavedOrderListitem key={nanoid()}>
             <AriaOnlySpan>you</AriaOnlySpan>
             <ColorSpan>typed </ColorSpan>
-            <span>❯ </span>
-            {order.value}
+            <SwitchSpan error={order.error}>❯ {order.value}</SwitchSpan>
             <InfoP>❯❯ {order.info}</InfoP>
           </SavedOrderListitem>
         ))}

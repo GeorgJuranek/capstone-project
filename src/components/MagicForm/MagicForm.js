@@ -16,17 +16,20 @@ export default function MagicForm({analyzeSpell}) {
     const checkedInput = input.value.toLowerCase();
     if (checkedInput.length > 0) {
       const inputInfo = analyzeSpell(checkedInput);
-      SetSavedOrders([{value: input.value, info: inputInfo}, ...savedOrders]); //input.value means the original string 1:1
+      const hasError = inputInfo.includes('ERROR'); //the error-prop is used to make specific text red, the string can tell if error has happened
+      SetSavedOrders([{value: input.value, info: inputInfo, error: hasError}, ...savedOrders]); //input.value means the original string 1:1
       Form.reset();
     } //Fish for empty string before it runs into analyzeSpell
     else {
-      SetSavedOrders([
+      /* SetSavedOrders([
         {
           value: '...oh nothing?',
           info: 'Did you fell on your enter-button? you have to type in the commands to get information about zshell!',
+          error: true,
         },
         ...savedOrders,
-      ]);
+      ]); */
+      input.focus();
     }
     // This parts set the scrollingPosition inside the List to bottom on new entry
     const List = document.querySelector('[role="list"]');
@@ -42,9 +45,9 @@ export default function MagicForm({analyzeSpell}) {
         <label htmlFor="input">
           <AriaOnlySpan>type in your command</AriaOnlySpan>
         </label>
-        <Button> ❯ ❚ </Button>
+        <Button role="button"> ❯ ❚ </Button>
         <Input id="input" name="input" autoComplete="off" />
-        <Button> ? {savedOrders.length} </Button>
+        <Button role="button"> ? {savedOrders.length} </Button>
       </Form>
     </OrganizingDiv>
   );

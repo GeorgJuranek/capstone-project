@@ -1,19 +1,18 @@
-import MagicForm from './MagicForm.js';
+import MagicList from './MagicList.js';
 
 export default {
-  title: 'Components/MagicForm',
-  component: MagicForm,
+  title: 'Components/MagicList',
+  component: MagicList,
   //argTypes: {analyzeSpell: {action: 'analyzeSpell'}},
 };
 
 //const Template = args => <MagicForm {...args} />;
 //export const Default = Template.bind({});
 
-const Template = args => <MagicForm {...args} />;
-
-export const Default = Template.bind({});
+const Template = args => <MagicList {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-  analyzeSpell: {action: console.log('whyy?')},
+  //
+  savedOrders: [],
 };
