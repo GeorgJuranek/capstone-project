@@ -9,15 +9,17 @@ describe('MagicForm', () => {
     const form = screen.getByRole('form');
     expect(form).toBeInTheDocument();
   });
-  it('Button of Form is an accessible button', () => {
-    render(<MagicForm />);
-    const buttons = screen.getAllByRole('button');
-    expect(buttons[0], buttons[1]).toBeInTheDocument();
-  });
+
   it('Input of Form is an accessible input', () => {
     render(<MagicForm />);
     const input = screen.getByLabelText('type in your command');
     expect(input).toBeInTheDocument();
+  });
+
+  it('MagicForm has 2 buttons', async () => {
+    render(<MagicForm />);
+    const buttons = screen.getAllByRole('button');
+    expect(buttons).toHaveLength(2);
   });
 
   it('MagicForm function gets called with Enter on keyboard', async () => {
@@ -36,11 +38,5 @@ describe('MagicForm', () => {
     const buttons = screen.getAllByRole('button');
     await user.click(buttons[0], buttons[1]);
     expect(callback).toHaveBeenCalledTimes(2);
-  });
-
-  it('MagicForm has 2 buttons', async () => {
-    render(<MagicForm />);
-    const buttons = screen.getAllByRole('button');
-    expect(buttons).toHaveLength(2);
   });
 });
