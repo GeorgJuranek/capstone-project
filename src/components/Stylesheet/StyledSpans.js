@@ -28,3 +28,9 @@ export const SwitchSpan = styled.span`
 `;
 // You give SwitchSpan a property called "error={true/false}"
 // if what you give it returns "true" the things thats nested will be red
+
+export const FrameSpan = styled.span`
+  border: thin solid #65ff00;
+  margin: 1px;
+  padding: 3px 3px 0px 3px;
+`;

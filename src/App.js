@@ -9,21 +9,23 @@ export default function App() {
   // State // for the archived Spells
   const [savedOrders, setSavedOrders] = useState([]);
 
-  // useRef is used here to find the MagicList at the End of following saveSpellOrder-function
-  const ref = useRef();
-
   // ANALYZE SPELL // checks the Input.value from MagicForm and sends back and to: MagicList //
   function saveSpellOrder(spellword) {
-    const checkedInput = spellword.toLowerCase();
+    //
+    const trimmedInput = spellword.trim();
+    const checkedInput = trimmedInput.toLowerCase();
     const inputInfo = findSpellMessage(checkedInput);
     const hasError = inputInfo.includes('ERROR'); //the error-prop is used to make specific text red, the string can tell if error has happened
     setSavedOrders([{value: spellword, info: inputInfo, error: hasError}, ...savedOrders]);
 
     // This parts set the scrollingPosition inside the List to bottom on new entry
-    const List = ref.current.querySelector('>ul'); //document.querySelector('[role="list"]');
+    const List = document.querySelector('[role="list"]'); //ref.current.querySelector('>ul'); //
     const topPos = List.offsetTop;
     List.scrollTop = topPos;
   }
+  // useRef is used here to find the MagicList at the End of following saveSpellOrder-function
+  const ref = useRef();
+
   // ↑ FIND SPELL MESSAGE // is called within analyzeSpell to return a fitting string //
   function findSpellMessage(spellword) {
     if (spellword === 'cd') {
@@ -53,8 +55,8 @@ export default function App() {
         </p>
       </StyledSection>
 
-      <ZshellDiv ref={ref}>
-        <MagicList savedOrders={savedOrders} />
+      <ZshellDiv>
+        <MagicList savedOrders={savedOrders} ref={ref} />
         <MagicForm savedOrders={savedOrders} saveSpellOrder={saveSpellOrder} />
       </ZshellDiv>
     </OrganizingMain>
