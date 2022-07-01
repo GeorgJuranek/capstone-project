@@ -39,11 +39,9 @@ const SavedOrdersList = styled.ul`
 const SavedOrderListitem = styled.li`
   word-wrap: break-word;
   line-break: anywhere;
-  color: white;
   padding-top: 1rem;
   margin-right: 1em;
   border-top: 2px solid #181818;
-  color: #65ff00;
   &::marker {
     color: grey;
   }
