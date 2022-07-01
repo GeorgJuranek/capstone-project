@@ -14,6 +14,7 @@ export default function MagicForm({saveSpellOrder, savedOrders}) {
       saveSpellOrder(input.value);
       Form.reset();
     }
+
     input.focus();
   }
 
@@ -24,7 +25,9 @@ export default function MagicForm({saveSpellOrder, savedOrders}) {
       </label>
       <CommandLineSpanL>❯ ❚ </CommandLineSpanL>
       <Input id="input" name="input" autoComplete="off" />
-      <Button role="button">ENTER</Button>
+      <Button role="button" name="button">
+        ENTER
+      </Button>
       <CommandLineSpanR>
         <FrameSpan>?</FrameSpan> {savedOrders.length}
       </CommandLineSpanR>
@@ -33,7 +36,6 @@ export default function MagicForm({saveSpellOrder, savedOrders}) {
 }
 
 const Form = styled.form`
-  //position: relative;
   display: flex;
   justify-content: flex-start;
   align-items: baseline;
@@ -62,16 +64,13 @@ const CommandLineSpanR = styled.span`
 
 const Button = styled.button`
   background-color: #65ff00;
-  border: medium solid #65ff00; //none;
-  padding: 0 2%;
+  border: medium solid #65ff00;
+  padding: 5px 2% 0 2%;
   margin: 0 3%;
 
-  /* ???Warum sehe ich den Effekt nicht in der mobileansicht auf dem Server, aber in jeder custom Einstellung???? */
-  &:focus {
+  &:active {
     background-color: black;
     border: medium solid white;
     color: white;
   }
 `;
-
-//<img src="./../images/ShellWizardLogo1.png" alt="Enter" width="200px" height="200px" />

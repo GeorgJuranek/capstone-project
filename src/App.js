@@ -1,4 +1,4 @@
-import {useState, useRef} from 'react';
+import {useState} from 'react';
 import styled from 'styled-components';
 
 import MagicForm from './components/MagicForm/MagicForm';
@@ -9,6 +9,10 @@ export default function App() {
   // State // for the archived Spells
   const [savedOrders, setSavedOrders] = useState([]);
 
+  //const ref = useRef();
+  //useRef is used here to find the MagicList at the End of following saveSpellOrder-function
+  //But this doesnt work. I correctly imported it (please see long comment below)
+
   // ANALYZE SPELL // checks the Input.value from MagicForm and sends back and to: MagicList //
   function saveSpellOrder(spellword) {
     //
@@ -18,13 +22,14 @@ export default function App() {
     const hasError = inputInfo.includes('ERROR'); //the error-prop is used to make specific text red, the string can tell if error has happened
     setSavedOrders([{value: spellword, info: inputInfo, error: hasError}, ...savedOrders]);
 
-    // This parts set the scrollingPosition inside the List to bottom on new entry
-    const List = ref.current.querySelector('>ul'); //document.querySelector('[role="list"]'); //
+    // The following parts set the scrollingPosition inside the List to bottom on new entry:
+    // I was told to use "ref.current.querySelector('>ul')" for "document.querySelector('[role="list"]')"
+    // but the List cant be found by this, so i will go on with my former solution
+    //But if you are reading this and have an idea how to use useRef here correctly let me know. Thx
+    const List = document.querySelector('[role="list"]'); //ref.current.querySelector('>ul'); //
     const topPos = List.offsetTop;
     List.scrollTop = topPos;
   }
-  // useRef is used here to find the MagicList at the End of following saveSpellOrder-function
-  const ref = useRef();
 
   // ↑ FIND SPELL MESSAGE // is called within analyzeSpell to return a fitting string //
   function findSpellMessage(spellword) {
@@ -41,6 +46,7 @@ export default function App() {
 
   return (
     <OrganizingMain>
+      <LogoImg src={require('./images/logo1.png')} alt="" width="125" height="125" />
       <h1>
         <u>SHELL_WIZARD</u>
       </h1>
@@ -56,12 +62,15 @@ export default function App() {
       </StyledSection>
 
       <ZshellDiv>
-        <MagicList savedOrders={savedOrders} ref={ref} />
+        <MagicList savedOrders={savedOrders} />
         <MagicForm savedOrders={savedOrders} saveSpellOrder={saveSpellOrder} />
       </ZshellDiv>
     </OrganizingMain>
   );
 }
+// I tried "ref={ref}" as property on ZshellDiv and MagicList (MagicList is what i search for)
+// Problem in console says that "function components cannot be given refs", but
+//how shall i pass this if not like this?
 
 const OrganizingMain = styled.main`
   display: flex;
@@ -78,9 +87,16 @@ const ZshellDiv = styled.div`
   border-radius: 5%;
   margin: 1em 0;
   background-image: linear-gradient(#181818, black);
-  box-shadow: 0px 10px 8px #888888;
+  box-shadow: 0 10px 8px #888;
 `;
 
 const StyledSection = styled.section`
   max-width: 50vw;
+`;
+
+const LogoImg = styled.img`
+  position: relative;
+  right: 5px;
+  top: 45px;
+  z-index: -1;
 `;

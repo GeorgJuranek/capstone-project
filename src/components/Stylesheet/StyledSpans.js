@@ -20,7 +20,7 @@ export const CodeSpan = styled.span`
 `;
 
 export const ColorSpan = styled.span`
-  color: DodgerBlue;
+  color: dodgerBlue;
 `;
 
 export const SwitchSpan = styled.span`
@@ -32,5 +32,5 @@ export const SwitchSpan = styled.span`
 export const FrameSpan = styled.span`
   border: thin solid #65ff00;
   margin: 1px;
-  padding: 3px 3px 0px 3px;
+  padding: 3px 3px 0 3px;
 `;
