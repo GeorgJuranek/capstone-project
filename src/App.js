@@ -19,7 +19,7 @@ export default function App() {
     setSavedOrders([{value: spellword, info: inputInfo, error: hasError}, ...savedOrders]);
 
     // This parts set the scrollingPosition inside the List to bottom on new entry
-    const List = document.querySelector('[role="list"]'); //ref.current.querySelector('>ul'); //
+    const List = ref.current.querySelector('>ul'); //document.querySelector('[role="list"]'); //
     const topPos = List.offsetTop;
     List.scrollTop = topPos;
   }
