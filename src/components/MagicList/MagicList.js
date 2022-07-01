@@ -1,13 +1,14 @@
 import {nanoid} from 'nanoid';
+import {forwardRef} from 'react';
 //import {useState} from 'react';
 import styled from 'styled-components';
 
 import {AriaOnlySpan, ColorSpan, SwitchSpan} from '../Stylesheet/StyledSpans.js';
 
-export default function MagicList({savedOrders}) {
+const MagicList = forwardRef(({savedOrders}, ref) => {
   return (
     <>
-      <SavedOrdersList role="list">
+      <SavedOrdersList ref={ref} role="list">
         {savedOrders.map(order => (
           <SavedOrderListitem key={nanoid()}>
             <AriaOnlySpan>you</AriaOnlySpan>
@@ -19,8 +20,11 @@ export default function MagicList({savedOrders}) {
       </SavedOrdersList>
     </>
   );
-}
-// The AriaOnlySpan "you" reads the changed list-style-type: "you", in the <ul> for screenreader
+});
+MagicList.displayName = 'MagicList';
+export default MagicList;
+
+// ↑ The AriaOnlySpan "you" reads the changed list-style-type: "you", in the <ul> for screenreader
 
 const SavedOrdersList = styled.ul`
   background-color: black;

@@ -18,8 +18,8 @@ describe('MagicForm', () => {
 
   it('MagicForm has 2 buttons and both are accessible', async () => {
     render(<MagicForm savedOrders={[]} />);
-    const buttons = screen.getAllByRole('button');
-    expect(buttons).toHaveLength(2);
+    const button = screen.getByRole('button');
+    expect(button).toBeInTheDocument();
   });
 
   it('MagicForm function gets called with Enter on keyboard', async () => {
