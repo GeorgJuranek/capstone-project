@@ -20,7 +20,7 @@ export const CodeSpan = styled.span`
 `;
 
 export const ColorSpan = styled.span`
-  color: dodgerBlue;
+  color: dodgerblue;
 `;
 
 export const SwitchSpan = styled.span`

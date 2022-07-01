@@ -42,8 +42,8 @@ const SavedOrderListitem = styled.li`
   color: white;
   padding-top: 1rem;
   margin-right: 1em;
-  border-top: 2px solid #181818; //darkgrey
-  color: #65ff00; //green
+  border-top: 2px solid #181818;
+  color: #65ff00;
   &::marker {
     color: grey;
   }
