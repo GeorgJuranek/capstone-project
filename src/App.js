@@ -8,21 +8,16 @@ import {CodeSpan} from './components/Stylesheet/StyledSpans.js';
 import findSpellMessage from './functionsfolder/findSpellMessage.js';
 
 export default function App() {
-  // State // for the archived Spells
   const [savedOrders, setSavedOrders] = useState([]);
 
-  //useRef is used here to find the MagicList at the End of following saveSpellOrder-function
   const ref = useRef();
 
-  // SAVE SPELL ORDER // checks the Input.value from MagicForm and sends back and to: MagicList //
   function saveSpellOrder(spellword) {
-    //
     const checkedInput = spellword.trim().toLowerCase();
     const inputInfo = findSpellMessage(checkedInput);
-    const hasError = inputInfo.includes('ERROR'); //the error-prop is used to make specific text red, the string can tell if error has happened
+    const hasError = inputInfo.includes('ERROR');
     setSavedOrders([{id: nanoid(), value: spellword, info: inputInfo, error: hasError}, ...savedOrders]);
 
-    // The following parts set the scrollingPosition inside the List to bottom on new entry:
     const List = ref.current;
     const topPos = List.offsetTop;
     List.scrollTop = topPos;

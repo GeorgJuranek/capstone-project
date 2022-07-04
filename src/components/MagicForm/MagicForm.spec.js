@@ -4,12 +4,6 @@ import userEvent from '@testing-library/user-event';
 import MagicForm from './MagicForm.js';
 
 describe('MagicForm', () => {
-  it('Form is an accessible form', () => {
-    render(<MagicForm savedOrders={[]} />);
-    const form = screen.getByRole('form');
-    expect(form).toBeInTheDocument();
-  });
-
   it('Input of Form is an accessible input', () => {
     render(<MagicForm savedOrders={[]} />);
     const input = screen.getByLabelText('type in your command');

@@ -42,7 +42,6 @@ const Form = styled.form`
 const Input = styled.input`
   width: 90%;
   border: none;
-  outline: none;
   color: #65ff00;
   background-color: black;
 `;
