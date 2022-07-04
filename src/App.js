@@ -1,3 +1,4 @@
+import {nanoid} from 'nanoid';
 import {useState, useRef} from 'react';
 import styled from 'styled-components';
 
@@ -19,7 +20,7 @@ export default function App() {
     const checkedInput = spellword.trim().toLowerCase();
     const inputInfo = findSpellMessage(checkedInput);
     const hasError = inputInfo.includes('ERROR'); //the error-prop is used to make specific text red, the string can tell if error has happened
-    setSavedOrders([{value: spellword, info: inputInfo, error: hasError}, ...savedOrders]);
+    setSavedOrders([{id: nanoid(), value: spellword, info: inputInfo, error: hasError}, ...savedOrders]);
 
     // The following parts set the scrollingPosition inside the List to bottom on new entry:
     const List = ref.current;

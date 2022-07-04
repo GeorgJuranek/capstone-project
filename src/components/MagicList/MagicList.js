@@ -1,4 +1,3 @@
-import {nanoid} from 'nanoid';
 import {forwardRef} from 'react';
 import styled from 'styled-components';
 
@@ -8,7 +7,7 @@ const MagicList = forwardRef(({savedOrders}, ref) => {
   return (
     <SavedOrdersList ref={ref} role="list">
       {savedOrders.map(order => (
-        <SavedOrderListitem key={nanoid()}>
+        <SavedOrderListitem key={order.id}>
           <ScreenReaderOnlySpan>you</ScreenReaderOnlySpan>
           <ColorSpan>typed </ColorSpan>
           <SwitchSpan error={order.error}>❯ {order.value}</SwitchSpan>
