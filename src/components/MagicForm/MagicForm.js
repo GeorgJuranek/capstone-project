@@ -1,18 +1,16 @@
-//import {nanoid} from 'nanoid';
-//import {useState} from 'react';
 import styled from 'styled-components';
 
-import {AriaOnlySpan, FrameSpan} from '../Stylesheet/StyledSpans.js';
+import {ScreenReaderOnlySpan, FrameSpan} from '../Stylesheet/StyledSpans.js';
 
 export default function MagicForm({saveSpellOrder, savedOrders}) {
   function handleSpell(event) {
     event.preventDefault();
-    const Form = event.target;
-    const {input} = Form.elements;
+    const form = event.target;
+    const {input} = form.elements;
 
     if (input.value.length > 0) {
       saveSpellOrder(input.value);
-      Form.reset();
+      form.reset();
     }
 
     input.focus();
@@ -21,7 +19,7 @@ export default function MagicForm({saveSpellOrder, savedOrders}) {
   return (
     <Form onSubmit={handleSpell} role="form">
       <label htmlFor="input">
-        <AriaOnlySpan>type in your command</AriaOnlySpan>
+        <ScreenReaderOnlySpan>type in your command</ScreenReaderOnlySpan>
       </label>
       <CommandLineSpanL>❯ ❚ </CommandLineSpanL>
       <Input id="input" name="input" autoComplete="off" />

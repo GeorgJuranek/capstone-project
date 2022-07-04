@@ -1,30 +1,25 @@
 import {nanoid} from 'nanoid';
 import {forwardRef} from 'react';
-//import {useState} from 'react';
 import styled from 'styled-components';
 
-import {AriaOnlySpan, ColorSpan, SwitchSpan} from '../Stylesheet/StyledSpans.js';
+import {ScreenReaderOnlySpan, ColorSpan, SwitchSpan} from '../Stylesheet/StyledSpans.js';
 
 const MagicList = forwardRef(({savedOrders}, ref) => {
   return (
-    <>
-      <SavedOrdersList ref={ref} role="list">
-        {savedOrders.map(order => (
-          <SavedOrderListitem key={nanoid()}>
-            <AriaOnlySpan>you</AriaOnlySpan>
-            <ColorSpan>typed </ColorSpan>
-            <SwitchSpan error={order.error}>❯ {order.value}</SwitchSpan>
-            <InfoP>❯❯ {order.info}</InfoP>
-          </SavedOrderListitem>
-        ))}
-      </SavedOrdersList>
-    </>
+    <SavedOrdersList ref={ref} role="list">
+      {savedOrders.map(order => (
+        <SavedOrderListitem key={nanoid()}>
+          <ScreenReaderOnlySpan>you</ScreenReaderOnlySpan>
+          <ColorSpan>typed </ColorSpan>
+          <SwitchSpan error={order.error}>❯ {order.value}</SwitchSpan>
+          <InfoP>❯❯ {order.info}</InfoP>
+        </SavedOrderListitem>
+      ))}
+    </SavedOrdersList>
   );
 });
 MagicList.displayName = 'MagicList';
 export default MagicList;
-
-// ↑ The AriaOnlySpan "you" reads the changed list-style-type: "you", in the <ul> for screenreader
 
 const SavedOrdersList = styled.ul`
   background-color: black;

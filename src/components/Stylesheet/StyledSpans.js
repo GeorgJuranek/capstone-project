@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const AriaOnlySpan = styled.span`
+export const ScreenReaderOnlySpan = styled.span`
   position: absolute;
   width: 1px;
   height: 1px;

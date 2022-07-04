@@ -18,7 +18,6 @@ export default function App() {
     //
     const checkedInput = spellword.trim().toLowerCase();
     const inputInfo = findSpellMessage(checkedInput);
-    console.log('InputInfo2: ', inputInfo);
     const hasError = inputInfo.includes('ERROR'); //the error-prop is used to make specific text red, the string can tell if error has happened
     setSavedOrders([{value: spellword, info: inputInfo, error: hasError}, ...savedOrders]);
 
@@ -41,7 +40,7 @@ export default function App() {
         </p>
         <p>
           Please type in <CodeSpan>pwd</CodeSpan>, <CodeSpan>ls</CodeSpan> or <CodeSpan>cd</CodeSpan> to get further
-          Information about this specific command in the zshell:{' '}
+          Information about this specific command in the zshell:
         </p>
       </StyledSection>
 
