@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import MagicForm from './components/MagicForm/MagicForm';
 import MagicList from './components/MagicList/MagicList.js';
 import {CodeSpan} from './components/Stylesheet/StyledSpans.js';
+import findSpellMessage from './functionsfolder/findSpellMessage.js';
 
 export default function App() {
   // State // for the archived Spells
@@ -12,7 +13,7 @@ export default function App() {
   //useRef is used here to find the MagicList at the End of following saveSpellOrder-function
   const ref = useRef();
 
-  // ANALYZE SPELL // checks the Input.value from MagicForm and sends back and to: MagicList //
+  // SAVE SPELL ORDER // checks the Input.value from MagicForm and sends back and to: MagicList //
   function saveSpellOrder(spellword) {
     //
     const trimmedInput = spellword.trim();
@@ -27,8 +28,8 @@ export default function App() {
     List.scrollTop = topPos;
   }
 
-  // ↑ FIND SPELL MESSAGE // is called within analyzeSpell to return a fitting string //
-  function findSpellMessage(spellword) {
+  // THIS IS WHAT WAS HAPPENING BEFORE: //
+  /* function findSpellMessage(spellword) {
     if (spellword === 'cd') {
       return 'The command "cd" stands for "change directory", so you can jump from one directory in another one. This is so important. ';
     } else if (spellword === 'ls') {
@@ -37,8 +38,8 @@ export default function App() {
       return ' The command "pwd" stands for "print working directory", this means that you can ask for your current position and it will tell you the directory you are in right now. ';
     } else {
       return '(!) ERROR: please check if you spelled the command correctly, coding is really strict and otherwise it will not work.';
-    }
-  }
+    } 
+  } */
 
   return (
     <OrganizingMain>

@@ -16,7 +16,7 @@ describe('MagicForm', () => {
     expect(input).toBeInTheDocument();
   });
 
-  it('MagicForm has 2 buttons and both are accessible', async () => {
+  it('MagicForm has a button and it is accessible', async () => {
     render(<MagicForm savedOrders={[]} />);
     const button = screen.getByRole('button');
     expect(button).toBeInTheDocument();

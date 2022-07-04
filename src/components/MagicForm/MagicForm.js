@@ -19,15 +19,13 @@ export default function MagicForm({saveSpellOrder, savedOrders}) {
   }
 
   return (
-    <Form onSubmit={handleSpell} role="form">
+    <Form onSubmit={handleSpell}>
       <label htmlFor="input">
         <AriaOnlySpan>type in your command</AriaOnlySpan>
       </label>
       <CommandLineSpanL>❯ ❚ </CommandLineSpanL>
       <Input id="input" name="input" autoComplete="off" />
-      <Button role="button" name="button">
-        ENTER
-      </Button>
+      <Button>ENTER</Button>
       <CommandLineSpanR>
         <FrameSpan>?</FrameSpan> {savedOrders.length}
       </CommandLineSpanR>
