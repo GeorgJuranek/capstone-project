@@ -16,9 +16,9 @@ export default function App() {
   // SAVE SPELL ORDER // checks the Input.value from MagicForm and sends back and to: MagicList //
   function saveSpellOrder(spellword) {
     //
-    const trimmedInput = spellword.trim();
-    const checkedInput = trimmedInput.toLowerCase();
+    const checkedInput = spellword.trim().toLowerCase();
     const inputInfo = findSpellMessage(checkedInput);
+    console.log('InputInfo2: ', inputInfo);
     const hasError = inputInfo.includes('ERROR'); //the error-prop is used to make specific text red, the string can tell if error has happened
     setSavedOrders([{value: spellword, info: inputInfo, error: hasError}, ...savedOrders]);
 
@@ -27,19 +27,6 @@ export default function App() {
     const topPos = List.offsetTop;
     List.scrollTop = topPos;
   }
-
-  // THIS IS WHAT WAS HAPPENING BEFORE: //
-  /* function findSpellMessage(spellword) {
-    if (spellword === 'cd') {
-      return 'The command "cd" stands for "change directory", so you can jump from one directory in another one. This is so important. ';
-    } else if (spellword === 'ls') {
-      return ' The command "ls" stands for "list items", it shows you all directories and data, that are stored in the directory you are in right now and are not hidden.';
-    } else if (spellword === 'pwd') {
-      return ' The command "pwd" stands for "print working directory", this means that you can ask for your current position and it will tell you the directory you are in right now. ';
-    } else {
-      return '(!) ERROR: please check if you spelled the command correctly, coding is really strict and otherwise it will not work.';
-    } 
-  } */
 
   return (
     <OrganizingMain>

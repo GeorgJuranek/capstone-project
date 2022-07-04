@@ -19,7 +19,7 @@ export default function MagicForm({saveSpellOrder, savedOrders}) {
   }
 
   return (
-    <Form onSubmit={handleSpell}>
+    <Form onSubmit={handleSpell} role="form">
       <label htmlFor="input">
         <AriaOnlySpan>type in your command</AriaOnlySpan>
       </label>
