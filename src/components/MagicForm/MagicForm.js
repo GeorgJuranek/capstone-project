@@ -17,7 +17,7 @@ export default function MagicForm({saveSpellOrder, savedOrders}) {
   }
 
   return (
-    <Form onSubmit={handleSpell} role="form">
+    <Form onSubmit={handleSpell}>
       <label htmlFor="input">
         <ScreenReaderOnlySpan>type in your command</ScreenReaderOnlySpan>
       </label>
