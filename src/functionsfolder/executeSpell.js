@@ -58,7 +58,7 @@ export default function executeSpell(checkedSpellword, currentArrayPosition, cur
   }
   // CD //
   else if (currentSpellwordAsArray[0] === 'cd' && currentSpellwordAsArray.length === 2) {
-    // given argument fits to next-property of current Position
+    // given 2.argument fits to next-property of current Position
     if (currentSpellwordAsArray[1] === currentArrayRoomObject.next) {
       //checks if a next-room exists
       if (currentArrayRoomObject.next !== null) {
@@ -79,14 +79,22 @@ export default function executeSpell(checkedSpellword, currentArrayPosition, cur
         };
       }
     }
-    // CD ARGUMENT IS .. TO GO BACK
+    // CD 2.ARGUMENT IS ".. TO GO BACK
     else if (currentSpellwordAsArray[1] === '..') {
       if (currentArrayRoomObject.prev !== null) {
         const goPreviousPath = currentArrayRoomObject.prev;
-        console.log('Go back to ArrayPosition: ', goPreviousPath);
         changePosition(goPreviousPath);
+        //
+        return {
+          spellEffectMessage: 'you moved to position: ',
+          spellEffectOutput: goPreviousPath,
+        };
       } else {
-        console.log("Dead end. You can't go any further");
+        //
+        return {
+          spellEffectMessage: "you can't go back any further",
+          spellEffectOutput: '!',
+        };
       }
     }
     // CD ARGUMENT IS INVALID
