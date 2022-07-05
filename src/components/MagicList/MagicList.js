@@ -15,7 +15,7 @@ const MagicList = forwardRef(({savedOrders}, ref) => {
           <EffectUl role="list">
             {order.spellEffectMessage}
             <li>
-              <SwitchSpan error={order.error}>{order.spellEffectOutput}</SwitchSpan>
+              <SwitchSpan error={order.spellEffectHasError}>{order.spellEffectOutput}</SwitchSpan>
             </li>
           </EffectUl>
         </SavedOrderListitem>

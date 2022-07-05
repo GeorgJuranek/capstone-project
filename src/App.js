@@ -1,5 +1,5 @@
 import {nanoid} from 'nanoid';
-import {useState, useEffect, useRef} from 'react';
+import {useState, useRef} from 'react';
 import styled from 'styled-components';
 
 import {mazeArray} from './arrays/mazeArray.js';
@@ -10,23 +10,15 @@ import executeSpell from './functionsfolder/executeSpell.js';
 import findSpellMessage from './functionsfolder/findSpellMessage.js';
 
 export default function App() {
-  //Pos as Path(string):
-  const [currentArrayPosition, setCurrentArrayPosition] = useState('cave/start/');
-  //Pos As Object:
-  const [currentArrayRoomObject, setCurrentArrayRoomObject] = useState(mazeArray[0]);
-  //
-  useEffect(
-    () => setCurrentArrayRoomObject(mazeArray.find(mazeRoom => mazeRoom.path === currentArrayPosition)),
-    [currentArrayPosition]
-  );
+  const [currentArrayPosition, setCurrentArrayPosition] = useState(mazeArray[0]); //in the Array are Objects, this is actually a big object
 
   //
-  function changePosition(newPosition) {
-    //exspects a string
-    setCurrentArrayPosition(newPosition);
+  function changePosition(newPositionAsString) {
+    const newPositionAsObject = mazeArray.find(mazeRoom => mazeRoom.path === newPositionAsString);
+    setCurrentArrayPosition(newPositionAsObject);
   }
 
-  // Functions for 'pwd', 'ls', 'cd' // test
+  //
 
   const [savedOrders, setSavedOrders] = useState([]);
 
@@ -34,11 +26,12 @@ export default function App() {
 
   function saveSpellOrder(spellword) {
     const checkedInput = spellword.trim().toLowerCase();
-    const inputInfo = findSpellMessage(checkedInput);
+    const checkedInputAsArray = checkedInput.split(' ');
+    const inputInfo = findSpellMessage(checkedInputAsArray[0]);
     const hasError = inputInfo.includes('ERROR');
     //
-    const inputEffects = executeSpell(checkedInput, currentArrayPosition, currentArrayRoomObject, changePosition);
-    const {spellEffectMessage, spellEffectOutput} = inputEffects;
+    const inputEffects = executeSpell(checkedInputAsArray, currentArrayPosition, changePosition);
+    const {spellEffectMessage, spellEffectOutput, spellEffectHasError} = inputEffects;
     //
     setSavedOrders([
       {
@@ -48,6 +41,7 @@ export default function App() {
         error: hasError,
         spellEffectMessage: spellEffectMessage,
         spellEffectOutput: spellEffectOutput,
+        spellEffectHasError: spellEffectHasError,
       },
       ...savedOrders,
     ]);

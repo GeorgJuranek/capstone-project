@@ -1,31 +1,33 @@
 import {mazeArray} from '../arrays/mazeArray.js';
 
-export default function executeSpell(checkedSpellword, currentArrayPosition, currentArrayRoomObject, changePosition) {
-  const currentSpellwordAsArray = checkedSpellword.split(' ');
+export default function executeSpell(checkedInputAsArray, currentArrayPosition, changePosition) {
   //NOW SEARCH FOR THE SPELL//
   // PWD //
-  if (currentSpellwordAsArray[0] === 'pwd') {
-    if (currentSpellwordAsArray.length === 1) {
+  if (checkedInputAsArray[0] === 'pwd') {
+    if (checkedInputAsArray.length === 1) {
       return {
         spellEffectMessage: 'a magic voice that whispers: you are here ',
-        spellEffectOutput: currentArrayPosition,
+        spellEffectOutput: currentArrayPosition.path,
+        spellEffectHasError: false,
       };
     } else {
       return {
         spellEffectMessage: 'a magic voice that whispers: ',
         spellEffectOutput: 'pwd: too many arguments...',
+        spellEffectHasError: true,
       };
     }
   }
   // LS //
-  else if (currentSpellwordAsArray[0] === 'ls') {
+  else if (checkedInputAsArray[0] === 'ls') {
     //only ls
-    if (currentSpellwordAsArray.length === 1) {
+    if (checkedInputAsArray.length === 1) {
       // if no dead-end
-      if (currentArrayRoomObject.next !== null) {
+      if (currentArrayPosition.next !== null) {
         return {
           spellEffectMessage: 'a magic voice that whispers: you can go to ',
-          spellEffectOutput: currentArrayRoomObject.next,
+          spellEffectOutput: currentArrayPosition.next,
+          spellEffectHasError: false,
         };
       }
       // if dead-end
@@ -33,18 +35,20 @@ export default function executeSpell(checkedSpellword, currentArrayPosition, cur
         return {
           spellEffectMessage: 'a magic voice that whispers: ',
           spellEffectOutput: 'dead end, you can only go back...',
+          spellEffectHasError: true,
         };
       }
     }
     // ls + path
-    else if (currentSpellwordAsArray.length === 2) {
+    else if (checkedInputAsArray.length === 2) {
       // check if second Argument is a valid roomObject from MazeArray
-      const searchRoomFitsPath = mazeArray.find(mazeRoom => mazeRoom.path === currentSpellwordAsArray[1]);
+      const searchRoomFitsPath = mazeArray.find(mazeRoom => mazeRoom.path === checkedInputAsArray[1]);
       // valid path was given
       if (searchRoomFitsPath !== undefined) {
         return {
           spellEffectMessage: 'a magic voice that whispers: ',
           spellEffectOutput: `The Room ${searchRoomFitsPath.path} contains the door to ${searchRoomFitsPath.next} `,
+          spellEffectHasError: false,
         };
       }
       // invalid path was given
@@ -52,61 +56,71 @@ export default function executeSpell(checkedSpellword, currentArrayPosition, cur
         return {
           spellEffectMessage: 'a magic voice that whispers: ',
           spellEffectOutput: 'you are searching for an incorrect path. Have you tried the full-path yet?...',
+          spellEffectHasError: true,
         };
       }
     }
   }
   // CD //
-  else if (currentSpellwordAsArray[0] === 'cd' && currentSpellwordAsArray.length === 2) {
+  else if (checkedInputAsArray[0] === 'cd' && checkedInputAsArray.length === 2) {
     // given 2.argument fits to next-property of current Position
-    if (currentSpellwordAsArray[1] === currentArrayRoomObject.next) {
+    if (checkedInputAsArray[1] === currentArrayPosition.next) {
       //checks if a next-room exists
-      if (currentArrayRoomObject.next !== null) {
-        const addNewPath = currentArrayRoomObject.path + currentArrayRoomObject.next + '/';
-        // SIDE EFFECT BETTER POSITION?? HOW??
+      if (currentArrayPosition.next !== null) {
+        const addNewPath = currentArrayPosition.path + currentArrayPosition.next + '/';
+        // ??SIDE EFFECT BETTER POSITION?? WHERE HOW??
         changePosition(addNewPath);
         //
         return {
           spellEffectMessage: 'you moved to position: ',
           spellEffectOutput: addNewPath,
+          spellEffectHasError: false,
         };
       }
       // if there is no next-room
       else {
         return {
           spellEffectMessage: 'a magic voice that whispers: ',
-          spellEffectOutput: "You are facing a dead end. You can't go any further...",
+          spellEffectOutput: 'Maybe you should go back...',
+          spellEffectHasError: true,
         };
       }
     }
     // CD 2.ARGUMENT IS ".. TO GO BACK
-    else if (currentSpellwordAsArray[1] === '..') {
-      if (currentArrayRoomObject.prev !== null) {
-        const goPreviousPath = currentArrayRoomObject.prev;
+    else if (checkedInputAsArray[1] === '..') {
+      if (currentArrayPosition.prev !== null) {
+        const goPreviousPath = currentArrayPosition.prev;
         changePosition(goPreviousPath);
         //
         return {
           spellEffectMessage: 'you moved to position: ',
           spellEffectOutput: goPreviousPath,
+          spellEffectHasError: false,
         };
       } else {
         //
         return {
           spellEffectMessage: "you can't go back any further",
-          spellEffectOutput: '!',
+          spellEffectOutput: 'you are standing with your back to the wall',
+          spellEffectHasError: true,
         };
       }
     }
     // CD ARGUMENT IS INVALID
     else {
-      console.warn('This room does not exist, try something else!');
+      return {
+        spellEffectMessage: "you can't move to this room from here",
+        spellEffectOutput: 'the way does not exist',
+        spellEffectHasError: true,
+      };
     }
   }
   // NO MATCH WITH SPELL //
   else {
     return {
-      spellEffectMessage: 'Something went wrong here...',
+      spellEffectMessage: 'Something went wrong...',
       spellEffectOutput: 'No Magic was executed!',
+      spellEffectHasError: true,
     };
   }
 }
