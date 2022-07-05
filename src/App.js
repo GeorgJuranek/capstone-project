@@ -1,13 +1,33 @@
 import {nanoid} from 'nanoid';
-import {useState, useRef} from 'react';
+import {useState, useEffect, useRef} from 'react';
 import styled from 'styled-components';
 
+import {mazeArray} from './arrays/mazeArray.js';
 import MagicForm from './components/MagicForm/MagicForm';
 import MagicList from './components/MagicList/MagicList.js';
 import {CodeSpan} from './components/Stylesheet/StyledSpans.js';
+import executeSpell from './functionsfolder/executeSpell.js';
 import findSpellMessage from './functionsfolder/findSpellMessage.js';
 
 export default function App() {
+  //Pos as Path(string):
+  const [currentArrayPosition, setCurrentArrayPosition] = useState('cave/start/');
+  //Pos As Object:
+  const [currentArrayRoomObject, setCurrentArrayRoomObject] = useState(mazeArray[0]);
+  //
+  useEffect(
+    () => setCurrentArrayRoomObject(mazeArray.find(mazeRoom => mazeRoom.path === currentArrayPosition)),
+    [currentArrayPosition]
+  );
+
+  //
+  function changePosition(newPosition) {
+    //exspects a string
+    setCurrentArrayPosition(newPosition);
+  }
+
+  // Functions for 'pwd', 'ls', 'cd' // test
+
   const [savedOrders, setSavedOrders] = useState([]);
 
   const ref = useRef();
@@ -16,7 +36,21 @@ export default function App() {
     const checkedInput = spellword.trim().toLowerCase();
     const inputInfo = findSpellMessage(checkedInput);
     const hasError = inputInfo.includes('ERROR');
-    setSavedOrders([{id: nanoid(), value: spellword, info: inputInfo, error: hasError}, ...savedOrders]);
+    //
+    const inputEffects = executeSpell(checkedInput, currentArrayPosition, currentArrayRoomObject, changePosition);
+    const {spellEffectMessage, spellEffectOutput} = inputEffects;
+    //
+    setSavedOrders([
+      {
+        id: nanoid(),
+        value: spellword,
+        info: inputInfo,
+        error: hasError,
+        spellEffectMessage: spellEffectMessage,
+        spellEffectOutput: spellEffectOutput,
+      },
+      ...savedOrders,
+    ]);
 
     const List = ref.current;
     const topPos = List.offsetTop;

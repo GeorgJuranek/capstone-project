@@ -12,6 +12,12 @@ const MagicList = forwardRef(({savedOrders}, ref) => {
           <ColorSpan>typed </ColorSpan>
           <SwitchSpan error={order.error}>❯ {order.value}</SwitchSpan>
           <InfoP>❯❯ {order.info}</InfoP>
+          <EffectUl role="list">
+            {order.spellEffectMessage}
+            <li>
+              <SwitchSpan error={order.error}>{order.spellEffectOutput}</SwitchSpan>
+            </li>
+          </EffectUl>
         </SavedOrderListitem>
       ))}
     </SavedOrdersList>
@@ -47,4 +53,10 @@ const SavedOrderListitem = styled.li`
 
 const InfoP = styled.p`
   color: white;
+`;
+
+const EffectUl = styled.ul`
+  display: grid;
+  color: white;
+  list-style: none;
 `;
