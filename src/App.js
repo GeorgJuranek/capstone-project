@@ -1,23 +1,31 @@
+import {nanoid} from 'nanoid';
+import {useState, useRef} from 'react';
 import styled from 'styled-components';
 
 import MagicForm from './components/MagicForm/MagicForm';
+import MagicList from './components/MagicList/MagicList.js';
+import {CodeSpan} from './components/Stylesheet/StyledSpans.js';
+import findSpellMessage from './functionsfolder/findSpellMessage.js';
 
 export default function App() {
-  //
-  function analyzeSpell(spellword) {
-    if (spellword === 'cd') {
-      return 'The command "cd" stands for "change directory", so you can jump from one directory in another one. This is so important. ';
-    } else if (spellword === 'ls') {
-      return ' The command "ls" stands for "list items", it shows you all directories and data, that are stored in the directory you are in right now and are not hidden.';
-    } else if (spellword === 'pwd') {
-      return ' The command "pwd" stands for "print working directory", this means that you can ask for your current position and it will tell you the directory you are in right now. ';
-    } else {
-      return '(!)>>> ERROR: please check if you spelled the command correctly, coding is really strict and otherwise it will not work.';
-    }
+  const [savedOrders, setSavedOrders] = useState([]);
+
+  const ref = useRef();
+
+  function saveSpellOrder(spellword) {
+    const checkedInput = spellword.trim().toLowerCase();
+    const inputInfo = findSpellMessage(checkedInput);
+    const hasError = inputInfo.includes('ERROR');
+    setSavedOrders([{id: nanoid(), value: spellword, info: inputInfo, error: hasError}, ...savedOrders]);
+
+    const List = ref.current;
+    const topPos = List.offsetTop;
+    List.scrollTop = topPos;
   }
 
   return (
     <OrganizingMain>
+      <LogoImg src={require('./images/logo1.png')} alt="" width="125" height="125" />
       <h1>
         <u>SHELL_WIZARD</u>
       </h1>
@@ -27,11 +35,15 @@ export default function App() {
           learn how to code!)
         </p>
         <p>
-          Please type in <SpanCode>pwd</SpanCode>, <SpanCode>ls</SpanCode> or <SpanCode>cd</SpanCode> to get further
-          Information about this specific command in the zshell:{' '}
+          Please type in <CodeSpan>pwd</CodeSpan>, <CodeSpan>ls</CodeSpan> or <CodeSpan>cd</CodeSpan> to get further
+          Information about this specific command in the zshell:
         </p>
       </StyledSection>
-      <MagicForm analyzeSpell={analyzeSpell} />
+
+      <ZshellDiv>
+        <MagicList ref={ref} savedOrders={savedOrders} />
+        <MagicForm savedOrders={savedOrders} saveSpellOrder={saveSpellOrder} />
+      </ZshellDiv>
     </OrganizingMain>
   );
 }
@@ -42,13 +54,25 @@ const OrganizingMain = styled.main`
   align-items: center;
 `;
 
+const ZshellDiv = styled.div`
+  width: 85vw;
+  max-width: 500px;
+  height: auto;
+  max-height: 500px;
+  border: 2px ridge #181818;
+  border-radius: 5%;
+  margin: 1em 0;
+  background-image: linear-gradient(#181818, black);
+  box-shadow: 0 10px 8px #888;
+`;
+
 const StyledSection = styled.section`
   max-width: 50vw;
 `;
 
-const SpanCode = styled.span`
-  color: white;
-  background-color: grey;
-  padding: 3px;
-  border-radius: 20%;
+const LogoImg = styled.img`
+  position: relative;
+  right: 5px;
+  top: 45px;
+  z-index: -1;
 `;

@@ -1,107 +1,71 @@
-import {nanoid} from 'nanoid';
-import {useState} from 'react';
 import styled from 'styled-components';
 
-export default function MagicForm({analyzeSpell}) {
-  const [savedOrders, SetSavedOrders] = useState([]);
+import {ScreenReaderOnlySpan, FrameSpan} from '../Stylesheet/StyledSpans.js';
 
+export default function MagicForm({saveSpellOrder, savedOrders}) {
   function handleSpell(event) {
     event.preventDefault();
-    const Form = event.target;
-    const {input} = Form.elements;
-    //is already trimmed() here
-    const checkedInput = input.value.toLowerCase();
-    if (checkedInput.length > 0) {
-      const inputInfo = analyzeSpell(checkedInput);
-      SetSavedOrders([{value: input.value, info: inputInfo}, ...savedOrders]); //input.value means the original string 1:1
-      Form.reset();
-    } //Get an empty string before it runs into analyzeSpell
-    else {
-      SetSavedOrders([
-        {
-          value: '...oh nothing?',
-          info: 'Did you fell on your enter-button? you have to type in the commands to get information about zshell!',
-        },
-        ...savedOrders,
-      ]);
+    const form = event.target;
+    const {input} = form.elements;
+
+    if (input.value.length > 0) {
+      saveSpellOrder(input.value);
+      form.reset();
     }
+
+    input.focus();
   }
 
   return (
-    <OrganizingDiv>
-      <SavedOrdersList role="list">
-        {savedOrders.map(order => (
-          <SavedOrderListitem key={nanoid()}>
-            <AriaOnlySpan>you</AriaOnlySpan>
-            typed in: {order.value}
-            <p>{order.info}</p>
-          </SavedOrderListitem>
-        ))}
-      </SavedOrdersList>
-
-      <Form onSubmit={handleSpell} role="form">
-        <label htmlFor="input">
-          <AriaOnlySpan>type in your command</AriaOnlySpan>
-        </label>
-        <Button> ❯ ❚ </Button>
-        <Input id="input" name="input" autoComplete="off" />
-      </Form>
-    </OrganizingDiv>
+    <Form onSubmit={handleSpell}>
+      <label htmlFor="input">
+        <ScreenReaderOnlySpan>type in your command</ScreenReaderOnlySpan>
+      </label>
+      <CommandLineSpanL>❯ ❚ </CommandLineSpanL>
+      <Input id="input" name="input" autoComplete="off" />
+      <Button>ENTER</Button>
+      <CommandLineSpanR>
+        <FrameSpan>?</FrameSpan> {savedOrders.length}
+      </CommandLineSpanR>
+    </Form>
   );
 }
-
-const OrganizingDiv = styled.div`
-  width: 65vw;
-  max-width: 500px;
-  height: auto;
-  max-height: 500px;
-  border: 1px solid black;
-  border-radius: 5%;
-`;
-
-const SavedOrdersList = styled.ul`
-  border: 1px solid black;
-  list-style-type: 'you ';
-  height: 50vw;
-  max-height: 400px;
-  overflow: scroll;
-  display: flex;
-  flex-direction: column-reverse;
-  justify-content: flex-start;
-  padding-bottom: 0;
-  margin-bottom: 0;
-`;
-
-const SavedOrderListitem = styled.li`
-  word-wrap: break-word;
-  padding-top: 1rem;
-  border-top: 2px solid black;
-`;
-
-const Input = styled.input`
-  width: 90%;
-`;
-
-const Button = styled.button`
-  background: none;
-  white-space: nowrap;
-`;
 
 const Form = styled.form`
   display: flex;
   justify-content: flex-start;
+  align-items: baseline;
   flex-wrap: nowrap;
   margin-bottom: 1rem;
 `;
 
-const AriaOnlySpan = styled.span`
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
+const Input = styled.input`
+  width: 90%;
+  border: none;
+  color: #65ff00;
+  background-color: black;
+`;
+
+const CommandLineSpanL = styled.span`
   white-space: nowrap;
-  border-width: 0;
+  color: #65ff00;
+`;
+
+const CommandLineSpanR = styled.span`
+  white-space: nowrap;
+  color: #65ff00;
+  margin-right: 3%;
+`;
+
+const Button = styled.button`
+  background-color: #65ff00;
+  border: medium solid #65ff00;
+  padding: 5px 2% 0 2%;
+  margin: 0 3%;
+
+  &:active {
+    background-color: black;
+    border: medium solid white;
+    color: white;
+  }
 `;
