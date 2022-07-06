@@ -59,7 +59,7 @@ export default function App() {
       <h1>
         <u>SHELL_WIZARD</u>
       </h1>
-      <StyledSection>
+      <StyledDiv>
         <p>
           With this App you can learn about your first steps with the zshell (what you want to learn, if you want to
           learn how to code!)
@@ -88,8 +88,8 @@ export default function App() {
           </li>
         </ol>
 
-        <p>If done right, each of these spells summon a magical gift that will help you on your path.</p>
-      </StyledSection>
+        <p>If done right, each of these spells will summon a magical gift that will help you on your path...</p>
+      </StyledDiv>
 
       <ZshellDiv>
         <MagicList ref={ref} savedOrders={savedOrders} />
@@ -117,8 +117,9 @@ const ZshellDiv = styled.div`
   box-shadow: 0 10px 8px #888;
 `;
 
-const StyledSection = styled.section`
-  max-width: 50vw;
+const StyledDiv = styled.div`
+  width: 75vw;
+  max-width: 500px;
 `;
 
 const LogoImg = styled.img`
