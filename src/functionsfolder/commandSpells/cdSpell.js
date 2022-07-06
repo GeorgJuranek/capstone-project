@@ -1,16 +1,12 @@
 export default function cdSpell(preparedInputAsArray, currentArrayPosition, changePosition) {
   if (preparedInputAsArray[1] === currentArrayPosition.next) {
-    if (currentArrayPosition.next !== null) {
-      const addNewPath = currentArrayPosition.path + currentArrayPosition.next + '/';
-      // This comes changes a state in the App.js, is there a better way to store this?
-      changePosition(addNewPath);
-      // ????????????????????????????????????????????????????????????????????????
-      return {
-        spellEffectMessage: 'you moved to position: ',
-        spellEffectOutput: addNewPath,
-        spellEffectHasError: false,
-      };
-    }
+    const addNewPath = currentArrayPosition.path + currentArrayPosition.next + '/';
+    changePosition(addNewPath);
+    return {
+      spellEffectMessage: 'you moved to position: ',
+      spellEffectOutput: addNewPath,
+      spellEffectHasError: false,
+    };
   } else if (preparedInputAsArray[1] === '..') {
     if (currentArrayPosition.prev !== null) {
       const goPreviousPath = currentArrayPosition.prev;

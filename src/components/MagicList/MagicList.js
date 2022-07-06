@@ -12,16 +12,13 @@ const MagicList = forwardRef(({savedOrders}, ref) => {
           <ColorSpan>typed </ColorSpan>
           <ErrorChangesColorSpan error={order.commandHasError}>❯ {order.inputValues[0]} </ErrorChangesColorSpan>
           <ErrorChangesColorSpan error={order.spellEffectHasError}>{order.inputValues[1]}</ErrorChangesColorSpan>
-          <InfoP>❯❯ {order.commandMessage}</InfoP>
-          <EffectUl role="list">
-            <ErrorChangesColorSpan error={order.spellEffectHasError}>
-              {order.spellEffectHasError ? '× failed' : '✓ success'}
-            </ErrorChangesColorSpan>
-            {order.spellEffectMessage}
-            <li>
-              <ErrorChangesColorSpan error={order.spellEffectHasError}>{order.spellEffectOutput}</ErrorChangesColorSpan>
-            </li>
-          </EffectUl>
+          <MessageP>❯❯ {order.commandMessage}</MessageP>
+
+          <ErrorChangesColorSpan error={order.spellEffectHasError}>
+            {order.spellEffectHasError ? '× failed' : '✓ success'}
+          </ErrorChangesColorSpan>
+          <MessageP>{order.spellEffectMessage}</MessageP>
+          <ErrorChangesColorSpan error={order.spellEffectHasError}>{order.spellEffectOutput}</ErrorChangesColorSpan>
         </SavedOrderListitem>
       ))}
     </SavedOrdersList>
@@ -55,12 +52,6 @@ const SavedOrderListitem = styled.li`
   }
 `;
 
-const InfoP = styled.p`
+const MessageP = styled.p`
   color: white;
-`;
-
-const EffectUl = styled.ul`
-  display: grid;
-  color: white;
-  list-style: none;
 `;

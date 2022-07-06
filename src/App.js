@@ -10,31 +10,28 @@ import executeSpell from './functionsfolder/executeSpell.js';
 import findCommandMessage from './functionsfolder/findCommandMessage.js';
 
 export default function App() {
-  const [currentArrayPosition, setCurrentArrayPosition] = useState(mazeArray[0]); //in the Array are Objects, this is actually a big object
+  const [currentArrayPosition, setCurrentArrayPosition] = useState(mazeArray[0]); //this holds a {object}
 
-  //
   function changePosition(newPositionAsString) {
     const newPositionAsObject = mazeArray.find(mazeRoom => mazeRoom.path === newPositionAsString);
     setCurrentArrayPosition(newPositionAsObject);
   }
 
-  //
-
   const [savedOrders, setSavedOrders] = useState([]);
 
   const ref = useRef();
 
-  function saveSpellOrder(input) {
+  function processingLatestSpell(input) {
     const trimmedInputAsArray = input.trim().split(' ');
     const filteredTrimmedInputAsArray = trimmedInputAsArray.filter(InputUnit => InputUnit.length > 0); //this is used later aswell
     const preparedInputAsArray = filteredTrimmedInputAsArray.map(checkedInputPart => checkedInputPart.toLowerCase());
 
     const commandMessage = findCommandMessage(preparedInputAsArray[0]);
     const commandHasError = commandMessage.includes('ERROR');
-    //
+
     const spellEffects = executeSpell(preparedInputAsArray, currentArrayPosition, changePosition);
     const {spellEffectMessage, spellEffectOutput, spellEffectHasError} = spellEffects;
-    //
+
     setSavedOrders([
       {
         id: nanoid(),
@@ -88,12 +85,12 @@ export default function App() {
           </li>
         </ol>
 
-        <p>If done right, each of these spells will summon a magical gift that will help you on your path...</p>
+        <p>If done right, each of these spells will summon a magical gift that will help you on your journey...</p>
       </StyledDiv>
 
       <ZshellDiv>
         <MagicList ref={ref} savedOrders={savedOrders} />
-        <MagicForm savedOrders={savedOrders} saveSpellOrder={saveSpellOrder} />
+        <MagicForm savedOrders={savedOrders} processingLatestSpell={processingLatestSpell} />
       </ZshellDiv>
     </OrganizingMain>
   );
