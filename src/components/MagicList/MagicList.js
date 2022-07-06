@@ -12,12 +12,12 @@ const MagicList = forwardRef(({savedOrders}, ref) => {
           <ColorSpan>typed </ColorSpan>
           <ErrorChangesColorSpan error={order.commandHasError}>❯ {order.inputValues[0]} </ErrorChangesColorSpan>
           <ErrorChangesColorSpan error={order.spellEffectHasError}>{order.inputValues[1]}</ErrorChangesColorSpan>
-          <MessageP>❯❯ {order.commandMessage}</MessageP>
+          <MessageSection>❯❯ {order.commandMessage}</MessageSection>
 
           <ErrorChangesColorSpan error={order.spellEffectHasError}>
             {order.spellEffectHasError ? '× failed' : '✓ success'}
           </ErrorChangesColorSpan>
-          <MessageP>{order.spellEffectMessage}</MessageP>
+          <MessageSection>{order.spellEffectMessage}</MessageSection>
           <ErrorChangesColorSpan error={order.spellEffectHasError}>{order.spellEffectOutput}</ErrorChangesColorSpan>
         </SavedOrderListitem>
       ))}
@@ -52,6 +52,6 @@ const SavedOrderListitem = styled.li`
   }
 `;
 
-const MessageP = styled.p`
+const MessageSection = styled.section`
   color: white;
 `;
