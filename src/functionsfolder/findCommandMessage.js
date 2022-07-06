@@ -1,6 +1,6 @@
 import {spellHintsArray} from '../arrays/spellHintsArray.js';
 
-export default function findSpellMessage(spellword) {
+export default function findCommandMessage(spellword) {
   const rightSpellMessage = spellHintsArray.find(spellHint => spellHint.command === spellword);
   if (rightSpellMessage) {
     return rightSpellMessage.discription;

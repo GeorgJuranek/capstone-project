@@ -10,9 +10,9 @@ const MagicList = forwardRef(({savedOrders}, ref) => {
         <SavedOrderListitem key={order.id}>
           <ScreenReaderOnlySpan>you</ScreenReaderOnlySpan>
           <ColorSpan>typed </ColorSpan>
-          <ErrorChangesColorSpan error={order.error}>❯ {order.inputValues[0]} </ErrorChangesColorSpan>
+          <ErrorChangesColorSpan error={order.commandHasError}>❯ {order.inputValues[0]} </ErrorChangesColorSpan>
           <ErrorChangesColorSpan error={order.spellEffectHasError}>{order.inputValues[1]}</ErrorChangesColorSpan>
-          <InfoP>❯❯ {order.info}</InfoP>
+          <InfoP>❯❯ {order.commandMessage}</InfoP>
           <EffectUl role="list">
             <ErrorChangesColorSpan error={order.spellEffectHasError}>
               {order.spellEffectHasError ? '× failed' : '✓ success'}
