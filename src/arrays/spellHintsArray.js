@@ -12,6 +12,6 @@ export const spellHintsArray = [
   {
     command: 'cd',
     discription:
-      'The command "cd" stands for "change directory", so you can jump from one directory in another one. This is so important.',
+      'The command "cd" stands for "change directory", so you can jump from one directory in another one. It needs a second parameter divided by a " "',
   },
 ];

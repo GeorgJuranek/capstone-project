@@ -1,7 +1,7 @@
 import {forwardRef} from 'react';
 import styled from 'styled-components';
 
-import {ScreenReaderOnlySpan, ColorSpan, SwitchSpan} from '../Stylesheet/StyledSpans.js';
+import {ScreenReaderOnlySpan, ColorSpan, ErrorChangesColorSpan} from '../Stylesheet/StyledSpans.js';
 
 const MagicList = forwardRef(({savedOrders}, ref) => {
   return (
@@ -10,12 +10,16 @@ const MagicList = forwardRef(({savedOrders}, ref) => {
         <SavedOrderListitem key={order.id}>
           <ScreenReaderOnlySpan>you</ScreenReaderOnlySpan>
           <ColorSpan>typed </ColorSpan>
-          <SwitchSpan error={order.error}>❯ {order.value}</SwitchSpan>
+          <ErrorChangesColorSpan error={order.error}>❯ {order.inputValues[0]} </ErrorChangesColorSpan>
+          <ErrorChangesColorSpan error={order.spellEffectHasError}>{order.inputValues[1]}</ErrorChangesColorSpan>
           <InfoP>❯❯ {order.info}</InfoP>
           <EffectUl role="list">
+            <ErrorChangesColorSpan error={order.spellEffectHasError}>
+              {order.spellEffectHasError ? '× failed' : '✓ success'}
+            </ErrorChangesColorSpan>
             {order.spellEffectMessage}
             <li>
-              <SwitchSpan error={order.spellEffectHasError}>{order.spellEffectOutput}</SwitchSpan>
+              <ErrorChangesColorSpan error={order.spellEffectHasError}>{order.spellEffectOutput}</ErrorChangesColorSpan>
             </li>
           </EffectUl>
         </SavedOrderListitem>

@@ -5,6 +5,6 @@ export default function findSpellMessage(spellword) {
   if (rightSpellMessage) {
     return rightSpellMessage.discription;
   } else {
-    return '(!)ERROR: please check if you spelled the command correctly, coding is really strict and otherwise it will not work.';
+    return 'ERROR: please check if you spelled the command correctly, coding is really strict and otherwise it will not work.';
   }
 }

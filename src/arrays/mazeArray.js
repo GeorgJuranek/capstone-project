@@ -1,23 +1,23 @@
 export const mazeArray = [
   {
     id: 0,
-    path: 'cave/start/',
+    path: 'maze/start/',
     type: 'start',
     next: 'middle',
     prev: null,
   },
   {
     id: 1,
-    path: 'cave/start/middle/',
+    path: 'maze/start/middle/',
     type: 'middle',
     next: 'end',
-    prev: 'cave/start/',
+    prev: 'maze/start/',
   },
   {
     id: 2,
-    path: 'cave/start/middle/end/',
+    path: 'maze/start/middle/end/',
     type: 'end',
     next: null,
-    prev: 'cave/start/middle/',
+    prev: 'maze/start/middle/',
   },
 ];

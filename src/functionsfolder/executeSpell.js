@@ -1,31 +1,30 @@
 import {mazeArray} from '../arrays/mazeArray.js';
 
-export default function executeSpell(checkedInputAsArray, currentArrayPosition, changePosition) {
-  //NOW SEARCH FOR THE SPELL//
+export default function executeSpell(preparedInputAsArray, currentArrayPosition, changePosition) {
   // PWD //
-  if (checkedInputAsArray[0] === 'pwd') {
-    if (checkedInputAsArray.length === 1) {
+  if (preparedInputAsArray[0] === 'pwd') {
+    if (preparedInputAsArray.length === 1) {
       return {
-        spellEffectMessage: 'a magic voice that whispers: you are here ',
+        spellEffectMessage: 'a magic voice that whispers, you are here: ',
         spellEffectOutput: currentArrayPosition.path,
         spellEffectHasError: false,
       };
     } else {
       return {
         spellEffectMessage: 'a magic voice that whispers: ',
-        spellEffectOutput: 'pwd: too many arguments...',
+        spellEffectOutput: 'pwd: too many arguments',
         spellEffectHasError: true,
       };
     }
   }
   // LS //
-  else if (checkedInputAsArray[0] === 'ls') {
+  else if (preparedInputAsArray[0] === 'ls') {
     //only ls
-    if (checkedInputAsArray.length === 1) {
+    if (preparedInputAsArray.length === 1) {
       // if no dead-end
       if (currentArrayPosition.next !== null) {
         return {
-          spellEffectMessage: 'a magic voice that whispers: you can go to ',
+          spellEffectMessage: 'a magic voice that whispers, you can go to: ',
           spellEffectOutput: currentArrayPosition.next,
           spellEffectHasError: false,
         };
@@ -34,37 +33,47 @@ export default function executeSpell(checkedInputAsArray, currentArrayPosition, 
       else {
         return {
           spellEffectMessage: 'a magic voice that whispers: ',
-          spellEffectOutput: 'dead end, you can only go back...',
+          spellEffectOutput: 'dead end, you can only go back... type in " cd .. "',
           spellEffectHasError: true,
         };
       }
     }
     // ls + path
-    else if (checkedInputAsArray.length === 2) {
+    else if (preparedInputAsArray.length === 2) {
       // check if second Argument is a valid roomObject from MazeArray
-      const searchRoomFitsPath = mazeArray.find(mazeRoom => mazeRoom.path === checkedInputAsArray[1]);
+      const searchRoomFitsPath = mazeArray.find(mazeRoom => mazeRoom.path === preparedInputAsArray[1]);
       // valid path was given
       if (searchRoomFitsPath !== undefined) {
-        return {
-          spellEffectMessage: 'a magic voice that whispers: ',
-          spellEffectOutput: `The Room ${searchRoomFitsPath.path} contains the door to ${searchRoomFitsPath.next} `,
-          spellEffectHasError: false,
-        };
+        //is not dead end room
+        if (searchRoomFitsPath.next !== null) {
+          return {
+            spellEffectMessage: 'a magic voice that whispers: ',
+            spellEffectOutput: `The Room ${searchRoomFitsPath.path} contains the door to ${searchRoomFitsPath.next}`,
+            spellEffectHasError: false,
+          };
+        } else {
+          return {
+            spellEffectMessage: 'a magic voice that whispers: ',
+            spellEffectOutput: `The Room ${searchRoomFitsPath.path} contains no more doors.`,
+            spellEffectHasError: true,
+          };
+        }
       }
       // invalid path was given
       else {
         return {
           spellEffectMessage: 'a magic voice that whispers: ',
-          spellEffectOutput: 'you are searching for an incorrect path. Have you tried the full-path yet?...',
+          spellEffectOutput: `"${preparedInputAsArray[1]}": No such file or directory`,
           spellEffectHasError: true,
         };
       }
     }
   }
+
   // CD //
-  else if (checkedInputAsArray[0] === 'cd' && checkedInputAsArray.length === 2) {
+  else if (preparedInputAsArray[0] === 'cd') {
     // given 2.argument fits to next-property of current Position
-    if (checkedInputAsArray[1] === currentArrayPosition.next) {
+    if (preparedInputAsArray[1] === currentArrayPosition.next) {
       //checks if a next-room exists
       if (currentArrayPosition.next !== null) {
         const addNewPath = currentArrayPosition.path + currentArrayPosition.next + '/';
@@ -77,40 +86,33 @@ export default function executeSpell(checkedInputAsArray, currentArrayPosition, 
           spellEffectHasError: false,
         };
       }
-      // if there is no next-room
-      else {
-        return {
-          spellEffectMessage: 'a magic voice that whispers: ',
-          spellEffectOutput: 'Maybe you should go back...',
-          spellEffectHasError: true,
-        };
-      }
     }
-    // CD 2.ARGUMENT IS ".. TO GO BACK
-    else if (checkedInputAsArray[1] === '..') {
+    // CD 2.ARGUMENT IS ".." TO GO BACK
+    else if (preparedInputAsArray[1] === '..') {
       if (currentArrayPosition.prev !== null) {
         const goPreviousPath = currentArrayPosition.prev;
         changePosition(goPreviousPath);
         //
         return {
-          spellEffectMessage: 'you moved to position: ',
+          spellEffectMessage: 'you moved back to: ',
           spellEffectOutput: goPreviousPath,
           spellEffectHasError: false,
         };
       } else {
         //
         return {
-          spellEffectMessage: "you can't go back any further",
-          spellEffectOutput: 'you are standing with your back to the wall',
+          spellEffectMessage: 'a magic voice that whispers: ',
+          spellEffectOutput: "Can't go back any further",
           spellEffectHasError: true,
         };
       }
     }
-    // CD ARGUMENT IS INVALID
+
+    // CD ARGUMENT IS EMPTY OR INVALID
     else {
       return {
-        spellEffectMessage: "you can't move to this room from here",
-        spellEffectOutput: 'the way does not exist',
+        spellEffectMessage: 'a magic voice that whispers: ',
+        spellEffectOutput: `cd: no such file or directory: ${preparedInputAsArray[1]}`,
         spellEffectHasError: true,
       };
     }
@@ -118,8 +120,8 @@ export default function executeSpell(checkedInputAsArray, currentArrayPosition, 
   // NO MATCH WITH SPELL //
   else {
     return {
-      spellEffectMessage: 'Something went wrong...',
-      spellEffectOutput: 'No Magic was executed!',
+      spellEffectMessage: 'a magic voice that whispers: ',
+      spellEffectOutput: `zsh: command not found: ${preparedInputAsArray[0]}`,
       spellEffectHasError: true,
     };
   }

@@ -24,19 +24,21 @@ export default function App() {
 
   const ref = useRef();
 
-  function saveSpellOrder(spellword) {
-    const checkedInput = spellword.trim().toLowerCase();
-    const checkedInputAsArray = checkedInput.split(' ');
-    const inputInfo = findSpellMessage(checkedInputAsArray[0]);
+  function saveSpellOrder(input) {
+    const trimmedInputAsArray = input.trim().split(' ');
+    const filteredTrimmedInputAsArray = trimmedInputAsArray.filter(InputUnit => InputUnit.length > 0); //this is used later aswell
+    const preparedInputAsArray = filteredTrimmedInputAsArray.map(checkedInputPart => checkedInputPart.toLowerCase());
+
+    const inputInfo = findSpellMessage(preparedInputAsArray[0]);
     const hasError = inputInfo.includes('ERROR');
     //
-    const inputEffects = executeSpell(checkedInputAsArray, currentArrayPosition, changePosition);
-    const {spellEffectMessage, spellEffectOutput, spellEffectHasError} = inputEffects;
+    const spellEffects = executeSpell(preparedInputAsArray, currentArrayPosition, changePosition);
+    const {spellEffectMessage, spellEffectOutput, spellEffectHasError} = spellEffects;
     //
     setSavedOrders([
       {
         id: nanoid(),
-        value: spellword,
+        inputValues: filteredTrimmedInputAsArray,
         info: inputInfo,
         error: hasError,
         spellEffectMessage: spellEffectMessage,
