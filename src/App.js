@@ -56,26 +56,23 @@ export default function App() {
       <h1>
         <u>SHELL_WIZARD</u>
       </h1>
-      <StyledDiv>
-        With this App you can learn about your first steps with the zshell (what you want to learn, if you want to learn
-        how to code!)
-        <br />
-        You are a Wizard searching for wisdom in the inner depths of a cursed maze. Your only chance to find your way
-        through this, is to type in Spells (that resemble the zShell-commands) to the textfield in the area below.
-        <ol>
-          <li>
-            <CodeSpan>pwd</CodeSpan> - to check on your current position.
-          </li>
-          <li>
-            <CodeSpan>ls</CodeSpan> - to find new rooms. A second argument is optional.
-          </li>
-          <li>
-            <CodeSpan>cd</CodeSpan> - to move from one room to another. A second argument is required.
-          </li>
-        </ol>
-        If done right, each of these spells will summon a magical gift that will help you on your journey...
-      </StyledDiv>
-
+      With this App you can learn about your first steps with the zshell (what you want to learn, if you want to learn
+      how to code!)
+      <br />
+      You are a Wizard searching for wisdom in the inner depths of a cursed maze. Your only chance to find your way
+      through this, is to type in Spells (that resemble the zShell-commands) to the textfield in the area below.
+      <ol>
+        <li>
+          <CodeSpan>pwd</CodeSpan> - to check on your current position.
+        </li>
+        <li>
+          <CodeSpan>ls</CodeSpan> - to find new rooms. A second argument is optional.
+        </li>
+        <li>
+          <CodeSpan>cd</CodeSpan> - to move from one room to another. A second argument is required.
+        </li>
+      </ol>
+      If done right, each of these spells will summon a magical gift that will help you on your journey...
       <ZshellDiv>
         <MagicList ref={ref} savedOrders={savedOrders} />
         <MagicForm savedOrders={savedOrders} processingLatestSpell={processingLatestSpell} />
@@ -88,6 +85,10 @@ const OrganizingMain = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 75vw;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 30px;
 `;
 
 const ZshellDiv = styled.div`
@@ -95,16 +96,11 @@ const ZshellDiv = styled.div`
   max-width: 500px;
   height: auto;
   max-height: 500px;
+  margin: 1em 0;
   border: 2px ridge #181818;
   border-radius: 5%;
-  margin: 1em 0;
   background-image: linear-gradient(#181818, black);
   box-shadow: 0 10px 8px #888;
-`;
-
-const StyledDiv = styled.div`
-  width: 75vw;
-  max-width: 500px;
 `;
 
 const LogoImg = styled.img`
