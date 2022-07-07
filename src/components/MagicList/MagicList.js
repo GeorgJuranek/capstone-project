@@ -7,7 +7,7 @@ const MagicList = forwardRef(({savedOrders}, ref) => {
   return (
     <SavedOrdersList ref={ref} role="list">
       {savedOrders.map(order => (
-        <SavedOrderListitem key={order.id}>
+        <SavedOrderListItem key={order.id}>
           <ScreenReaderOnlySpan>you</ScreenReaderOnlySpan>
           <ColorSpan>typed </ColorSpan>
           <ErrorChangesColorSpan error={order.commandHasError}>❯ {order.inputValues[0]} </ErrorChangesColorSpan>
@@ -19,7 +19,7 @@ const MagicList = forwardRef(({savedOrders}, ref) => {
           </ErrorChangesColorSpan>
           <MessageSection>{order.spellEffectMessage}</MessageSection>
           <ErrorChangesColorSpan error={order.spellEffectHasError}>{order.spellEffectOutput}</ErrorChangesColorSpan>
-        </SavedOrderListitem>
+        </SavedOrderListItem>
       ))}
     </SavedOrdersList>
   );
@@ -41,7 +41,7 @@ const SavedOrdersList = styled.ul`
   margin-bottom: 0;
 `;
 
-const SavedOrderListitem = styled.li`
+const SavedOrderListItem = styled.li`
   word-wrap: break-word;
   line-break: anywhere;
   padding-top: 1rem;
