@@ -85,7 +85,6 @@ const OrganizingMain = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 75vw;
   max-width: 500px;
   margin: 0 auto;
   padding: 30px;
