@@ -23,7 +23,7 @@ export default function App() {
 
   function processingLatestSpell(input) {
     const trimmedInputAsArray = input.trim().split(' ');
-    const filteredTrimmedInputAsArray = trimmedInputAsArray.filter(InputUnit => InputUnit.length > 0); //this is used later aswell
+    const filteredTrimmedInputAsArray = trimmedInputAsArray.filter(inputUnit => inputUnit.length > 0); //this is used later aswell
     const preparedInputAsArray = filteredTrimmedInputAsArray.map(checkedInputPart => checkedInputPart.toLowerCase());
 
     const commandMessage = findCommandMessage(preparedInputAsArray[0]);
@@ -57,35 +57,23 @@ export default function App() {
         <u>SHELL_WIZARD</u>
       </h1>
       <StyledDiv>
-        <p>
-          With this App you can learn about your first steps with the zshell (what you want to learn, if you want to
-          learn how to code!)
-        </p>
-
-        <p>
-          You are a Wizard searching for wisdom in the inner depths of a cursed maze. Your only chance to find your way
-          through this, is to type in Spells (that resemble the zShell-commands) to the textfield in the area below.
-        </p>
-
+        With this App you can learn about your first steps with the zshell (what you want to learn, if you want to learn
+        how to code!)
+        <br />
+        You are a Wizard searching for wisdom in the inner depths of a cursed maze. Your only chance to find your way
+        through this, is to type in Spells (that resemble the zShell-commands) to the textfield in the area below.
         <ol>
           <li>
-            <p>
-              <CodeSpan>pwd</CodeSpan> - to check on your current position.
-            </p>
+            <CodeSpan>pwd</CodeSpan> - to check on your current position.
           </li>
           <li>
-            <p>
-              <CodeSpan>ls</CodeSpan> - to find new rooms. A second argument is optional.
-            </p>
+            <CodeSpan>ls</CodeSpan> - to find new rooms. A second argument is optional.
           </li>
           <li>
-            <p>
-              <CodeSpan>cd</CodeSpan> - to move from one room to another. A second argument is required.
-            </p>
+            <CodeSpan>cd</CodeSpan> - to move from one room to another. A second argument is required.
           </li>
         </ol>
-
-        <p>If done right, each of these spells will summon a magical gift that will help you on your journey...</p>
+        If done right, each of these spells will summon a magical gift that will help you on your journey...
       </StyledDiv>
 
       <ZshellDiv>
