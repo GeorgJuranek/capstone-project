@@ -43,7 +43,6 @@ const SavedOrdersList = styled.ul`
 
 const SavedOrderListItem = styled.li`
   word-wrap: break-word;
-  line-break: anywhere;
   padding-top: 1rem;
   margin-right: 1em;
   border-top: 2px solid #181818;
