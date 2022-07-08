@@ -3,6 +3,7 @@ import {useState, useRef} from 'react';
 import styled from 'styled-components';
 
 import {mazeArray} from './arrays/mazeArray.js';
+import MagicCanvas from './components/MagicCanvas/MagicCanvas.js';
 import MagicForm from './components/MagicForm/MagicForm';
 import MagicList from './components/MagicList/MagicList.js';
 import {CodeSpan} from './components/Stylesheet/StyledSpans.js';
@@ -73,6 +74,7 @@ export default function App() {
         </li>
       </ol>
       If done right, each of these spells will summon a magical gift that will help you on your journey...
+      <MagicCanvas />
       <ZshellDiv>
         <MagicList ref={ref} savedOrders={savedOrders} />
         <MagicForm savedOrders={savedOrders} processingLatestSpell={processingLatestSpell} />
