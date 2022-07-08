@@ -1,18 +1,25 @@
 import {forwardRef} from 'react';
 import styled from 'styled-components';
 
-import {ScreenReaderOnlySpan, ColorSpan, SwitchSpan} from '../Stylesheet/StyledSpans.js';
+import {ScreenReaderOnlySpan, ColorSpan, ErrorChangesColorSpan} from '../Stylesheet/StyledSpans.js';
 
 const MagicList = forwardRef(({savedOrders}, ref) => {
   return (
     <SavedOrdersList ref={ref} role="list">
       {savedOrders.map(order => (
-        <SavedOrderListitem key={order.id}>
+        <SavedOrderListItem key={order.id}>
           <ScreenReaderOnlySpan>you</ScreenReaderOnlySpan>
           <ColorSpan>typed </ColorSpan>
-          <SwitchSpan error={order.error}>❯ {order.value}</SwitchSpan>
-          <InfoP>❯❯ {order.info}</InfoP>
-        </SavedOrderListitem>
+          <ErrorChangesColorSpan error={order.commandHasError}>❯ {order.inputValues[0]} </ErrorChangesColorSpan>
+          <ErrorChangesColorSpan error={order.spellEffectHasError}>{order.inputValues[1]}</ErrorChangesColorSpan>
+          <MessageSection>❯❯ {order.commandMessage}</MessageSection>
+
+          <ErrorChangesColorSpan error={order.spellEffectHasError}>
+            {order.spellEffectHasError ? '× failed' : '✓ success'}
+          </ErrorChangesColorSpan>
+          <MessageSection>{order.spellEffectMessage}</MessageSection>
+          <ErrorChangesColorSpan error={order.spellEffectHasError}>{order.spellEffectOutput}</ErrorChangesColorSpan>
+        </SavedOrderListItem>
       ))}
     </SavedOrdersList>
   );
@@ -34,7 +41,7 @@ const SavedOrdersList = styled.ul`
   margin-bottom: 0;
 `;
 
-const SavedOrderListitem = styled.li`
+const SavedOrderListItem = styled.li`
   word-wrap: break-word;
   line-break: anywhere;
   padding-top: 1rem;
@@ -45,6 +52,6 @@ const SavedOrderListitem = styled.li`
   }
 `;
 
-const InfoP = styled.p`
+const MessageSection = styled.section`
   color: white;
 `;

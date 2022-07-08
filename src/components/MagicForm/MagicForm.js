@@ -2,14 +2,14 @@ import styled from 'styled-components';
 
 import {ScreenReaderOnlySpan, FrameSpan} from '../Stylesheet/StyledSpans.js';
 
-export default function MagicForm({saveSpellOrder, savedOrders}) {
+export default function MagicForm({processingLatestSpell, savedOrders}) {
   function handleSpell(event) {
     event.preventDefault();
     const form = event.target;
     const {input} = form.elements;
 
     if (input.value.length > 0) {
-      saveSpellOrder(input.value);
+      processingLatestSpell(input.value);
       form.reset();
     }
 

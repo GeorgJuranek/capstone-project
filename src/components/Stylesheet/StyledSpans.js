@@ -23,10 +23,10 @@ export const ColorSpan = styled.span`
   color: dodgerblue;
 `;
 
-export const SwitchSpan = styled.span`
+export const ErrorChangesColorSpan = styled.span`
   color: ${prop => (prop.error ? 'red' : '#65ff00')};
 `;
-// You give SwitchSpan a property called "error={true/false}"
+// You give ErrorChangesColorSpan a property like "error={true/false}"
 // if what you give it returns "true" the things thats nested will be red
 
 export const FrameSpan = styled.span`
