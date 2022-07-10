@@ -1,7 +1,8 @@
 import {mazeArray} from '../../arrays/mazeArray';
 
-export default function lSpell(preparedInputAsArray, currentArrayPosition) {
+export default function lsSpell(preparedInputAsArray, currentArrayPosition, changeEnlighten) {
   if (preparedInputAsArray.length === 1) {
+    changeEnlighten(true);
     if (currentArrayPosition.next !== null) {
       return {
         spellEffectMessage: 'a magic voice that whispers, you can go to: ',

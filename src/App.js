@@ -4,7 +4,8 @@ import styled from 'styled-components';
 
 import {mazeArray} from './arrays/mazeArray.js';
 import MagicCanvas from './components/MagicCanvas/MagicCanvas.js';
-import MagicForm from './components/MagicForm/MagicForm';
+import MagicForm from './components/MagicForm/MagicForm.js';
+import MagicImage from './components/MagicImage/MagicImage.js';
 import MagicList from './components/MagicList/MagicList.js';
 import {CodeSpan} from './components/Stylesheet/StyledSpans.js';
 import executeSpell from './functionsfolder/executeSpell.js';
@@ -16,11 +17,19 @@ export default function App() {
   function changePosition(newPositionAsString) {
     const newPositionAsObject = mazeArray.find(mazeRoom => mazeRoom.path === newPositionAsString);
     setCurrentArrayPosition(newPositionAsObject);
+    setIsRoomEnlighten(false);
   }
 
   const [savedOrders, setSavedOrders] = useState([]);
 
   const ref = useRef();
+
+  //
+  const [isRoomEnlighten, setIsRoomEnlighten] = useState(false);
+  //
+  function changeEnlighten() {
+    setIsRoomEnlighten(true);
+  }
 
   function processingLatestSpell(input) {
     const trimmedInputAsArray = input.trim().split(' ');
@@ -30,7 +39,7 @@ export default function App() {
     const commandMessage = findCommandMessage(preparedInputAsArray[0]);
     const commandHasError = commandMessage.includes('ERROR');
 
-    const spellEffects = executeSpell(preparedInputAsArray, currentArrayPosition, changePosition);
+    const spellEffects = executeSpell(preparedInputAsArray, currentArrayPosition, changePosition, changeEnlighten);
     const {spellEffectMessage, spellEffectOutput, spellEffectHasError} = spellEffects;
 
     setSavedOrders([
@@ -74,7 +83,12 @@ export default function App() {
         </li>
       </ol>
       If done right, each of these spells will summon a magical gift that will help you on your journey...
-      <MagicCanvas />
+      <MagicCanvas currentArrayPosition={currentArrayPosition} />
+      <MagicImage
+        currentArrayPosition={currentArrayPosition}
+        isEnlighten={isRoomEnlighten}
+        changeEnlighten={changeEnlighten}
+      />
       <ZshellDiv>
         <MagicList ref={ref} savedOrders={savedOrders} />
         <MagicForm savedOrders={savedOrders} processingLatestSpell={processingLatestSpell} />

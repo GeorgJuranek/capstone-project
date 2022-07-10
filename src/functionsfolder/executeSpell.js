@@ -2,11 +2,11 @@ import cdSpell from './commandSpells/cdSpell';
 import lsSpell from './commandSpells/lsSpell';
 import pwdSpell from './commandSpells/pwdSpell';
 
-export default function executeSpell(preparedInputAsArray, currentArrayPosition, changePosition) {
+export default function executeSpell(preparedInputAsArray, currentArrayPosition, changePosition, changeEnlighten) {
   if (preparedInputAsArray[0] === 'pwd') {
     return pwdSpell(preparedInputAsArray, currentArrayPosition);
   } else if (preparedInputAsArray[0] === 'ls') {
-    return lsSpell(preparedInputAsArray, currentArrayPosition);
+    return lsSpell(preparedInputAsArray, currentArrayPosition, changeEnlighten);
   } else if (preparedInputAsArray[0] === 'cd') {
     return cdSpell(preparedInputAsArray, currentArrayPosition, changePosition);
   } else {
