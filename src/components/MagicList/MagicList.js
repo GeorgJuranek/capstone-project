@@ -1,7 +1,7 @@
 import {forwardRef} from 'react';
 import styled from 'styled-components';
 
-import {ScreenReaderOnlySpan, ColorSpan, ErrorChangesColorSpan} from '../Stylesheet/StyledSpans.js';
+import {ScreenReaderOnlySpan, ColorSpan, ErrorChangesColorSpan} from '../../stylesheet/StyledSpans.js';
 
 const MagicList = forwardRef(({savedOrders}, ref) => {
   return (

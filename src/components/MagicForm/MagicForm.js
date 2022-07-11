@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import {ScreenReaderOnlySpan, FrameSpan} from '../Stylesheet/StyledSpans.js';
+import {ScreenReaderOnlySpan, FrameSpan} from '../../stylesheet/StyledSpans.js';
 
 export default function MagicForm({processingLatestSpell, savedOrders}) {
   function handleSpell(event) {

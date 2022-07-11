@@ -1,14 +1,17 @@
 import {nanoid} from 'nanoid';
-import {useState, useRef} from 'react';
+import {useState, useEffect, useRef} from 'react';
 import styled from 'styled-components';
 
 import {mazeArray} from './arrays/mazeArray.js';
 import MagicForm from './components/MagicForm/MagicForm.js';
 import MagicImage from './components/MagicImage/MagicImage.js';
 import MagicList from './components/MagicList/MagicList.js';
-import {CodeSpan} from './components/Stylesheet/StyledSpans.js';
 import executeSpell from './functionsfolder/executeSpell.js';
 import findCommandMessage from './functionsfolder/findCommandMessage.js';
+import mazeEnd from './images/mazeRooms/mazeEnd.png';
+import mazeWay from './images/mazeRooms/mazeWay.png';
+import {BackgroundImg} from './stylesheet/StyledImages.js';
+import {CodeSpan} from './stylesheet/StyledSpans.js';
 
 export default function App() {
   const [currentArrayPosition, setCurrentArrayPosition] = useState(mazeArray[0]); //this holds a {object}
@@ -23,12 +26,20 @@ export default function App() {
 
   const ref = useRef();
 
-  //
   const [isRoomEnlighten, setIsRoomEnlighten] = useState(false);
-  //
   function changeEnlighten() {
     setIsRoomEnlighten(true);
   }
+  useEffect(() => {}, [isRoomEnlighten]); //used to rerender idependly from useEffect below
+
+  const [currentBackgroundImage, setCurrentBackgroundImage] = useState();
+  useEffect(() => {
+    if (currentArrayPosition.type === 'start' || currentArrayPosition.type === 'end') {
+      setCurrentBackgroundImage(<BackgroundImg src={mazeEnd} alt="the end of the way" />);
+    } else {
+      setCurrentBackgroundImage(<BackgroundImg src={mazeWay} alt="a lonely and spooky corridor" />);
+    }
+  }, [currentArrayPosition]);
 
   function processingLatestSpell(input) {
     const trimmedInputAsArray = input.trim().split(' ');
@@ -84,7 +95,8 @@ export default function App() {
       If done right, each of these spells will summon a magical gift that will help you on your journey...
       <MagicImage
         currentArrayPosition={currentArrayPosition}
-        isEnlighten={isRoomEnlighten}
+        currentBackgroundImage={currentBackgroundImage}
+        isRoomEnlighten={isRoomEnlighten}
         changeEnlighten={changeEnlighten}
       />
       <ZshellDiv>

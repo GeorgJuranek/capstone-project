@@ -5,7 +5,6 @@ export const mazeArray = [
     type: 'start',
     next: 'middle',
     prev: null,
-    image: '../../images/mazeRooms/mazeEnd.png',
   },
   {
     id: 1,
@@ -13,7 +12,6 @@ export const mazeArray = [
     type: 'middle',
     next: 'end',
     prev: 'maze/start/',
-    image: '../../images/mazeRooms/mazeWay.png',
   },
   {
     id: 2,
@@ -21,6 +19,5 @@ export const mazeArray = [
     type: 'end',
     next: null,
     prev: 'maze/start/middle/',
-    image: '../../images/mazeRooms/mazeEnd.png',
   },
 ];
