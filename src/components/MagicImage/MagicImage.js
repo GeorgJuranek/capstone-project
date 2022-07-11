@@ -16,8 +16,6 @@ export default function MagicImage({currentArrayPosition, isEnlighten, changeEnl
     } else {
       setCurrentBackgroundImage(<BackgroundImg src={mazeWay} alt="a lonely and spooky corridor" />);
     }
-    //
-    //setIsEnlighten(false);
   }, [currentArrayPosition]);
   // Following only used to rerender idependly from first useEffect
   useEffect(() => {}, [isEnlighten]);
@@ -25,26 +23,31 @@ export default function MagicImage({currentArrayPosition, isEnlighten, changeEnl
   return (
     <>
       <h2>Image: </h2>
-      <ImageDiv>
-        <FaderDiv ref={fader} fadeSelect={isEnlighten ? fadeSelect : noFade}></FaderDiv>
+      <FramingDiv>
+        <FaderDiv ref={fader} fadeSelect={isEnlighten ? fadeOutSelect : noFade}></FaderDiv>
         {currentBackgroundImage}
         <FrontImage src={require('../../images/logo1.png')} alt="" width="125" height="125" />
-      </ImageDiv>
+      </FramingDiv>
     </>
   );
 }
 
-const ImageDiv = styled.div`
+const FramingDiv = styled.div`
   position: relative;
   width: 80vw;
   max-width: 700px;
   height: auto;
   max-height: 500px;
-  border: 10px solid black;
+  border-width: 6px 5px 16px 5px;
+  border-style: ridge groove;
+  border-radius: 2%;
   margin: 1em 0;
 `;
 
 const BackgroundImg = styled.img`
+  border-width: 2px 6px;
+  border-color: black;
+  border-style: solid;
   width: 100%;
   height: 100%;
   z-index: 0;
@@ -71,16 +74,17 @@ const FaderDiv = styled.div`
 
 //ANIMATION for FaderDiv//
 
-const fadeAnimation = keyframes`
+const fadeOutAnimation = keyframes`
       0%{opacity:0.96;}
+      5%{opacity:0.9;}
       100%{opacity:0;}
   `;
 
-const fadeSelect = css`
+const fadeOutSelect = css`
   opacity: 0;
-  animation-name: ${fadeAnimation};
-  animation-duration: 3s;
-  animation-iteration-count: 1; //infinite;*/
+  animation-name: ${fadeOutAnimation};
+  animation-duration: 5s;
+  animation-iteration-count: 1;
 `;
 
 const noFade = css`
