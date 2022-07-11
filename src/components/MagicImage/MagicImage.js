@@ -4,6 +4,7 @@ import {keyframes, css} from 'styled-components';
 
 import mazeEnd from '../../images/mazeRooms/mazeEnd.png';
 import mazeWay from '../../images/mazeRooms/mazeWay.png';
+import foobar from '../../images/sprites/foobarSprite1.png';
 
 export default function MagicImage({currentArrayPosition, isEnlighten, changeEnlighten}) {
   const [currentBackgroundImage, setCurrentBackgroundImage] = useState();
@@ -22,11 +23,10 @@ export default function MagicImage({currentArrayPosition, isEnlighten, changeEnl
 
   return (
     <>
-      <h2>Image: </h2>
       <FramingDiv>
         <FaderDiv ref={fader} fadeSelect={isEnlighten ? fadeOutSelect : noFade}></FaderDiv>
         {currentBackgroundImage}
-        <FrontImage src={require('../../images/logo1.png')} alt="" width="125" height="125" />
+        <FrontImage src={foobar} alt="" width="172" height="438" />
       </FramingDiv>
     </>
   );
@@ -41,7 +41,8 @@ const FramingDiv = styled.div`
   border-width: 6px 5px 16px 5px;
   border-style: ridge groove;
   border-radius: 2%;
-  margin: 1em 0;
+  margin: 3em 0 1em 0;
+  box-shadow: 0 2px 100px #888;
 `;
 
 const BackgroundImg = styled.img`
@@ -54,12 +55,12 @@ const BackgroundImg = styled.img`
 `;
 
 const FrontImage = styled.img`
-  width: 25%;
-  height: 25%;
+  width: 20%;
+  height: 70%;
   position: absolute;
   z-index: 1;
-  right: 20%;
-  bottom: 55%;
+  left: 20%;
+  bottom: 0;
 `;
 
 const FaderDiv = styled.div`
@@ -68,7 +69,7 @@ const FaderDiv = styled.div`
   width: 100%;
   height: 100%;
   z-index: 2;
-  //
+  // for animation
   ${props => props.fadeSelect}
 `;
 

@@ -3,7 +3,6 @@ import {useState, useRef} from 'react';
 import styled from 'styled-components';
 
 import {mazeArray} from './arrays/mazeArray.js';
-import MagicCanvas from './components/MagicCanvas/MagicCanvas.js';
 import MagicForm from './components/MagicForm/MagicForm.js';
 import MagicImage from './components/MagicImage/MagicImage.js';
 import MagicList from './components/MagicList/MagicList.js';
@@ -83,7 +82,6 @@ export default function App() {
         </li>
       </ol>
       If done right, each of these spells will summon a magical gift that will help you on your journey...
-      <MagicCanvas currentArrayPosition={currentArrayPosition} />
       <MagicImage
         currentArrayPosition={currentArrayPosition}
         isEnlighten={isRoomEnlighten}
