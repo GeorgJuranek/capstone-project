@@ -1,7 +1,7 @@
-export default function cdSpell(preparedInputAsArray, currentArrayPosition, changePosition) {
+export default function cdSpell(preparedInputAsArray, currentArrayPosition, onChangePosition) {
   if (preparedInputAsArray[1] === currentArrayPosition.next) {
     const addNewPath = currentArrayPosition.path + currentArrayPosition.next + '/';
-    changePosition(addNewPath);
+    onChangePosition(addNewPath);
     return {
       spellEffectMessage: 'you moved to position: ',
       spellEffectOutput: addNewPath,
@@ -10,7 +10,7 @@ export default function cdSpell(preparedInputAsArray, currentArrayPosition, chan
   } else if (preparedInputAsArray[1] === '..') {
     if (currentArrayPosition.prev !== null) {
       const goPreviousPath = currentArrayPosition.prev;
-      changePosition(goPreviousPath);
+      onChangePosition(goPreviousPath);
       return {
         spellEffectMessage: 'you moved back to: ',
         spellEffectOutput: goPreviousPath,

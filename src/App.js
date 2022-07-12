@@ -10,36 +10,40 @@ import executeSpell from './functionsfolder/executeSpell.js';
 import findCommandMessage from './functionsfolder/findCommandMessage.js';
 import mazeEnd from './images/mazeRooms/mazeEnd.png';
 import mazeWay from './images/mazeRooms/mazeWay.png';
-import {BackgroundImg} from './stylesheet/StyledImages.js';
+//import {BackgroundImg} from './stylesheet/StyledImages.js';
 import {CodeSpan} from './stylesheet/StyledSpans.js';
 
 export default function App() {
   const [currentArrayPosition, setCurrentArrayPosition] = useState(mazeArray[0]); //this holds a {object}
+  const [savedOrders, setSavedOrders] = useState([]);
+  const [currentBackgroundImage, setCurrentBackgroundImage] = useState();
+  const [isRoomEnlighten, setIsRoomEnlighten] = useState(false);
+
+  const ref = useRef();
+
+  useEffect(() => {
+    if (currentArrayPosition.type === 'start' || currentArrayPosition.type === 'end') {
+      setCurrentBackgroundImage({path: mazeEnd, altText: 'the end of the way'});
+    } else {
+      setCurrentBackgroundImage({path: mazeWay, altText: 'a lonely and spooky corridor'});
+    }
+
+    /* if (currentArrayPosition.type === 'start' || currentArrayPosition.type === 'end') {
+      setCurrentBackgroundImage(<BackgroundImg src={mazeEnd} alt="the end of the way" />);
+    } else {
+      setCurrentBackgroundImage(<BackgroundImg src={mazeWay} alt="a lonely and spooky corridor" />);
+    } */
+  }, [currentArrayPosition]);
 
   function changePosition(newPositionAsString) {
     const newPositionAsObject = mazeArray.find(mazeRoom => mazeRoom.path === newPositionAsString);
     setCurrentArrayPosition(newPositionAsObject);
-    setIsRoomEnlighten(false);
+    setIsRoomEnlighten(false); //this is NOT a toggle, changed to true only in changeEnlighten below
   }
 
-  const [savedOrders, setSavedOrders] = useState([]);
-
-  const ref = useRef();
-
-  const [isRoomEnlighten, setIsRoomEnlighten] = useState(false);
   function changeEnlighten() {
-    setIsRoomEnlighten(true);
+    setIsRoomEnlighten(true); //this is NOT a toggle, changed to false only in changePosition above
   }
-  useEffect(() => {}, [isRoomEnlighten]); //used to rerender idependly from useEffect below
-
-  const [currentBackgroundImage, setCurrentBackgroundImage] = useState();
-  useEffect(() => {
-    if (currentArrayPosition.type === 'start' || currentArrayPosition.type === 'end') {
-      setCurrentBackgroundImage(<BackgroundImg src={mazeEnd} alt="the end of the way" />);
-    } else {
-      setCurrentBackgroundImage(<BackgroundImg src={mazeWay} alt="a lonely and spooky corridor" />);
-    }
-  }, [currentArrayPosition]);
 
   function processingLatestSpell(input) {
     const trimmedInputAsArray = input.trim().split(' ');
@@ -93,12 +97,7 @@ export default function App() {
         </li>
       </ol>
       If done right, each of these spells will summon a magical gift that will help you on your journey...
-      <MagicImage
-        currentArrayPosition={currentArrayPosition}
-        currentBackgroundImage={currentBackgroundImage}
-        isRoomEnlighten={isRoomEnlighten}
-        changeEnlighten={changeEnlighten}
-      />
+      <MagicImage currentBackgroundImage={currentBackgroundImage} isRoomEnlighten={isRoomEnlighten} />
       <ZshellDiv>
         <MagicList ref={ref} savedOrders={savedOrders} />
         <MagicForm savedOrders={savedOrders} processingLatestSpell={processingLatestSpell} />

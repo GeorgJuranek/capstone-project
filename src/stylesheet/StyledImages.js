@@ -9,7 +9,7 @@ export const BackgroundImg = styled.img`
   z-index: 0;
 `;
 
-export const FrontFoobarImg = styled.img`
+export const FrontWizard1Img = styled.img`
   width: 20%;
   height: 70%;
   position: absolute;

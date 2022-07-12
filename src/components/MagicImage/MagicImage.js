@@ -2,20 +2,19 @@ import {useRef} from 'react';
 import styled from 'styled-components';
 import {keyframes, css} from 'styled-components';
 
-import foobar from '../../images/sprites/foobarSprite1.png';
-import {FrontFoobarImg} from '../../stylesheet/StyledImages.js';
+import wizard1 from '../../images/sprites/wizard1Sprite1.png';
+import {FrontWizard1Img} from '../../stylesheet/StyledImages.js';
+import {BackgroundImg} from '../../stylesheet/StyledImages.js';
 
 export default function MagicImage({currentBackgroundImage, isRoomEnlighten}) {
   const fader = useRef();
 
   return (
-    <>
-      <FramingDiv>
-        <FaderDiv ref={fader} fadeSelect={isRoomEnlighten ? fadeOutSelect : noFade}></FaderDiv>
-        {currentBackgroundImage}
-        <FrontFoobarImg src={foobar} alt="" width="172" height="438" />
-      </FramingDiv>
-    </>
+    <FramingDiv>
+      <FaderDiv ref={fader} fadeSelect={isRoomEnlighten ? fadeOutSelect : noFade}></FaderDiv>
+      <BackgroundImg src={currentBackgroundImage.path} alt={currentBackgroundImage.altText} />
+      <FrontWizard1Img src={wizard1} alt="" width="172" height="438" />
+    </FramingDiv>
   );
 }
 
