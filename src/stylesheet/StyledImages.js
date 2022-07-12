@@ -13,7 +13,7 @@ export const FrontWizard1Img = styled.img`
   width: 20%;
   height: 70%;
   position: absolute;
-  z-index: 1;
+  z-index: 3;
   left: 20%;
   bottom: 0;
 `;

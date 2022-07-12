@@ -31,7 +31,7 @@ const SavedOrdersList = styled.ul`
   background-color: black;
   border: 1px solid black;
   list-style-type: '▹you ';
-  height: 50vw;
+  height: 65vw;
   max-height: 400px;
   overflow: scroll;
   display: flex;

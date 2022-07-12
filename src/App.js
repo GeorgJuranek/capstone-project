@@ -105,15 +105,14 @@ const OrganizingMain = styled.main`
   align-items: center;
   max-width: 500px;
   margin: 0 auto;
-  padding: 30px;
+  padding: 5%;
 `;
 
 const ZshellDiv = styled.div`
-  width: 85vw;
-  max-width: 500px;
+  width: 90vw;
+  max-width: 800px;
   height: auto;
   max-height: 500px;
-  margin: 1em 0;
   border: 2px ridge #181818;
   border-radius: 5%;
   background-image: linear-gradient(#181818, black);
