@@ -14,8 +14,8 @@ Default.args = {
   currentBackgroundImage: {image: mazeEnd, altText: ''},
 };
 
-export const FilledWithImage = Template.bind({});
-FilledWithImage.args = {
+export const Enlightened = Template.bind({});
+Enlightened.args = {
   currentBackgroundImage: {image: mazeEnd, altText: ''},
   isRoomEnlighten: true,
 };

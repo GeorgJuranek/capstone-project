@@ -13,7 +13,7 @@ import mazeWay from './images/mazeRooms/mazeWay.png';
 import {CodeSpan} from './stylesheet/StyledSpans.js';
 
 export default function App() {
-  const [currentArrayPosition, setCurrentArrayPosition] = useState(mazeArray[0]); //this holds a {object}
+  const [currentPosition, setCurrentPosition] = useState(mazeArray[0]); //this holds a {object}
   const [savedOrders, setSavedOrders] = useState([]);
   const [currentBackgroundImage, setCurrentBackgroundImage] = useState({image: mazeEnd, altText: 'you start here'});
   const [isRoomEnlighten, setIsRoomEnlighten] = useState(false);
@@ -21,16 +21,16 @@ export default function App() {
   const ref = useRef();
 
   useEffect(() => {
-    if (currentArrayPosition.type === 'start' || currentArrayPosition.type === 'end') {
+    if (currentPosition.type === 'start' || currentPosition.type === 'end') {
       setCurrentBackgroundImage({image: mazeEnd, altText: 'the end of the way'});
     } else {
       setCurrentBackgroundImage({image: mazeWay, altText: 'a lonely and spooky corridor'});
     }
-  }, [currentArrayPosition]);
+  }, [currentPosition]);
 
-  function changePosition(newPositionAsString) {
-    const newPositionAsObject = mazeArray.find(mazeRoom => mazeRoom.path === newPositionAsString);
-    setCurrentArrayPosition(newPositionAsObject);
+  function changePosition(path) {
+    const newPosition = mazeArray.find(mazeRoom => mazeRoom.path === path);
+    setCurrentPosition(newPosition);
     setIsRoomEnlighten(false); //this is NOT a toggle, changed to true only in changeEnlighten below
   }
 
@@ -39,20 +39,20 @@ export default function App() {
   }
 
   function processingLatestSpell(input) {
-    const trimmedInputAsArray = input.trim().split(' ');
-    const filteredTrimmedInputAsArray = trimmedInputAsArray.filter(inputUnit => inputUnit.length > 0); //this is used later aswell
-    const preparedInputAsArray = filteredTrimmedInputAsArray.map(checkedInputPart => checkedInputPart.toLowerCase());
+    const treatedInput = input.trim().split(' ');
+    const displayedInput = treatedInput.filter(inputUnit => inputUnit.length > 0); //this is used later aswell
+    const preparedInput = displayedInput.map(checkedInputPart => checkedInputPart.toLowerCase());
 
-    const commandMessage = findCommandMessage(preparedInputAsArray[0]);
+    const commandMessage = findCommandMessage(preparedInput[0]);
     const commandHasError = commandMessage.includes('ERROR');
 
-    const spellEffects = executeSpell(preparedInputAsArray, currentArrayPosition, changePosition, changeEnlighten);
+    const spellEffects = executeSpell(preparedInput, currentPosition, changePosition, changeEnlighten);
     const {spellEffectMessage, spellEffectOutput, spellEffectHasError} = spellEffects;
 
     setSavedOrders([
       {
         id: nanoid(),
-        inputValues: filteredTrimmedInputAsArray,
+        inputValues: displayedInput,
         commandMessage: commandMessage,
         commandHasError: commandHasError,
         spellEffectMessage: spellEffectMessage,
