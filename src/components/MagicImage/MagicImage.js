@@ -12,7 +12,7 @@ export default function MagicImage({currentBackgroundImage, isRoomEnlighten}) {
   return (
     <FramingDiv>
       <FaderDiv ref={fader} fadeSelect={isRoomEnlighten ? fadeOutSelect : noFade}></FaderDiv>
-      <BackgroundImg src={currentBackgroundImage.path} alt={currentBackgroundImage.altText} />
+      <BackgroundImg src={currentBackgroundImage.image} alt={currentBackgroundImage.altText} />
       <FrontWizard1Img src={wizard1} alt="" width="172" height="438" />
     </FramingDiv>
   );

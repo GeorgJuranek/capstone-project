@@ -21,4 +21,3 @@ export const mazeArray = [
     prev: 'maze/start/middle/',
   },
 ];
-// * "path:" these are no real paths to images, but ingame-path-strings

@@ -10,29 +10,22 @@ import executeSpell from './functionsfolder/executeSpell.js';
 import findCommandMessage from './functionsfolder/findCommandMessage.js';
 import mazeEnd from './images/mazeRooms/mazeEnd.png';
 import mazeWay from './images/mazeRooms/mazeWay.png';
-//import {BackgroundImg} from './stylesheet/StyledImages.js';
 import {CodeSpan} from './stylesheet/StyledSpans.js';
 
 export default function App() {
   const [currentArrayPosition, setCurrentArrayPosition] = useState(mazeArray[0]); //this holds a {object}
   const [savedOrders, setSavedOrders] = useState([]);
-  const [currentBackgroundImage, setCurrentBackgroundImage] = useState();
+  const [currentBackgroundImage, setCurrentBackgroundImage] = useState({image: mazeEnd, altText: 'you start here'});
   const [isRoomEnlighten, setIsRoomEnlighten] = useState(false);
 
   const ref = useRef();
 
   useEffect(() => {
     if (currentArrayPosition.type === 'start' || currentArrayPosition.type === 'end') {
-      setCurrentBackgroundImage({path: mazeEnd, altText: 'the end of the way'});
+      setCurrentBackgroundImage({image: mazeEnd, altText: 'the end of the way'});
     } else {
-      setCurrentBackgroundImage({path: mazeWay, altText: 'a lonely and spooky corridor'});
+      setCurrentBackgroundImage({image: mazeWay, altText: 'a lonely and spooky corridor'});
     }
-
-    /* if (currentArrayPosition.type === 'start' || currentArrayPosition.type === 'end') {
-      setCurrentBackgroundImage(<BackgroundImg src={mazeEnd} alt="the end of the way" />);
-    } else {
-      setCurrentBackgroundImage(<BackgroundImg src={mazeWay} alt="a lonely and spooky corridor" />);
-    } */
   }, [currentArrayPosition]);
 
   function changePosition(newPositionAsString) {
