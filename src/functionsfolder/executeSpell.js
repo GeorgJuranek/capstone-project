@@ -2,17 +2,17 @@ import cdSpell from './commandSpells/cdSpell';
 import lsSpell from './commandSpells/lsSpell';
 import pwdSpell from './commandSpells/pwdSpell';
 
-export default function executeSpell(preparedInputAsArray, currentArrayPosition, onChangePosition, onChangeEnlighten) {
-  if (preparedInputAsArray[0] === 'pwd') {
-    return pwdSpell(preparedInputAsArray, currentArrayPosition);
-  } else if (preparedInputAsArray[0] === 'ls') {
-    return lsSpell(preparedInputAsArray, currentArrayPosition, onChangeEnlighten);
-  } else if (preparedInputAsArray[0] === 'cd') {
-    return cdSpell(preparedInputAsArray, currentArrayPosition, onChangePosition);
+export default function executeSpell(preparedInput, currentPosition, onChangePosition, onChangeEnlighten) {
+  if (preparedInput[0] === 'pwd') {
+    return pwdSpell(preparedInput, currentPosition);
+  } else if (preparedInput[0] === 'ls') {
+    return lsSpell(preparedInput, currentPosition, onChangeEnlighten);
+  } else if (preparedInput[0] === 'cd') {
+    return cdSpell(preparedInput, currentPosition, onChangePosition);
   } else {
     return {
       spellEffectMessage: 'a magic voice that whispers: ',
-      spellEffectOutput: `zsh: command not found: ${preparedInputAsArray[0]}`,
+      spellEffectOutput: `zsh: command not found: ${preparedInput[0]}`,
       spellEffectHasError: true,
     };
   }

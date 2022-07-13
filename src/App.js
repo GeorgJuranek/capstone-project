@@ -8,7 +8,9 @@ import MagicImage from './components/MagicImage/MagicImage.js';
 import MagicList from './components/MagicList/MagicList.js';
 import executeSpell from './functionsfolder/executeSpell.js';
 import findCommandMessage from './functionsfolder/findCommandMessage.js';
+import findPosition from './functionsfolder/findPosition.js';
 import mazeEnd from './images/mazeRooms/mazeEnd.png';
+import mazeSplit from './images/mazeRooms/mazeSplit.png';
 import mazeWay from './images/mazeRooms/mazeWay.png';
 import {CodeSpan} from './stylesheet/StyledSpans.js';
 
@@ -23,13 +25,15 @@ export default function App() {
   useEffect(() => {
     if (currentPosition.type === 'start' || currentPosition.type === 'end') {
       setCurrentBackgroundImage({image: mazeEnd, altText: 'the end of the way'});
-    } else {
+    } else if (currentPosition.type === 'passage') {
       setCurrentBackgroundImage({image: mazeWay, altText: 'a lonely and spooky corridor'});
+    } else if (currentPosition.type === 'splitways') {
+      setCurrentBackgroundImage({image: mazeSplit, altText: 'a splitway, you have to choose'});
     }
   }, [currentPosition]);
 
   function changePosition(path) {
-    const newPosition = mazeArray.find(mazeRoom => mazeRoom.path === path);
+    const newPosition = findPosition(path);
     setCurrentPosition(newPosition);
     setIsRoomEnlighten(false); //this is NOT a toggle, changed to true only in changeEnlighten below
   }

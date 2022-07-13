@@ -1,19 +1,35 @@
-export default function cdSpell(preparedInputAsArray, currentArrayPosition, onChangePosition) {
-  if (preparedInputAsArray[1] === currentArrayPosition.next) {
-    const addNewPath = currentArrayPosition.path + currentArrayPosition.next + '/';
-    onChangePosition(addNewPath);
+import findPosition from '../findPosition.js';
+
+export default function cdSpell(preparedInput, currentPosition, onChangePosition) {
+  function checkForNext() {
+    if (currentPosition.next !== null) {
+      return currentPosition.next.some(nextPositionPath => nextPositionPath === preparedInput[1]);
+    } else {
+      return false;
+    }
+  }
+
+  const isNextPathFound = checkForNext();
+
+  if (isNextPathFound) {
+    const goNewPath = currentPosition.path + preparedInput[1] + '/';
+    const nextPositionEntry = findPosition(goNewPath).type;
+    onChangePosition(goNewPath);
     return {
       spellEffectMessage: 'you moved to position: ',
-      spellEffectOutput: addNewPath,
+      spellEffectOutput: nextPositionEntry,
       spellEffectHasError: false,
     };
-  } else if (preparedInputAsArray[1] === '..') {
-    if (currentArrayPosition.prev !== null) {
-      const goPreviousPath = currentArrayPosition.prev;
+  }
+  //}
+  else if (preparedInput[1] === '..') {
+    if (currentPosition.prev !== null) {
+      const goPreviousPath = currentPosition.prev;
+      const prevPositionEntry = findPosition(goPreviousPath).type;
       onChangePosition(goPreviousPath);
       return {
         spellEffectMessage: 'you moved back to: ',
-        spellEffectOutput: goPreviousPath,
+        spellEffectOutput: prevPositionEntry,
         spellEffectHasError: false,
       };
     } else {
@@ -26,7 +42,7 @@ export default function cdSpell(preparedInputAsArray, currentArrayPosition, onCh
   } else {
     return {
       spellEffectMessage: 'a magic voice that whispers: ',
-      spellEffectOutput: `cd: no such file or directory: ${preparedInputAsArray[1]}`,
+      spellEffectOutput: `cd: no such file or directory: ${preparedInput[1]}`,
       spellEffectHasError: true,
     };
   }

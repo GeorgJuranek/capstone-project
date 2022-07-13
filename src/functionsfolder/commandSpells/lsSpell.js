@@ -1,12 +1,12 @@
 import {mazeArray} from '../../arrays/mazeArray';
 
-export default function lsSpell(preparedInputAsArray, currentArrayPosition, onChangeEnlighten) {
-  if (preparedInputAsArray.length === 1) {
+export default function lsSpell(preparedInput, currentPosition, onChangeEnlighten) {
+  if (preparedInput.length === 1) {
     onChangeEnlighten(true);
-    if (currentArrayPosition.next !== null) {
+    if (currentPosition.next !== null) {
       return {
         spellEffectMessage: 'a magic voice that whispers, you can go to: ',
-        spellEffectOutput: currentArrayPosition.next,
+        spellEffectOutput: currentPosition.next,
         spellEffectHasError: false,
       };
     } else {
@@ -16,8 +16,8 @@ export default function lsSpell(preparedInputAsArray, currentArrayPosition, onCh
         spellEffectHasError: true,
       };
     }
-  } else if (preparedInputAsArray.length === 2) {
-    const searchRoomFitsPath = mazeArray.find(mazeRoom => mazeRoom.path === preparedInputAsArray[1]);
+  } else if (preparedInput.length === 2) {
+    const searchRoomFitsPath = mazeArray.find(mazeRoom => mazeRoom.path === preparedInput[1]);
     if (searchRoomFitsPath !== undefined) {
       if (searchRoomFitsPath.next !== null) {
         return {
@@ -35,7 +35,7 @@ export default function lsSpell(preparedInputAsArray, currentArrayPosition, onCh
     } else {
       return {
         spellEffectMessage: 'a magic voice that whispers: ',
-        spellEffectOutput: `"${preparedInputAsArray[1]}": No such file or directory`,
+        spellEffectOutput: `"${preparedInput[1]}": No such file or directory`,
         spellEffectHasError: true,
       };
     }

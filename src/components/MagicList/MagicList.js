@@ -1,9 +1,15 @@
+import {nanoid} from 'nanoid';
 import {forwardRef} from 'react';
 import styled from 'styled-components';
 
 import {ScreenReaderOnlySpan, ColorSpan, ErrorChangesColorSpan} from '../../stylesheet/StyledSpans.js';
 
 const MagicList = forwardRef(({savedOrders}, ref) => {
+  //
+  function createChoices(orderOutputs) {
+    return orderOutputs.map(spellEffectEntry => <ChoiceSpan key={nanoid()}>{spellEffectEntry}</ChoiceSpan>);
+  }
+
   return (
     <SavedOrdersList ref={ref} role="list">
       {savedOrders.map(order => (
@@ -18,7 +24,9 @@ const MagicList = forwardRef(({savedOrders}, ref) => {
             {order.spellEffectHasError ? '× failed' : '✓ success'}
           </ErrorChangesColorSpan>
           <MessageSection>{order.spellEffectMessage}</MessageSection>
-          <ErrorChangesColorSpan error={order.spellEffectHasError}>{order.spellEffectOutput}</ErrorChangesColorSpan>
+          <ErrorChangesColorSpan error={order.spellEffectHasError}>
+            {Array.isArray(order.spellEffectOutput) ? createChoices(order.spellEffectOutput) : order.spellEffectOutput}
+          </ErrorChangesColorSpan>
         </SavedOrderListItem>
       ))}
     </SavedOrdersList>
@@ -53,4 +61,9 @@ const SavedOrderListItem = styled.li`
 
 const MessageSection = styled.section`
   color: white;
+`;
+
+const ChoiceSpan = styled.span`
+  color: yellow;
+  padding: 5%;
 `;
