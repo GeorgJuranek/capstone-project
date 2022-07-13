@@ -19,7 +19,7 @@ describe('MagicForm', () => {
   it('MagicForm function gets called with Enter on keyboard', async () => {
     const user = userEvent.setup();
     const callback = jest.fn();
-    render(<MagicForm saveSpellOrder={callback} savedOrders={[]} />);
+    render(<MagicForm processingLatestSpell={callback} savedOrders={[]} />);
     const input = screen.getByLabelText('type in your command');
     await user.type(input, 'something should happen{Enter}');
     expect(callback).toHaveBeenCalled();

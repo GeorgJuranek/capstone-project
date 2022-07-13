@@ -1,0 +1,19 @@
+import styled from 'styled-components';
+
+export const BackgroundImg = styled.img`
+  border-width: 2px 6px;
+  border-color: black;
+  border-style: solid;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+`;
+
+export const FrontWizard1Img = styled.img`
+  width: 20%;
+  height: 70%;
+  position: absolute;
+  z-index: 3;
+  left: 20%;
+  bottom: 0;
+`;

@@ -1,7 +1,7 @@
 import {forwardRef} from 'react';
 import styled from 'styled-components';
 
-import {ScreenReaderOnlySpan, ColorSpan, ErrorChangesColorSpan} from '../Stylesheet/StyledSpans.js';
+import {ScreenReaderOnlySpan, ColorSpan, ErrorChangesColorSpan} from '../../stylesheet/StyledSpans.js';
 
 const MagicList = forwardRef(({savedOrders}, ref) => {
   return (
@@ -28,22 +28,21 @@ MagicList.displayName = 'MagicList';
 export default MagicList;
 
 const SavedOrdersList = styled.ul`
+  height: 65vw;
+  max-height: 400px;
+  padding-bottom: 0;
+  margin-bottom: 0;
   background-color: black;
   border: 1px solid black;
   list-style-type: '▹you ';
-  height: 50vw;
-  max-height: 400px;
   overflow: scroll;
   display: flex;
   flex-direction: column-reverse;
   justify-content: flex-start;
-  padding-bottom: 0;
-  margin-bottom: 0;
 `;
 
 const SavedOrderListItem = styled.li`
   word-wrap: break-word;
-  line-break: anywhere;
   padding-top: 1rem;
   margin-right: 1em;
   border-top: 2px solid #181818;
