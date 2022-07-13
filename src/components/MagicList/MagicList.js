@@ -28,17 +28,17 @@ MagicList.displayName = 'MagicList';
 export default MagicList;
 
 const SavedOrdersList = styled.ul`
+  height: 65vw;
+  max-height: 400px;
+  padding-bottom: 0;
+  margin-bottom: 0;
   background-color: black;
   border: 1px solid black;
   list-style-type: '▹you ';
-  height: 65vw;
-  max-height: 400px;
   overflow: scroll;
   display: flex;
   flex-direction: column-reverse;
   justify-content: flex-start;
-  padding-bottom: 0;
-  margin-bottom: 0;
 `;
 
 const SavedOrderListItem = styled.li`

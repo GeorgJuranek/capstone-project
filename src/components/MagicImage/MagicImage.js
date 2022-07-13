@@ -23,17 +23,17 @@ const FramingDiv = styled.div`
   width: 80vw;
   max-width: 700px;
   height: auto;
+  margin: 3em 0 1em 0;
   background-color: black;
   border-width: 10px 5px 16px 5px;
   border-style: ridge groove;
   border-radius: 2%;
-  margin: 3em 0 1em 0;
   box-shadow: 0 2px 100px #888;
 `;
 
 const FaderDiv = styled.div`
-  background-color: black;
   position: absolute;
+  background-color: black;
   width: 100%;
   height: 100%;
   z-index: 2;
@@ -44,7 +44,7 @@ const FaderDiv = styled.div`
 
 const fadeOutAnimation = keyframes`
       0%{opacity:0.8;}
-      5%{opacity:0.95;}
+      10%{opacity:0.95;}
       100%{opacity:0;}
   `;
 

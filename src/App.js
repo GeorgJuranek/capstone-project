@@ -105,7 +105,7 @@ const OrganizingMain = styled.main`
   align-items: center;
   max-width: 500px;
   margin: 0 auto;
-  padding: 5%;
+  padding: 15px;
 `;
 
 const ZshellDiv = styled.div`
