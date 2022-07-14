@@ -16,7 +16,8 @@ export const CodeSpan = styled.span`
   color: white;
   background-color: grey;
   padding: 3px;
-  border-radius: 20%;
+  border-radius: 25%;
+  border: 2px solid lightgrey;
 `;
 
 export const ColorSpan = styled.span`

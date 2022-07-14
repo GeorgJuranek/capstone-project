@@ -7,7 +7,11 @@ import {ScreenReaderOnlySpan, ColorSpan, ErrorChangesColorSpan} from '../../styl
 const MagicList = forwardRef(({savedOrders}, ref) => {
   //
   function createChoices(orderOutputs) {
-    return orderOutputs.map(spellEffectEntry => <ChoiceSpan key={nanoid()}>{spellEffectEntry}</ChoiceSpan>);
+    return orderOutputs.map(spellEffectEntry => (
+      <ChoiceSpan key={nanoid()} isItem={spellEffectEntry.includes('.')}>
+        {spellEffectEntry}
+      </ChoiceSpan>
+    ));
   }
 
   return (
@@ -16,10 +20,9 @@ const MagicList = forwardRef(({savedOrders}, ref) => {
         <SavedOrderListItem key={order.id}>
           <ScreenReaderOnlySpan>you</ScreenReaderOnlySpan>
           <ColorSpan>typed </ColorSpan>
-          <ErrorChangesColorSpan error={order.commandHasError}>❯ {order.inputValues[0]} </ErrorChangesColorSpan>
-          <ErrorChangesColorSpan error={order.spellEffectHasError}>{order.inputValues[1]}</ErrorChangesColorSpan>
+          <ErrorChangesColorSpan error={order.commandHasError}>❯ {order.instructionValues[0]} </ErrorChangesColorSpan>
+          <ErrorChangesColorSpan error={order.spellEffectHasError}>{order.instructionValues[1]}</ErrorChangesColorSpan>
           <MessageSection>❯❯ {order.commandMessage}</MessageSection>
-
           <ErrorChangesColorSpan error={order.spellEffectHasError}>
             {order.spellEffectHasError ? '× failed' : '✓ success'}
           </ErrorChangesColorSpan>
@@ -64,6 +67,7 @@ const MessageSection = styled.section`
 `;
 
 const ChoiceSpan = styled.span`
-  color: yellow;
+  //color: yellow;
+  color: ${prop => (prop.isItem ? 'violet' : 'yellow')};
   padding: 5%;
 `;

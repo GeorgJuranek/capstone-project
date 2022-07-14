@@ -16,6 +16,6 @@ export const spellHintsArray = [
   },
   {
     command: 'cat',
-    discription: 'The command "cat" stands for "concatenate". With "cat" you can inspect things around you',
+    discription: 'The command "cat" stands for "concatenate". With "cat" you can inspect things around you.',
   },
 ];

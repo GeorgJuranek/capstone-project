@@ -32,3 +32,11 @@ export const officePositionCss = css`
   right: 8%;
   bottom: 8%;
 `;
+
+export const binPositionCss = css`
+  width: 30%;
+  height: 30%;
+  z-index: 1;
+  right: 5%;
+  bottom: 5%;
+`;

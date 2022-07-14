@@ -1,14 +1,14 @@
 import {nanoid} from 'nanoid';
-import {useState, useEffect, useRef} from 'react';
+import {useState, useRef} from 'react';
 import styled from 'styled-components';
 
-import {mazeArray} from './arrays/mazeArray.js';
 import MagicForm from './components/MagicForm/MagicForm.js';
 import MagicImage from './components/MagicImage/MagicImage.js';
 import MagicList from './components/MagicList/MagicList.js';
-import executeSpell from './functionsfolder/executeSpell.js';
-import findCommandMessage from './functionsfolder/findCommandMessage.js';
-import findPosition from './functionsfolder/findPosition.js';
+import {mazeArray} from './data/mazeArray.js';
+import executeSpell from './functions/executeSpell.js';
+import findCommandMessage from './functions/findCommandMessage.js';
+import findPosition from './functions/findPosition.js';
 import mazeEnd from './images/mazeRooms/mazeEnd.png';
 import mazeSplit from './images/mazeRooms/mazeSplit.png';
 import mazeWay from './images/mazeRooms/mazeWay.png';
@@ -17,20 +17,19 @@ import {CodeSpan} from './stylesheet/StyledSpans.js';
 export default function App() {
   const [currentPosition, setCurrentPosition] = useState(mazeArray[0]); //this holds a {object}
   const [savedOrders, setSavedOrders] = useState([]);
-  const [currentBackgroundImage, setCurrentBackgroundImage] = useState({image: mazeEnd, altText: 'you start here'});
   const [isRoomEnlighten, setIsRoomEnlighten] = useState(false);
 
   const ref = useRef();
 
-  useEffect(() => {
-    if (currentPosition.type === 'start' || currentPosition.type === 'end') {
-      setCurrentBackgroundImage({image: mazeEnd, altText: 'the end of the way'});
-    } else if (currentPosition.type === 'passage') {
-      setCurrentBackgroundImage({image: mazeWay, altText: 'a lonely and spooky corridor'});
-    } else if (currentPosition.type === 'splitways') {
-      setCurrentBackgroundImage({image: mazeSplit, altText: 'a splitway, you have to choose'});
-    }
-  }, [currentPosition]);
+  let currentBackgroundImage;
+
+  if (currentPosition.type === 'start' || currentPosition.type === 'end') {
+    currentBackgroundImage = {image: mazeEnd, altText: 'the end of the way'};
+  } else if (currentPosition.type === 'passage') {
+    currentBackgroundImage = {image: mazeWay, altText: 'a lonely and spooky corridor'};
+  } else if (currentPosition.type === 'splitways') {
+    currentBackgroundImage = {image: mazeSplit, altText: 'a splitway, you have to choose'};
+  }
 
   function changePosition(path) {
     const newPosition = findPosition(path);
@@ -42,57 +41,62 @@ export default function App() {
     setIsRoomEnlighten(true); //this is NOT a toggle, changed to false only in changePosition above
   }
 
-  function processingLatestSpell(input) {
-    const treatedInput = input.trim().split(' ');
-    const displayedInput = treatedInput.filter(inputUnit => inputUnit.length > 0); //this is used later aswell
-    const preparedInput = displayedInput.map(checkedInputPart => checkedInputPart.toLowerCase());
+  function processingLatestSpell(instruction) {
+    const treatedInstruction = instruction.trim().split(' ');
+    const instructionValues = treatedInstruction.filter(inputUnit => inputUnit.length > 0); //this is used later aswell
+    const preparedInstruction = instructionValues.map(checkedInputPart => checkedInputPart.toLowerCase());
 
-    const commandMessage = findCommandMessage(preparedInput[0]);
+    const commandMessage = findCommandMessage(preparedInstruction[0]);
     const commandHasError = commandMessage.includes('ERROR');
 
-    const spellEffects = executeSpell(preparedInput, currentPosition, changePosition, changeEnlighten);
+    const spellEffects = executeSpell(preparedInstruction, currentPosition, changePosition, changeEnlighten);
     const {spellEffectMessage, spellEffectOutput, spellEffectHasError} = spellEffects;
 
     setSavedOrders([
       {
         id: nanoid(),
-        inputValues: displayedInput,
-        commandMessage: commandMessage,
-        commandHasError: commandHasError,
-        spellEffectMessage: spellEffectMessage,
-        spellEffectOutput: spellEffectOutput,
-        spellEffectHasError: spellEffectHasError,
+        instructionValues,
+        commandMessage,
+        commandHasError,
+        spellEffectMessage,
+        spellEffectOutput,
+        spellEffectHasError,
       },
       ...savedOrders,
     ]);
 
     const List = ref.current;
-    const topPos = List.offsetTop;
-    List.scrollTop = topPos;
+    const bottomPos = List.offsetBottom;
+    List.scrollTop = bottomPos;
   }
 
   return (
     <OrganizingMain>
       <LogoImg src={require('./images/logo1.png')} alt="" width="125" height="125" />
-      <h1>
-        <u>SHELL_WIZARD</u>
-      </h1>
+      <UnderlinedHeading> SHELL_WIZARD </UnderlinedHeading>
       With this App you can learn about your first steps with the zshell (what you want to learn, if you want to learn
       how to code!)
       <br />
       You are a Wizard searching for wisdom in the inner depths of a cursed maze. Your only chance to find your way
       through this, is to type in Spells (that resemble the zShell-commands) to the textfield in the area below.
-      <ol>
-        <li>
-          <CodeSpan>pwd</CodeSpan> - to check on your current position.
-        </li>
-        <li>
-          <CodeSpan>ls</CodeSpan> - to find new rooms. A second argument is optional.
-        </li>
-        <li>
-          <CodeSpan>cd</CodeSpan> - to move from one room to another. A second argument is required.
-        </li>
-      </ol>
+      <StyledDl>
+        <dt>
+          <CodeSpan>pwd </CodeSpan>
+        </dt>
+        <dl> to check on your current position.</dl>
+        <dt>
+          <CodeSpan>ls </CodeSpan>
+        </dt>
+        <dl> to find new rooms. A second argument is optional.</dl>
+        <dt>
+          <CodeSpan>cd </CodeSpan>
+        </dt>
+        <dl> to move from one room to another. A second argument is required.</dl>
+        <dt>
+          <CodeSpan>cat </CodeSpan>
+        </dt>
+        <dl> to check on items in the rooms.</dl>
+      </StyledDl>
       If done right, each of these spells will summon a magical gift that will help you on your journey...
       <MagicImage
         currentPosition={currentPosition}
@@ -106,6 +110,10 @@ export default function App() {
     </OrganizingMain>
   );
 }
+
+const UnderlinedHeading = styled.h1`
+  text-decoration: underline;
+`;
 
 const OrganizingMain = styled.main`
   display: flex;
@@ -132,4 +140,16 @@ const LogoImg = styled.img`
   right: 5px;
   top: 45px;
   z-index: -1;
+`;
+
+const StyledDl = styled.dl`
+  display: grid;
+  justify-items: center;
+  align-items: start;
+  grid-template-columns: 20px 1fr 20px 1fr;
+  row-gap: 40px;
+  grid-gap: 25px;
+  background-color: skyblue;
+  padding: 10px 20px;
+  border: 1px solid black;
 `;
