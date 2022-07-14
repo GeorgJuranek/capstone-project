@@ -14,4 +14,8 @@ export const spellHintsArray = [
     discription:
       'The command "cd" stands for "change directory", so you can jump from one directory into another. When you call it, it needs a adjacent-position so it knows where it shall bring you.',
   },
+  {
+    command: 'cat',
+    discription: 'The command "cat" stands for "concatenate". With "cat" you can inspect things around you',
+  },
 ];

@@ -94,7 +94,11 @@ export default function App() {
         </li>
       </ol>
       If done right, each of these spells will summon a magical gift that will help you on your journey...
-      <MagicImage currentBackgroundImage={currentBackgroundImage} isRoomEnlighten={isRoomEnlighten} />
+      <MagicImage
+        currentPosition={currentPosition}
+        currentBackgroundImage={currentBackgroundImage}
+        isRoomEnlighten={isRoomEnlighten}
+      />
       <ZshellDiv>
         <MagicList ref={ref} savedOrders={savedOrders} />
         <MagicForm savedOrders={savedOrders} processingLatestSpell={processingLatestSpell} />

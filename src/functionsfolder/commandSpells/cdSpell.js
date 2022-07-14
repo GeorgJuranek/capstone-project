@@ -5,7 +5,7 @@ export default function cdSpell(preparedInput, currentPosition, onChangePosition
     if (currentPosition.next !== null) {
       return currentPosition.next.some(nextPositionPath => nextPositionPath === preparedInput[1]);
     } else {
-      return false;
+      return false; //this solves missing array for next Position in last Rooms "null"
     }
   }
 
@@ -20,9 +20,7 @@ export default function cdSpell(preparedInput, currentPosition, onChangePosition
       spellEffectOutput: nextPositionEntry,
       spellEffectHasError: false,
     };
-  }
-  //}
-  else if (preparedInput[1] === '..') {
+  } else if (preparedInput[1] === '..') {
     if (currentPosition.prev !== null) {
       const goPreviousPath = currentPosition.prev;
       const prevPositionEntry = findPosition(goPreviousPath).type;

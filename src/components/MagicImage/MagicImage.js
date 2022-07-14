@@ -2,17 +2,19 @@ import {useRef} from 'react';
 import styled from 'styled-components';
 import {keyframes, css} from 'styled-components';
 
-import wizard1 from '../../images/sprites/wizard1Sprite1.png';
-import {FrontWizard1Img} from '../../stylesheet/StyledImages.js';
-import {BackgroundImg} from '../../stylesheet/StyledImages.js';
+import wizard1 from '../../images/charSprites/wizard1Sprite1.png';
+import {FrontWizard1Img, BackgroundImg, ItemImg} from '../../stylesheet/StyledImages.js';
 
-export default function MagicImage({currentBackgroundImage, isRoomEnlighten}) {
+export default function MagicImage({currentPosition, currentBackgroundImage, isRoomEnlighten}) {
   const fader = useRef();
 
   return (
     <FramingDiv>
       <FaderDiv ref={fader} fadeSelect={isRoomEnlighten ? fadeOutSelect : noFade}></FaderDiv>
       <BackgroundImg src={currentBackgroundImage.image} alt={currentBackgroundImage.altText} />
+      {currentPosition.items.map(item => (
+        <ItemImg itemCss={item.css} key={item.id} src={item.image} alt={item.altText} />
+      ))}
       <FrontWizard1Img src={wizard1} alt="" width="172" height="438" />
     </FramingDiv>
   );

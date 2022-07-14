@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {css} from 'styled-components';
 
 export const BackgroundImg = styled.img`
   border-width: 2px 6px;
@@ -14,6 +15,20 @@ export const FrontWizard1Img = styled.img`
   height: 70%;
   position: absolute;
   z-index: 3;
-  left: 20%;
+  left: 16%;
   bottom: 0;
+`;
+
+// Specific css for items
+export const ItemImg = styled.img`
+  position: absolute;
+  ${props => props.itemCss};
+`;
+
+export const officePositionCss = css`
+  width: 50%;
+  height: 50%;
+  z-index: 1;
+  right: 8%;
+  bottom: 8%;
 `;
