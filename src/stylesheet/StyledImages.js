@@ -29,7 +29,7 @@ export const officePositionCss = css`
   width: 50%;
   height: 50%;
   z-index: 1;
-  right: 8%;
+  right: 14%;
   bottom: 8%;
 `;
 
@@ -47,4 +47,12 @@ export const coffeePositionCss = css`
   z-index: 1;
   right: 9%;
   bottom: 8%;
+`;
+
+export const flowerPositionCss = css`
+  width: auto;
+  height: 25%;
+  z-index: 1;
+  right: 10%;
+  bottom: 34%;
 `;

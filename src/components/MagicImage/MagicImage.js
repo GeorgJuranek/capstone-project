@@ -5,11 +5,21 @@ import {keyframes, css} from 'styled-components';
 import wizard1 from '../../images/charSprites/wizard1Sprite1.png';
 import {FrontWizard1Img, BackgroundImg, ItemImg} from '../../stylesheet/StyledImages.js';
 
-export default function MagicImage({currentPosition, currentBackgroundImage, isRoomEnlighten}) {
+export default function MagicImage({
+  currentPosition,
+  currentBackgroundImage,
+  isRoomEnlighten,
+  triggerCurtain,
+  changeTriggerCurtain,
+}) {
   const fader = useRef();
+  const curtain = useRef();
+
+  setTimeout(changeTriggerCurtain, 2550); //sets bool back to false when animation has finished
 
   return (
     <FramingDiv>
+      <FaderDiv ref={curtain} fadeSelect={triggerCurtain ? curtainFade : noCurtain}></FaderDiv>
       <FaderDiv ref={fader} fadeSelect={isRoomEnlighten ? fadeOutSelect : noFade}></FaderDiv>
       <BackgroundImg src={currentBackgroundImage.image} alt={currentBackgroundImage.altText} />
       {currentPosition.items.map(item => (
@@ -69,4 +79,22 @@ const noFade = css`
   animation-name: ${fadingNoiseAnimation};
   animation-duration: 1.3s;
   animation-iteration-count: infinite;
+`;
+
+//curtain
+
+const curtainAnimation = keyframes`
+      0%{opacity:1;}
+      100%{opacity:0;}
+`;
+
+const curtainFade = css`
+  opacity: 0;
+  animation-name: ${curtainAnimation};
+  animation-duration: 2.5s;
+  animation-iteration-count: 1;
+`;
+
+const noCurtain = css`
+  opacity: 0;
 `;

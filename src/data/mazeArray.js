@@ -2,10 +2,12 @@ import {nanoid} from 'nanoid';
 
 import binItem from '../images/itemSprites/binItem.png';
 import coffeeItem from '../images/itemSprites/coffeeItem.png';
+import flowerItem from '../images/itemSprites/flowerItem.png';
 import officeItem from '../images/itemSprites/officeItem.png';
 import {officePositionCss} from '../stylesheet/StyledImages.js';
 import {binPositionCss} from '../stylesheet/StyledImages.js';
 import {coffeePositionCss} from '../stylesheet/StyledImages.js';
+import {flowerPositionCss} from '../stylesheet/StyledImages.js';
 
 export const mazeArray = [
   {
@@ -25,11 +27,11 @@ export const mazeArray = [
       },
       {
         id: nanoid(),
-        css: officePositionCss,
+        css: flowerPositionCss,
         name: 'flower.itm',
-        image: officeItem,
+        image: flowerItem,
         altText: 'this is a beautiful flower on your desk',
-        info: "to look at the flower on your desk fulfilles you with calmness and confidence, eventhough you are a little big allergic too it, but its not that bad so you don't care that much",
+        info: "to look at the flower on your desk fulfilles you with calmness and confidence, eventhough you are a little big allergic to it, but its not that bad so you don't care that much",
       },
     ],
   },

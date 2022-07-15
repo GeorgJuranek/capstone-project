@@ -18,6 +18,7 @@ export default function App() {
   const [currentPosition, setCurrentPosition] = useState(mazeArray[0]); //this holds a {object}
   const [savedOrders, setSavedOrders] = useState([]);
   const [isRoomEnlighten, setIsRoomEnlighten] = useState(false);
+  const [triggerCurtain, setTriggerCurtain] = useState(false);
 
   const ref = useRef();
 
@@ -34,7 +35,12 @@ export default function App() {
   function changePosition(path) {
     const newPosition = findPosition(path);
     setCurrentPosition(newPosition);
+    setTriggerCurtain(true);
     setIsRoomEnlighten(false); //this is NOT a toggle, changed to true only in changeEnlighten below
+  }
+
+  function changeTriggerCurtain() {
+    setTriggerCurtain(false);
   }
 
   function changeEnlighten() {
@@ -102,6 +108,8 @@ export default function App() {
         currentPosition={currentPosition}
         currentBackgroundImage={currentBackgroundImage}
         isRoomEnlighten={isRoomEnlighten}
+        triggerCurtain={triggerCurtain}
+        changeTriggerCurtain={changeTriggerCurtain}
       />
       <ZshellDiv>
         <MagicList ref={ref} savedOrders={savedOrders} />
