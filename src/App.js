@@ -23,7 +23,7 @@ export default function App() {
 
   let currentBackgroundImage;
 
-  if (currentPosition.type === 'start' || currentPosition.type === 'end') {
+  if (currentPosition.type === 'end') {
     currentBackgroundImage = {image: mazeEnd, altText: 'the end of the way'};
   } else if (currentPosition.type === 'passage') {
     currentBackgroundImage = {image: mazeWay, altText: 'a lonely and spooky corridor'};
@@ -121,7 +121,8 @@ const OrganizingMain = styled.main`
   align-items: center;
   max-width: 500px;
   margin: 0 auto;
-  padding: 15px;
+  //padding: 15px;
+  padding-bottom: 3vh; //30px;
 `;
 
 const ZshellDiv = styled.div`

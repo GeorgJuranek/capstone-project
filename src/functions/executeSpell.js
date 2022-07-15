@@ -2,20 +2,23 @@ import catSpell from './commandSpells/catSpell';
 import cdSpell from './commandSpells/cdSpell';
 import lsSpell from './commandSpells/lsSpell';
 import pwdSpell from './commandSpells/pwdSpell';
+import zSpell from './commandSpells/zSpell';
 
-export default function executeSpell(preparedInput, currentPosition, onChangePosition, onChangeEnlighten) {
-  if (preparedInput[0] === 'pwd') {
-    return pwdSpell(preparedInput, currentPosition);
-  } else if (preparedInput[0] === 'ls') {
-    return lsSpell(preparedInput, currentPosition, onChangeEnlighten);
-  } else if (preparedInput[0] === 'cd') {
-    return cdSpell(preparedInput, currentPosition, onChangePosition);
-  } else if (preparedInput[0] === 'cat') {
-    return catSpell(currentPosition);
+export default function executeSpell(preparedInstruction, currentPosition, onChangePosition, onChangeEnlighten) {
+  if (preparedInstruction[0] === 'pwd') {
+    return pwdSpell(preparedInstruction, currentPosition);
+  } else if (preparedInstruction[0] === 'ls') {
+    return lsSpell(preparedInstruction, currentPosition, onChangeEnlighten);
+  } else if (preparedInstruction[0] === 'cd') {
+    return cdSpell(preparedInstruction, currentPosition, onChangePosition);
+  } else if (preparedInstruction[0] === 'cat') {
+    return catSpell(preparedInstruction, currentPosition);
+  } else if (preparedInstruction[0] === 'z') {
+    return zSpell(preparedInstruction, onChangePosition);
   } else {
     return {
       spellEffectMessage: 'a magic voice that whispers: ',
-      spellEffectOutput: `zsh: command not found: ${preparedInput[0]}`,
+      spellEffectOutput: `zsh: command not found: ${preparedInstruction[0]}`,
       spellEffectHasError: true,
     };
   }

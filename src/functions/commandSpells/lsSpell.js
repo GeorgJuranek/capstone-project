@@ -1,6 +1,6 @@
 import {mazeArray} from '../../data/mazeArray';
 
-export default function lsSpell(preparedInput, currentPosition, onChangeEnlighten) {
+export default function lsSpell(preparedInstruction, currentPosition, onChangeEnlighten) {
   //
   function searchingForItemNames() {
     if (currentPosition.items.length > 0) {
@@ -14,7 +14,7 @@ export default function lsSpell(preparedInput, currentPosition, onChangeEnlighte
   //
   const itemChoices = searchingForItemNames();
   //
-  if (preparedInput.length === 1) {
+  if (preparedInstruction.length === 1) {
     onChangeEnlighten(true);
 
     //
@@ -40,8 +40,8 @@ export default function lsSpell(preparedInput, currentPosition, onChangeEnlighte
     }
   }
   //////////////////////////////////////////////
-  else if (preparedInput.length === 2) {
-    const searchRoomFitsPath = mazeArray.find(mazeRoom => mazeRoom.path === preparedInput[1]);
+  else if (preparedInstruction.length === 2) {
+    const searchRoomFitsPath = mazeArray.find(mazeRoom => mazeRoom.path === preparedInstruction[1]);
     if (searchRoomFitsPath !== undefined) {
       if (searchRoomFitsPath.next !== null) {
         return {
@@ -59,7 +59,7 @@ export default function lsSpell(preparedInput, currentPosition, onChangeEnlighte
     } else {
       return {
         spellEffectMessage: 'a magic voice that whispers: ',
-        spellEffectOutput: `"${preparedInput[1]}": No such file or directory`,
+        spellEffectOutput: `"${preparedInstruction[1]}": No such file or directory`,
         spellEffectHasError: true,
       };
     }

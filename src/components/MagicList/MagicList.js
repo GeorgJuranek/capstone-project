@@ -8,7 +8,7 @@ const MagicList = forwardRef(({savedOrders}, ref) => {
   //
   function createChoices(orderOutputs) {
     return orderOutputs.map(spellEffectEntry => (
-      <ChoiceSpan key={nanoid()} isItem={spellEffectEntry.includes('.')}>
+      <ChoiceSpan key={nanoid()} isItem={spellEffectEntry.includes('.itm')}>
         {spellEffectEntry}
       </ChoiceSpan>
     ));

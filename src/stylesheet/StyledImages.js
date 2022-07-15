@@ -40,3 +40,11 @@ export const binPositionCss = css`
   right: 5%;
   bottom: 5%;
 `;
+
+export const coffeePositionCss = css`
+  width: 45%;
+  height: 45%;
+  z-index: 1;
+  right: 9%;
+  bottom: 8%;
+`;

@@ -1,25 +1,35 @@
 import {nanoid} from 'nanoid';
 
 import binItem from '../images/itemSprites/binItem.png';
+import coffeeItem from '../images/itemSprites/coffeeItem.png';
 import officeItem from '../images/itemSprites/officeItem.png';
 import {officePositionCss} from '../stylesheet/StyledImages.js';
 import {binPositionCss} from '../stylesheet/StyledImages.js';
+import {coffeePositionCss} from '../stylesheet/StyledImages.js';
 
 export const mazeArray = [
   {
     id: 0,
     path: 'maze/start/',
-    type: 'start',
+    type: 'end',
     next: ['passage'],
     prev: null,
     items: [
       {
         id: nanoid(),
         css: officePositionCss,
-        name: 'myOffice.item',
+        name: 'desk.itm',
         image: officeItem,
         altText: 'this is your office',
         info: 'This is your office. The screen shows some notes you did earlier: "Always remember: 1.) ask for room you are IN with pwd and confirm with enter, then 2.) ask for places to go FROM HERE ls and enter, then 3.) go somewhere typing cd AND what you got from ls. I hope this will work out fine..." ',
+      },
+      {
+        id: nanoid(),
+        css: officePositionCss,
+        name: 'flower.itm',
+        image: officeItem,
+        altText: 'this is a beautiful flower on your desk',
+        info: "to look at the flower on your desk fulfilles you with calmness and confidence, eventhough you are a little big allergic too it, but its not that bad so you don't care that much",
       },
     ],
   },
@@ -59,7 +69,7 @@ export const mazeArray = [
       {
         id: nanoid(),
         css: binPositionCss,
-        name: 'bin.item',
+        name: 'bin.itm',
         image: binItem,
         altText: 'this is your office',
         info: 'You find a note in the bin that says: "IMPORTANT NOTE: I can teleport back by typing "cd .." IMPORTANT NOTE FOR IMPORTANT NOTE: I should keep this cheatsheet always with me so i dont forget this important spell -signed: foobar"',
@@ -81,6 +91,15 @@ export const mazeArray = [
     type: 'end',
     next: null,
     prev: 'maze/start/passage/splitways/right/',
-    items: [],
+    items: [
+      {
+        id: nanoid(),
+        css: coffeePositionCss,
+        name: 'coffee.itm',
+        image: coffeeItem,
+        altText: 'this is a table with a can of coffee and a mug, a straw is put into',
+        info: 'You find coffee! finally! yay! but when you check it, you recognize that its freezing cold. No milk or sugar.',
+      },
+    ],
   },
 ];
