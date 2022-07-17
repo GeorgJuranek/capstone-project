@@ -15,7 +15,9 @@ export default function MagicImage({
   const fader = useRef();
   const curtain = useRef();
 
-  setTimeout(changeTriggerCurtain, 2550); //sets bool back to false when animation has finished
+  if (triggerCurtain === true) {
+    setTimeout(changeTriggerCurtain, 2550); //sets bool back to false when animation has finished
+  }
 
   return (
     <FramingDiv>

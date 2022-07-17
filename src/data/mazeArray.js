@@ -107,7 +107,7 @@ export const mazeArray = [
         name: 'coffee.itm',
         image: coffeeItem,
         altText: 'this is a table with a can of coffee and a mug, a straw is put into',
-        info: 'You find coffee! finally! yay! but when you check it, you recognize that its freezing cold. No milk or sugar.',
+        info: 'You find coffee! finally! yay! but when you check it, you recognize that its freezing cold. No milk or sugar. Oh wait! Under the mug is a little note written on the corner of a halved napkin: "- ...p..lease dont screw it up this time, just remember: by typing "cd .." you can always go back !"',
       },
     ],
   },
