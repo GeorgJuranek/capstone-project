@@ -54,7 +54,8 @@ const FaderDiv = styled.div`
   ${props => props.fadeSelect}; //for animation
 `;
 
-//ANIMATION for FaderDiv//
+//ANIMATIONS
+//fader
 
 const fadeOutAnimation = keyframes`
       0%{opacity:0.8;}

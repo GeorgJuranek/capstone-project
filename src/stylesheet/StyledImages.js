@@ -19,7 +19,6 @@ export const FrontWizard1Img = styled.img`
   bottom: 0;
 `;
 
-// Specific css for items
 export const ItemImg = styled.img`
   position: absolute;
   ${props => props.itemCss};
@@ -81,7 +80,6 @@ export const archivePositionCss = css`
   bottom: 12%;
 `;
 
-// Wizard.xyzzy
 export const friendlyWizardPositionCss = css`
   width: auto;
   height: 45%;
