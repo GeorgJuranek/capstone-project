@@ -8,9 +8,9 @@ const MagicList = forwardRef(({savedOrders}, ref) => {
   //
   function createChoices(orderOutputs) {
     return orderOutputs.map(spellEffectEntry => (
-      <ChoiceSpan key={nanoid()} isItem={spellEffectEntry.includes('.itm')}>
+      <ChoiceDiv key={nanoid()} isItem={spellEffectEntry.includes('.itm')}>
         {spellEffectEntry}
-      </ChoiceSpan>
+      </ChoiceDiv>
     ));
   }
 
@@ -66,8 +66,7 @@ const MessageSection = styled.section`
   color: white;
 `;
 
-const ChoiceSpan = styled.span`
-  //color: yellow;
+const ChoiceDiv = styled.div`
   color: ${prop => (prop.isItem ? 'violet' : 'yellow')};
-  padding: 5%;
+  padding: 0 5%;
 `;

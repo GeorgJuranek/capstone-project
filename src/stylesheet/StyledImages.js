@@ -12,10 +12,10 @@ export const BackgroundImg = styled.img`
 
 export const FrontWizard1Img = styled.img`
   width: 20%;
-  height: 70%;
+  height: 60%;
   position: absolute;
   z-index: 3;
-  left: 16%;
+  left: 18%;
   bottom: 0;
 `;
 
@@ -26,33 +26,33 @@ export const ItemImg = styled.img`
 `;
 
 export const officePositionCss = css`
-  width: 50%;
-  height: 50%;
+  width: 40%;
+  height: 40%;
   z-index: 1;
   right: 14%;
   bottom: 8%;
 `;
 
 export const binPositionCss = css`
-  width: 30%;
-  height: 30%;
+  width: 28%;
+  height: 28%;
   z-index: 1;
-  right: 5%;
+  right: 6%;
   bottom: 5%;
 `;
 
 export const coffeePositionCss = css`
-  width: 45%;
-  height: 45%;
+  width: 35%;
+  height: 35%;
   z-index: 1;
-  right: 9%;
+  right: 13%;
   bottom: 8%;
 `;
 
 export const flowerPositionCss = css`
   width: auto;
-  height: 25%;
+  height: 20%;
   z-index: 1;
-  right: 10%;
-  bottom: 34%;
+  right: 11%;
+  bottom: 29%;
 `;
