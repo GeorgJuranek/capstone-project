@@ -15,7 +15,7 @@ export const FrontWizard1Img = styled.img`
   height: 60%;
   position: absolute;
   z-index: 3;
-  left: 18%;
+  left: 15%;
   bottom: 0;
 `;
 
@@ -55,4 +55,47 @@ export const flowerPositionCss = css`
   z-index: 1;
   right: 11%;
   bottom: 29%;
+`;
+
+export const urinalsPositionCss = css`
+  width: auto;
+  height: 22%;
+  z-index: 1;
+  right: 21%;
+  bottom: 20%;
+`;
+
+export const toiletPositionCss = css`
+  width: auto;
+  height: 60%;
+  z-index: 1;
+  right: 10%;
+  bottom: 8%;
+`;
+
+export const archivePositionCss = css`
+  width: auto;
+  height: 45%;
+  z-index: 1;
+  right: 18%;
+  bottom: 12%;
+`;
+
+// Wizard.xyzzy
+export const friendlyWizardPositionCss = css`
+  width: auto;
+  height: 45%;
+  position: absolute;
+  z-index: 3;
+  right: 15%;
+  bottom: 3%;
+`;
+
+export const windowPositionCss = css`
+  width: auto;
+  height: 35%;
+  position: absolute;
+  z-index: 3;
+  right: 22%;
+  top: 20%;
 `;

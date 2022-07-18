@@ -1,13 +1,26 @@
 import {nanoid} from 'nanoid';
 
+import wizardXyzzy from '../images/charSprites/wizardXyzzy.png';
+import archive0Item from '../images/itemSprites/archive0Item.png';
+import archive1Item from '../images/itemSprites/archive1Item.png';
+import archive2Item from '../images/itemSprites/archive2Item.png';
 import binItem from '../images/itemSprites/binItem.png';
 import coffeeItem from '../images/itemSprites/coffeeItem.png';
 import flowerItem from '../images/itemSprites/flowerItem.png';
 import officeItem from '../images/itemSprites/officeItem.png';
+import toiletItem from '../images/itemSprites/toiletItem.png';
+import urinalsItem from '../images/itemSprites/urinalsItem.png';
+import windowItem from '../images/itemSprites/windowItem.png';
+import xyzzydesktopItem from '../images/itemSprites/xyzzydesktopItem.png';
+import {archivePositionCss} from '../stylesheet/StyledImages.js';
 import {officePositionCss} from '../stylesheet/StyledImages.js';
 import {binPositionCss} from '../stylesheet/StyledImages.js';
 import {coffeePositionCss} from '../stylesheet/StyledImages.js';
 import {flowerPositionCss} from '../stylesheet/StyledImages.js';
+import {urinalsPositionCss} from '../stylesheet/StyledImages.js';
+import {friendlyWizardPositionCss} from '../stylesheet/StyledImages.js';
+import {toiletPositionCss} from '../stylesheet/StyledImages.js';
+import {windowPositionCss} from '../stylesheet/StyledImages.js';
 
 export const mazeArray = [
   {
@@ -170,7 +183,24 @@ export const mazeArray = [
     posName: 'office',
     next: null,
     prev: 'maze/start/passage/splitways/right/left/lobby/crossing/lib/reception/',
-    items: [],
+    items: [
+      {
+        id: nanoid(),
+        css: officePositionCss,
+        name: 'desktop.itm',
+        image: xyzzydesktopItem,
+        altText: 'this is another desktop',
+        info: 'this is the desktop of your fellow student xyzzy. seems like he is is really up to something.',
+      },
+      {
+        id: nanoid(),
+        css: windowPositionCss,
+        name: 'window.itm',
+        image: windowItem,
+        altText: 'this is a window with a blue and purple sunset, but behind bars',
+        info: 'looking out of the window you see a beautiful sunset. the view on the horizon makes you feel yearning and adventurous.',
+      },
+    ],
   }, //END
   // archives
   {
@@ -189,7 +219,16 @@ export const mazeArray = [
     posName: 'archive0',
     next: null,
     prev: 'maze/start/passage/splitways/right/left/lobby/crossing/lib/reception/archives/',
-    items: [], //END
+    items: [
+      {
+        id: nanoid(),
+        css: archivePositionCss,
+        name: 'archive.itm',
+        image: archive0Item,
+        altText: 'this is a cluttering file cabinet',
+        info: 'this is a cluttering, old and dusty file cabinet. Looking at it stresses you out.',
+      },
+    ], //END
   },
   {
     id: 16,
@@ -207,7 +246,16 @@ export const mazeArray = [
     posName: 'archive1',
     next: null,
     prev: 'maze/start/passage/splitways/right/left/lobby/crossing/lib/reception/archives/next/',
-    items: [], //END
+    items: [
+      {
+        id: nanoid(),
+        css: archivePositionCss,
+        name: 'archive.itm',
+        image: archive1Item,
+        altText: 'this is a cluttering file cabinet',
+        info: 'this is a cluttering, old and dusty file cabinet. Looking at it stresses you out.',
+      },
+    ], //END
   },
   {
     id: 17,
@@ -225,7 +273,16 @@ export const mazeArray = [
     posName: 'archive2',
     next: null,
     prev: 'maze/start/passage/splitways/right/left/lobby/crossing/lib/reception/archives/next/',
-    items: [], //END
+    items: [
+      {
+        id: nanoid(),
+        css: archivePositionCss,
+        name: 'archive.itm',
+        image: archive2Item,
+        altText: 'this is a cluttering file cabinet',
+        info: 'this is a cluttering, old and dusty file cabinet. Looking at it stresses you out.',
+      },
+    ], //END
   },
   {
     id: 19,
@@ -234,7 +291,16 @@ export const mazeArray = [
     posName: 'storage',
     next: null,
     prev: 'maze/start/passage/splitways/right/left/lobby/crossing/lib/reception/archives/next/next/',
-    items: [], //END
+    items: [
+      {
+        id: nanoid(),
+        css: friendlyWizardPositionCss,
+        name: 'xyzzy.itm',
+        image: wizardXyzzy,
+        altText: 'this is your fellow student xyzzy',
+        info: 'Oh, hi foobar. how are you doing buddy? I was told there is a secret treasure hidden in an empty room around, but this was the only one i found and when i use "ls" on it nothing happens... weird, dont ya think? -y.t. xyzzy',
+      },
+    ], //END
   },
   //USER//
   {
@@ -263,7 +329,16 @@ export const mazeArray = [
     posName: 'pink',
     next: null,
     prev: 'maze/start/passage/splitways/right/left/lobby/crossing/user/restrooms/',
-    items: [], //END
+    items: [
+      {
+        id: nanoid(),
+        css: urinalsPositionCss,
+        name: 'urinals.itm',
+        image: urinalsItem,
+        altText: 'this are some urinals',
+        info: 'This are some urinals. Nothing to inspect, lets say... too deep',
+      },
+    ], //END
   },
   {
     id: 23,
@@ -272,7 +347,16 @@ export const mazeArray = [
     posName: 'blue',
     next: null,
     prev: 'maze/start/passage/splitways/right/left/lobby/crossing/user/restrooms/',
-    items: [], //END
+    items: [
+      {
+        id: nanoid(),
+        css: toiletPositionCss,
+        name: 'toilet.itm',
+        image: toiletItem,
+        altText: 'this is a toilet',
+        info: 'This is a toilet cubicle. Dont mind it too much and search for clues.',
+      },
+    ], //END
   },
   //questionmark door
   {
