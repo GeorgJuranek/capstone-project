@@ -6,7 +6,15 @@ describe('MagicImage', () => {
   it('has an accessible image', () => {
     render(
       <MagicImage
-        currentPosition={{itemCss: 'x', key: 'x', src: 'x', alt: 'x'}}
+        currentPosition={{
+          id: 1,
+          path: 'maze/home/hall/',
+          type: 'hall',
+          posName: 'hall',
+          next: ['fork'],
+          prev: 'maze/home/',
+          items: [],
+        }}
         currentBackgroundImage={{image: 'test.png', altText: 'the end of the way'}}
       />
     );

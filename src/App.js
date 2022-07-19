@@ -7,18 +7,9 @@ import MagicImage from './components/MagicImage/MagicImage.js';
 import MagicList from './components/MagicList/MagicList.js';
 import {mazeArray} from './data/mazeArray.js';
 import executeSpell from './functions/executeSpell.js';
-import findCommandMessage from './functions/findCommandMessage.js';
-import findPosition from './functions/findPosition.js';
-import mazeCrossing from './images/mazeRooms/mazeCrossing.png';
-import mazeEnd from './images/mazeRooms/mazeEnd.png';
-import mazeLib from './images/mazeRooms/mazeLib.png';
-import mazeLobby from './images/mazeRooms/mazeLobby.png';
-import mazeReception from './images/mazeRooms/mazeReception.png';
-import mazeRestrooms from './images/mazeRooms/mazeRestrooms.png';
-import mazeSplit from './images/mazeRooms/mazeSplit.png';
-import mazeSplit2 from './images/mazeRooms/mazeSplit2.png';
-import mazeUser from './images/mazeRooms/mazeUser.png';
-import mazeWay from './images/mazeRooms/mazeWay.png';
+import findCommandMessage from './functions/finder/findCommandMessage.js';
+import findImage from './functions/finder/findImage.js';
+import findPosition from './functions/finder/findPosition.js';
 import {CodeSpan} from './stylesheet/StyledSpans.js';
 
 export default function App() {
@@ -29,28 +20,7 @@ export default function App() {
 
   const ref = useRef();
 
-  let currentBackgroundImage;
-  if (currentPosition.type === 'end') {
-    currentBackgroundImage = {image: mazeEnd, altText: 'the end of the way'};
-  } else if (currentPosition.type === 'passage') {
-    currentBackgroundImage = {image: mazeWay, altText: 'a lonely and spooky corridor'};
-  } else if (currentPosition.type === 'splitways') {
-    currentBackgroundImage = {image: mazeSplit, altText: 'a splitway, you have to choose'};
-  } else if (currentPosition.type === 'splitways2') {
-    currentBackgroundImage = {image: mazeSplit2, altText: 'an other splitway, you have to choose'};
-  } else if (currentPosition.type === 'lobby') {
-    currentBackgroundImage = {image: mazeLobby, altText: 'a big vault with a door and office plants'};
-  } else if (currentPosition.type === 'crossing') {
-    currentBackgroundImage = {image: mazeCrossing, altText: 'a crossing of different paths'};
-  } else if (currentPosition.type === 'lib') {
-    currentBackgroundImage = {image: mazeLib, altText: 'the entryhall of a library'};
-  } else if (currentPosition.type === 'reception') {
-    currentBackgroundImage = {image: mazeReception, altText: 'Choose between two doors'};
-  } else if (currentPosition.type === 'user') {
-    currentBackgroundImage = {image: mazeUser, altText: 'a big vault with different doors'};
-  } else if (currentPosition.type === 'restrooms') {
-    currentBackgroundImage = {image: mazeRestrooms, altText: 'go through the blue or the pink door'};
-  }
+  let currentBackgroundImage = findImage(currentPosition); //this returns an object
 
   function changePosition(path) {
     const newPosition = findPosition(path);
@@ -150,7 +120,6 @@ const OrganizingMain = styled.main`
   max-width: 500px;
   margin: 0 auto;
   padding: 0 15px 3vh 15px;
-  //padding-bottom: 3vh; //30px;
 `;
 
 const ZshellDiv = styled.div`
@@ -180,5 +149,6 @@ const StyledDl = styled.dl`
   grid-gap: 25px;
   background-color: skyblue;
   padding: 10px 20px;
-  border: 1px solid black;
+  border-bottom: 4px solid black;
+  border-right: 2px solid black;
 `;

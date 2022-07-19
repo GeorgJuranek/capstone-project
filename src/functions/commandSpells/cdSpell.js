@@ -1,4 +1,4 @@
-import findPosition from '../findPosition.js';
+import findPosition from '../finder/findPosition.js';
 
 export default function cdSpell(preparedInput, currentPosition, onChangePosition) {
   function checkForNext() {

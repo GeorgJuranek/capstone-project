@@ -10,7 +10,7 @@ export const BackgroundImg = styled.img`
   z-index: 0;
 `;
 
-export const FrontWizard1Img = styled.img`
+export const ProtagonistImg = styled.img`
   width: 20%;
   height: 60%;
   position: absolute;
@@ -24,7 +24,7 @@ export const ItemImg = styled.img`
   ${props => props.itemCss};
 `;
 
-export const officePositionCss = css`
+export const officePosition = css`
   width: 40%;
   height: 40%;
   z-index: 1;
@@ -32,7 +32,7 @@ export const officePositionCss = css`
   bottom: 8%;
 `;
 
-export const binPositionCss = css`
+export const binPosition = css`
   width: 28%;
   height: 28%;
   z-index: 1;
@@ -40,7 +40,7 @@ export const binPositionCss = css`
   bottom: 5%;
 `;
 
-export const coffeePositionCss = css`
+export const coffeePosition = css`
   width: 35%;
   height: 35%;
   z-index: 1;
@@ -48,7 +48,7 @@ export const coffeePositionCss = css`
   bottom: 8%;
 `;
 
-export const flowerPositionCss = css`
+export const flowerPosition = css`
   width: auto;
   height: 20%;
   z-index: 1;
@@ -56,7 +56,16 @@ export const flowerPositionCss = css`
   bottom: 29%;
 `;
 
-export const urinalsPositionCss = css`
+export const studentslistPosition = css`
+  width: auto;
+  height: 27%;
+  position: absolute;
+  z-index: 1;
+  right: 34%;
+  top: 30%;
+`;
+
+export const urinalsPosition = css`
   width: auto;
   height: 22%;
   z-index: 1;
@@ -64,7 +73,7 @@ export const urinalsPositionCss = css`
   bottom: 20%;
 `;
 
-export const toiletPositionCss = css`
+export const toiletPosition = css`
   width: auto;
   height: 60%;
   z-index: 1;
@@ -72,7 +81,7 @@ export const toiletPositionCss = css`
   bottom: 8%;
 `;
 
-export const archivePositionCss = css`
+export const archivePosition = css`
   width: auto;
   height: 45%;
   z-index: 1;
@@ -80,7 +89,7 @@ export const archivePositionCss = css`
   bottom: 12%;
 `;
 
-export const friendlyWizardPositionCss = css`
+export const wizardXyzzyPosition = css`
   width: auto;
   height: 45%;
   position: absolute;
@@ -89,7 +98,7 @@ export const friendlyWizardPositionCss = css`
   bottom: 3%;
 `;
 
-export const windowPositionCss = css`
+export const windowPosition = css`
   width: auto;
   height: 35%;
   position: absolute;

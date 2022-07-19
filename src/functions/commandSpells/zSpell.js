@@ -1,4 +1,4 @@
-import findPosition from '../findPosition';
+import findPosition from '../finder/findPosition';
 
 export default function zSpell(preparedInstruction, onChangePosition) {
   const foundGlobalPosition = findPosition(preparedInstruction[1]);
