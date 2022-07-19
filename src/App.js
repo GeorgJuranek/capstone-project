@@ -119,7 +119,6 @@ const OrganizingMain = styled.main`
   align-items: center;
   max-width: 500px;
   margin: 0 auto;
-  //padding: 0 15px 3vh 15px;
   padding: 0 1% 3% 1%;
 `;
 
