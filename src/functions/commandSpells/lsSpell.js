@@ -3,7 +3,7 @@ import {mazeArray} from '../../data/mazeArray';
 export default function lsSpell(preparedInstruction, currentPosition, onChangeEnlighten) {
   //
   function searchingForItemNames() {
-    if (currentPosition.items.length > 0) {
+    if (currentPosition.items.length) {
       const itemEntries = currentPosition.items.map(item => item.name);
       return itemEntries;
     } else {

@@ -39,7 +39,7 @@ export default function App() {
 
   function processingLatestSpell(instruction) {
     const treatedInstruction = instruction.trim().split(' ');
-    const instructionValues = treatedInstruction.filter(inputUnit => inputUnit.length > 0); //this is used later aswell
+    const instructionValues = treatedInstruction.filter(inputUnit => inputUnit.length); //this is used later aswell
     const preparedInstruction = instructionValues.map(checkedInputPart => checkedInputPart.toLowerCase());
 
     const commandMessage = findCommandMessage(preparedInstruction[0]);
@@ -119,7 +119,8 @@ const OrganizingMain = styled.main`
   align-items: center;
   max-width: 500px;
   margin: 0 auto;
-  padding: 0 15px 3vh 15px;
+  //padding: 0 15px 3vh 15px;
+  padding: 0 1% 3% 1%;
 `;
 
 const ZshellDiv = styled.div`
