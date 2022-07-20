@@ -25,7 +25,7 @@ export default function MagicForm({processingLatestSpell, savedOrders}) {
       <Input id="input" name="input" autoComplete="off" />
       <Button>ENTER</Button>
       <CommandLineSpanR>
-        <FrameSpan>?</FrameSpan> {savedOrders.length}
+        <FrameSpan>?</FrameSpan> <span data-testid="savedOrders">{savedOrders.length}</span>
       </CommandLineSpanR>
     </Form>
   );

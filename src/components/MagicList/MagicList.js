@@ -1,24 +1,35 @@
+import {nanoid} from 'nanoid';
 import {forwardRef} from 'react';
 import styled from 'styled-components';
 
 import {ScreenReaderOnlySpan, ColorSpan, ErrorChangesColorSpan} from '../../stylesheet/StyledSpans.js';
 
 const MagicList = forwardRef(({savedOrders}, ref) => {
+  //
+  function createChoices(orderOutputs) {
+    return orderOutputs.map(spellEffectEntry => (
+      <ChoiceDiv key={nanoid()} isItem={spellEffectEntry.includes('.itm')}>
+        {spellEffectEntry}
+      </ChoiceDiv>
+    ));
+  }
+
   return (
     <SavedOrdersList ref={ref} role="list">
       {savedOrders.map(order => (
         <SavedOrderListItem key={order.id}>
           <ScreenReaderOnlySpan>you</ScreenReaderOnlySpan>
           <ColorSpan>typed </ColorSpan>
-          <ErrorChangesColorSpan error={order.commandHasError}>❯ {order.inputValues[0]} </ErrorChangesColorSpan>
-          <ErrorChangesColorSpan error={order.spellEffectHasError}>{order.inputValues[1]}</ErrorChangesColorSpan>
+          <ErrorChangesColorSpan error={order.commandHasError}>❯ {order.instructionValues[0]} </ErrorChangesColorSpan>
+          <ErrorChangesColorSpan error={order.spellEffectHasError}>{order.instructionValues[1]}</ErrorChangesColorSpan>
           <MessageSection>❯❯ {order.commandMessage}</MessageSection>
-
           <ErrorChangesColorSpan error={order.spellEffectHasError}>
             {order.spellEffectHasError ? '× failed' : '✓ success'}
           </ErrorChangesColorSpan>
           <MessageSection>{order.spellEffectMessage}</MessageSection>
-          <ErrorChangesColorSpan error={order.spellEffectHasError}>{order.spellEffectOutput}</ErrorChangesColorSpan>
+          <ErrorChangesColorSpan error={order.spellEffectHasError}>
+            {Array.isArray(order.spellEffectOutput) ? createChoices(order.spellEffectOutput) : order.spellEffectOutput}
+          </ErrorChangesColorSpan>
         </SavedOrderListItem>
       ))}
     </SavedOrdersList>
@@ -53,4 +64,9 @@ const SavedOrderListItem = styled.li`
 
 const MessageSection = styled.section`
   color: white;
+`;
+
+const ChoiceDiv = styled.div`
+  color: ${prop => (prop.isItem ? 'violet' : 'yellow')};
+  padding: 0 5%;
 `;

@@ -1,8 +1,8 @@
-export default function pwdSpell(preparedInputAsArray, currentArrayPosition) {
-  if (preparedInputAsArray.length === 1) {
+export default function pwdSpell(preparedInput, currentPosition) {
+  if (preparedInput.length === 1) {
     return {
       spellEffectMessage: 'a magic voice that whispers, you are here: ',
-      spellEffectOutput: currentArrayPosition.path,
+      spellEffectOutput: currentPosition.path,
       spellEffectHasError: false,
     };
   } else {

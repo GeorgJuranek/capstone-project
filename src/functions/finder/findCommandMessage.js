@@ -1,4 +1,4 @@
-import {spellHintsArray} from '../arrays/spellHintsArray.js';
+import {spellHintsArray} from '../../data/spellHintsArray.js';
 
 export default function findCommandMessage(spellword) {
   const rightSpellMessage = spellHintsArray.find(spellHint => spellHint.command === spellword);

@@ -2,18 +2,32 @@ import {useRef} from 'react';
 import styled from 'styled-components';
 import {keyframes, css} from 'styled-components';
 
-import wizard1 from '../../images/sprites/wizard1Sprite1.png';
-import {FrontWizard1Img} from '../../stylesheet/StyledImages.js';
-import {BackgroundImg} from '../../stylesheet/StyledImages.js';
+import wizardFoobar from '../../images/charSprites/wizardFoobar.png';
+import {ProtagonistImg, BackgroundImg, ItemImg} from '../../stylesheet/StyledImages.js';
 
-export default function MagicImage({currentBackgroundImage, isRoomEnlighten}) {
+export default function MagicImage({
+  currentPosition,
+  currentBackgroundImage,
+  isRoomEnlighten,
+  triggerCurtain,
+  changeTriggerCurtain,
+}) {
   const fader = useRef();
+  const curtain = useRef();
+
+  if (triggerCurtain === true) {
+    setTimeout(changeTriggerCurtain, 2550); //sets bool back to false when animation has finished
+  }
 
   return (
     <FramingDiv>
+      <FaderDiv ref={curtain} fadeSelect={triggerCurtain ? curtainFade : noCurtain}></FaderDiv>
       <FaderDiv ref={fader} fadeSelect={isRoomEnlighten ? fadeOutSelect : noFade}></FaderDiv>
       <BackgroundImg src={currentBackgroundImage.image} alt={currentBackgroundImage.altText} />
-      <FrontWizard1Img src={wizard1} alt="" width="172" height="438" />
+      {currentPosition.items.map(item => (
+        <ItemImg itemCss={item.css} key={item.id} src={item.image} alt={item.altText} />
+      ))}
+      <ProtagonistImg src={wizardFoobar} alt="" width="172" height="438" />
     </FramingDiv>
   );
 }
@@ -40,7 +54,8 @@ const FaderDiv = styled.div`
   ${props => props.fadeSelect}; //for animation
 `;
 
-//ANIMATION for FaderDiv//
+//ANIMATIONS
+//fader
 
 const fadeOutAnimation = keyframes`
       0%{opacity:0.8;}
@@ -67,4 +82,22 @@ const noFade = css`
   animation-name: ${fadingNoiseAnimation};
   animation-duration: 1.3s;
   animation-iteration-count: infinite;
+`;
+
+//curtain
+
+const curtainAnimation = keyframes`
+      0%{opacity:1;}
+      100%{opacity:0;}
+`;
+
+const curtainFade = css`
+  opacity: 0;
+  animation-name: ${curtainAnimation};
+  animation-duration: 2.5s;
+  animation-iteration-count: 1;
+`;
+
+const noCurtain = css`
+  opacity: 0;
 `;
