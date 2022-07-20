@@ -2,15 +2,14 @@ import {nanoid} from 'nanoid';
 import {useState, useRef} from 'react';
 import styled from 'styled-components';
 
-import MagicForm from './components/MagicForm/MagicForm.js';
-import MagicImage from './components/MagicImage/MagicImage.js';
-import MagicList from './components/MagicList/MagicList.js';
-import {mazeArray} from './data/mazeArray.js';
-import executeSpell from './functions/executeSpell.js';
-import findCommandMessage from './functions/finder/findCommandMessage.js';
-import findImage from './functions/finder/findImage.js';
-import findPosition from './functions/finder/findPosition.js';
-import {CodeSpan} from './stylesheet/StyledSpans.js';
+import MagicForm from '../components/MagicForm/MagicForm.js';
+import MagicImage from '../components/MagicImage/MagicImage.js';
+import MagicList from '../components/MagicList/MagicList.js';
+import {mazeArray} from '../data/mazeArray.js';
+import executeSpell from '../functions/executeSpell.js';
+import findCommandMessage from '../functions/finder/findCommandMessage.js';
+import findImage from '../functions/finder/findImage.js';
+import findPosition from '../functions/finder/findPosition.js';
 
 export default function Game() {
   const [currentPosition, setCurrentPosition] = useState(mazeArray[0]); //this holds a {object}
@@ -68,32 +67,8 @@ export default function Game() {
 
   return (
     <OrganizingMain>
-      <LogoImg src={require('./images/logo1.png')} alt="" width="125" height="125" />
+      <LogoImg src={require('../images/logo1.png')} alt="" width="125" height="125" />
       <UnderlinedHeading> SHELL_WIZARD </UnderlinedHeading>
-      With this App you can learn about your first steps with the zshell (what you want to learn, if you want to learn
-      how to code!)
-      <br />
-      You are a Wizard searching for wisdom in the inner depths of a cursed maze. Your only chance to find your way
-      through this, is to type in Spells (that resemble the zShell-commands) to the textfield in the area below.
-      <StyledDl>
-        <dt>
-          <CodeSpan>pwd </CodeSpan>
-        </dt>
-        <dl> to check on your current position.</dl>
-        <dt>
-          <CodeSpan>ls </CodeSpan>
-        </dt>
-        <dl> to find new rooms. A second argument is optional.</dl>
-        <dt>
-          <CodeSpan>cd </CodeSpan>
-        </dt>
-        <dl> to move from one room to another. A second argument is required.</dl>
-        <dt>
-          <CodeSpan>cat </CodeSpan>
-        </dt>
-        <dl> to check on items in the rooms.</dl>
-      </StyledDl>
-      If done right, each of these spells will summon a magical gift that will help you on your journey...
       <MagicImage
         currentPosition={currentPosition}
         currentBackgroundImage={currentBackgroundImage}
@@ -138,17 +113,4 @@ const LogoImg = styled.img`
   right: 5px;
   top: 45px;
   z-index: -1;
-`;
-
-const StyledDl = styled.dl`
-  display: grid;
-  justify-items: center;
-  align-items: start;
-  grid-template-columns: 20px 1fr 20px 1fr;
-  row-gap: 40px;
-  grid-gap: 25px;
-  background-color: skyblue;
-  padding: 10px 20px;
-  border-bottom: 4px solid black;
-  border-right: 2px solid black;
 `;

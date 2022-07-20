@@ -1,7 +1,7 @@
 import {Routes, Route} from 'react-router-dom';
 
-import Game from './Game.js';
-import Title from './Title.js';
+import Game from './pages/Game.js';
+import Title from './pages/Title.js';
 
 export default function App() {
   return (
