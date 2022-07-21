@@ -15,8 +15,8 @@ export const ScreenReaderOnlySpan = styled.span`
 export const CodeSpan = styled.span`
   color: white;
   background-color: grey;
-  padding: 3px;
-  border-radius: 25%;
+  padding: 5px;
+  border-radius: 11px;
   border: 2px solid lightgrey;
 `;
 

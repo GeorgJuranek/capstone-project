@@ -1,16 +1,17 @@
+import {useNavigate} from 'react-router-dom';
 import styled from 'styled-components';
 
 import background from '../images/titlescreen/background.png';
-import frame from '../images/titlescreen/frame.png';
+//import frame from '../images/titlescreen/frame.png';
 import header from '../images/titlescreen/header.png';
 import wizardsQandA from '../images/titlescreen/wizardsQandA.png';
 import {CodeSpan} from '../stylesheet/StyledSpans.js';
 
 export default function Title() {
+  const navigate = useNavigate();
   return (
     <>
       <Background src={background} alt="" />
-      <Frame src={frame} alt="" />
       <Header src={header} alt="Shell Wizard" />
       <Wizards src={wizardsQandA} alt="" />
       <TextDiv>
@@ -23,22 +24,22 @@ export default function Title() {
           <dt>
             <CodeSpan>pwd </CodeSpan>
           </dt>
-          <dl> to check on your current position.</dl>
+          <StyledDd> to check on your current position.</StyledDd>
           <dt>
             <CodeSpan>ls </CodeSpan>
           </dt>
-          <dl> to find new rooms.</dl>
+          <StyledDd> to find new rooms.</StyledDd>
           <dt>
             <CodeSpan>cd </CodeSpan>
           </dt>
-          <dl> to move from one room to another.</dl>
+          <StyledDd> to move from one room to another.</StyledDd>
           <dt>
             <CodeSpan>cat </CodeSpan>
           </dt>
-          <dl> to check on items in the rooms.</dl>
+          <StyledDd> to check on items in the rooms.</StyledDd>
         </StyledDl>
         If done right, each of these spells will summon a magical gift that will help you on your journey...
-        <StartButton> START</StartButton>
+        <StartButton onClick={() => navigate('/game')}> START</StartButton>
       </TextDiv>
     </>
   );
@@ -47,34 +48,35 @@ export default function Title() {
 const StartButton = styled.button`
   display: block;
   width: 100px;
-  height: 50px;
-  margin: 50px auto;
-  box-shadow: 0 5px 25px #888;
+  height: 65px;
+  margin: 100px auto 25px auto;
+  box-shadow: 0 0 25px #888;
   letter-spacing: 3px;
   border-color: white;
+  font-size: 18px;
+  border-radius: 10px;
 `;
 
 const TextDiv = styled.div`
-  //z-index: 3;
   position: fixed;
   top: 12%;
   right: 0%;
   margin: 20%;
-  width: 65%;
-  max-width: 600px;
-  height: 35%;
+  width: 55%;
+  max-width: 1600px;
+  height: 25%;
   overflow: scroll;
-  line-height: 1.8rem;
   text-shadow: 0 0 5px black;
   text-shadow: 1px 1px 1px black, 1px -1px 1px black, -1px 1px 1px black, -1px -1px 1px black;
   color: whitesmoke;
-`;
+  padding-top: 50px;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
 
-const Frame = styled.img`
-  width: 99%;
-  height: 99%;
-  position: absolute;
-  padding: 15px;
+  @media (min-width: 600px) {
+    font-size: 1rem;
+    line-height: 1rem;
+  }
 `;
 
 const Background = styled.img`
@@ -85,7 +87,7 @@ const Background = styled.img`
 
 const Header = styled.img`
   width: 50%;
-  max-width: 700px;
+  max-width: 1500px;
   height: auto;
   top: 50px;
   right: 30%;
@@ -94,7 +96,7 @@ const Header = styled.img`
 
 const Wizards = styled.img`
   width: 80%;
-  max-width: 1300px;
+  max-width: 1500px;
   height: auto;
   bottom: 50px;
   left: 8%;
@@ -105,20 +107,27 @@ const Wizards = styled.img`
     opacity: 0.3;
   }
   @media (min-width: 600px) {
-    height: 50%;
+    height: 40%;
     width: auto;
   }
 `;
 
 const StyledDl = styled.dl`
   display: grid;
-  justify-items: center;
+  justify-items: start;
   align-items: start;
-  grid-template-rows: 20px 1fr 20px 1fr;
-  row-gap: 10px;
-  grid-gap: 15px;
+  grid-template-rows: 20px 1fr;
   background-color: skyblue;
-  padding: 10px 20px;
   border: 2px solid white;
   opacity: 0.6;
+  border-radius: 4px;
+  width: 90%;
+  margin: auto;
+  padding: 30px 0;
+  line-break: strict;
+`;
+
+const StyledDd = styled.dd`
+  border-bottom: 2px dashed white;
+  margin: 10px;
 `;

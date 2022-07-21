@@ -34,10 +34,10 @@ export default function MagicImage({
 
 const FramingDiv = styled.div`
   position: relative;
-  width: 80vw;
+  width: auto; //80vw;
   max-width: 700px;
   height: auto;
-  margin: 3em 0 1em 0;
+  //margin: 0 0 0 0;
   background-color: black;
   border-width: 10px 5px 16px 5px;
   border-style: ridge groove;

@@ -36,7 +36,6 @@ const Form = styled.form`
   justify-content: flex-start;
   align-items: baseline;
   flex-wrap: nowrap;
-  margin-bottom: 1rem;
 `;
 
 const Input = styled.input`
@@ -60,7 +59,7 @@ const CommandLineSpanR = styled.span`
 const Button = styled.button`
   background-color: #65ff00;
   border: medium solid #65ff00;
-  padding: 5px 2% 0 2%;
+  padding: 0 2% 0 2%;
   margin: 0 3%;
 
   &:active {

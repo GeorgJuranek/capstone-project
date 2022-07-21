@@ -39,7 +39,7 @@ MagicList.displayName = 'MagicList';
 export default MagicList;
 
 const SavedOrdersList = styled.ul`
-  height: 65vw;
+  height: 90%;
   max-height: 400px;
   padding-bottom: 0;
   margin-bottom: 0;

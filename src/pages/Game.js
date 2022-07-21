@@ -10,6 +10,7 @@ import executeSpell from '../functions/executeSpell.js';
 import findCommandMessage from '../functions/finder/findCommandMessage.js';
 import findImage from '../functions/finder/findImage.js';
 import findPosition from '../functions/finder/findPosition.js';
+//import frame from '../images/titlescreen/frameBlack.png';
 
 export default function Game() {
   const [currentPosition, setCurrentPosition] = useState(mazeArray[0]); //this holds a {object}
@@ -67,8 +68,11 @@ export default function Game() {
 
   return (
     <OrganizingMain>
-      <LogoImg src={require('../images/logo1.png')} alt="" width="125" height="125" />
-      <UnderlinedHeading> SHELL_WIZARD </UnderlinedHeading>
+      <TitleDiv>
+        <LogoImg src={require('../images/logo1.png')} alt="" width="45" height="40" />
+        <UnderlinedHeading> SHELL_WIZARD </UnderlinedHeading>
+      </TitleDiv>
+
       <MagicImage
         currentPosition={currentPosition}
         currentBackgroundImage={currentBackgroundImage}
@@ -84,8 +88,26 @@ export default function Game() {
   );
 }
 
+const TitleDiv = styled.div`
+  position: relative;
+  z-index: 5;
+  //margin: 0 100px 10px auto;
+  //background-color: grey;
+  margin-bottom: 10px;
+  width: 100%;
+`;
+
 const UnderlinedHeading = styled.h1`
-  text-decoration: underline;
+  //text-decoration: underline;
+  text-shadow: 1px 1px 1px black, 1px -1px 1px black, -1px 1px 1px black, -1px -1px 1px black;
+  font-size: 15px;
+  color: lightgrey;
+  margin-left: 30px;
+`;
+
+const LogoImg = styled.img`
+  position: absolute;
+  left: -15px;
 `;
 
 const OrganizingMain = styled.main`
@@ -94,23 +116,23 @@ const OrganizingMain = styled.main`
   align-items: center;
   max-width: 500px;
   margin: 0 auto;
-  padding: 0 1% 3% 1%;
+  padding: 0 30px;
 `;
 
 const ZshellDiv = styled.div`
   width: 90vw;
-  max-width: 800px;
-  height: auto;
-  max-height: 500px;
+  max-width: 500px;
+  //min-height: 100px;
+  height: 35vh; //auto;
+  max-height: 800px;
   border: 2px ridge #181818;
   border-radius: 5%;
   background-image: linear-gradient(#181818, black);
   box-shadow: 0 10px 8px #888;
-`;
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 
-const LogoImg = styled.img`
-  position: relative;
-  right: 5px;
-  top: 45px;
-  z-index: -1;
+  //padding-bottom: 0;
 `;
