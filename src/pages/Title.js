@@ -2,7 +2,6 @@ import {useNavigate} from 'react-router-dom';
 import styled from 'styled-components';
 
 import background from '../images/titlescreen/background.png';
-//import frame from '../images/titlescreen/frame.png';
 import header from '../images/titlescreen/header.png';
 import wizardsQandA from '../images/titlescreen/wizardsQandA.png';
 import {CodeSpan} from '../stylesheet/StyledSpans.js';
@@ -59,10 +58,10 @@ const StartButton = styled.button`
 
 const TextDiv = styled.div`
   position: fixed;
-  top: 12%;
+  top: 20%;
   right: 0%;
-  margin: 20%;
-  width: 55%;
+  margin: 10%;
+  width: 80%;
   max-width: 1600px;
   height: 25%;
   overflow: scroll;
@@ -74,8 +73,8 @@ const TextDiv = styled.div`
   line-height: 1.5rem;
 
   @media (min-width: 600px) {
-    font-size: 1rem;
-    line-height: 1rem;
+    //font-size: 1rem;
+    line-height: 2.5rem;
   }
 `;
 
@@ -114,20 +113,22 @@ const Wizards = styled.img`
 
 const StyledDl = styled.dl`
   display: grid;
-  justify-items: start;
+  justify-items: space-around;
   align-items: start;
   grid-template-rows: 20px 1fr;
   background-color: skyblue;
   border: 2px solid white;
-  opacity: 0.6;
+  opacity: 1;
   border-radius: 4px;
-  width: 90%;
-  margin: auto;
-  padding: 30px 0;
+  margin: 50px auto;
+  padding: 15px;
+  padding-left: 20px;
   line-break: strict;
+  width: 80%;
 `;
 
 const StyledDd = styled.dd`
   border-bottom: 2px dashed white;
   margin: 10px;
+  padding-bottom: 10px;
 `;

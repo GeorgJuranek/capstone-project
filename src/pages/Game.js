@@ -10,7 +10,6 @@ import executeSpell from '../functions/executeSpell.js';
 import findCommandMessage from '../functions/finder/findCommandMessage.js';
 import findImage from '../functions/finder/findImage.js';
 import findPosition from '../functions/finder/findPosition.js';
-//import frame from '../images/titlescreen/frameBlack.png';
 
 export default function Game() {
   const [currentPosition, setCurrentPosition] = useState(mazeArray[0]); //this holds a {object}
@@ -91,14 +90,11 @@ export default function Game() {
 const TitleDiv = styled.div`
   position: relative;
   z-index: 5;
-  //margin: 0 100px 10px auto;
-  //background-color: grey;
   margin-bottom: 10px;
   width: 100%;
 `;
 
 const UnderlinedHeading = styled.h1`
-  //text-decoration: underline;
   text-shadow: 1px 1px 1px black, 1px -1px 1px black, -1px 1px 1px black, -1px -1px 1px black;
   font-size: 15px;
   color: lightgrey;
@@ -117,22 +113,23 @@ const OrganizingMain = styled.main`
   max-width: 500px;
   margin: 0 auto;
   padding: 0 30px;
+
+  /* @media (orientation: landscape) {
+    flex-direction: row;
+  } */
 `;
 
 const ZshellDiv = styled.div`
   width: 90vw;
   max-width: 500px;
-  //min-height: 100px;
-  height: 35vh; //auto;
+  height: 35vh;
   max-height: 800px;
   border: 2px ridge #181818;
-  border-radius: 5%;
+  border-radius: 11px;
   background-image: linear-gradient(#181818, black);
   box-shadow: 0 10px 8px #888;
   margin: 10px 0;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-
-  //padding-bottom: 0;
 `;
