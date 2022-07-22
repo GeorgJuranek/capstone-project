@@ -21,6 +21,8 @@ export default function Game() {
   const [triggerCurtain, setTriggerCurtain] = useState(false);
   //
   const [cancelActive, setCancelActive] = useState(false);
+  //
+  const [currentFocus, setCurrentFocus] = useState();
 
   const ref = useRef();
 
@@ -43,6 +45,11 @@ export default function Game() {
 
   function changeCancel() {
     setCancelActive(!cancelActive);
+    setCurrentFocus(null);
+  }
+
+  function changeCurrentFocus(newFocus) {
+    setCurrentFocus(newFocus);
   }
 
   function processingLatestSpell(instruction) {
@@ -98,7 +105,12 @@ export default function Game() {
       />
       <ZshellDiv>
         <MagicList ref={ref} savedOrders={savedOrders} />
-        <MagicForm savedOrders={savedOrders} processingLatestSpell={processingLatestSpell} />
+        <MagicForm
+          savedOrders={savedOrders}
+          processingLatestSpell={processingLatestSpell}
+          currentFocus={currentFocus}
+          changeCurrentFocus={changeCurrentFocus}
+        />
       </ZshellDiv>
       {cancelActive && <MagicTextbox changeCancel={changeCancel} />}
     </OrganizingMain>
