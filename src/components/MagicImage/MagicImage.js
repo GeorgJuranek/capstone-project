@@ -37,12 +37,17 @@ const FramingDiv = styled.div`
   width: auto; //80vw;
   max-width: 700px;
   height: auto;
-  //margin: 0 0 0 0;
   background-color: black;
   border-width: 10px 5px 16px 5px;
   border-style: ridge groove;
   border-radius: 2%;
   box-shadow: 0 2px 100px #888;
+
+  @media (orientation: landscape) {
+    width: 50vw; //80vw;
+    //max-width: 1000px;
+    height: 80vh;
+  } ;
 `;
 
 const FaderDiv = styled.div`

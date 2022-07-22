@@ -39,6 +39,8 @@ MagicList.displayName = 'MagicList';
 export default MagicList;
 
 const SavedOrdersList = styled.ul`
+  list-style-position: inside;
+  padding-left: 5%;
   height: 90%;
   max-height: 400px;
   padding-bottom: 0;
@@ -50,6 +52,11 @@ const SavedOrdersList = styled.ul`
   display: flex;
   flex-direction: column-reverse;
   justify-content: flex-start;
+
+  @media (orientation: landscape) {
+    height: 80vh;
+    max-height: 1500px;
+  } ;
 `;
 
 const SavedOrderListItem = styled.li`

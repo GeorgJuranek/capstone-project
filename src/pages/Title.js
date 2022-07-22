@@ -115,15 +115,13 @@ const StyledDl = styled.dl`
   display: grid;
   justify-items: space-around;
   align-items: center;
-
   grid-template-columns: 20px 1fr;
-  background-color: skyblue;
-  border: 2px solid white;
+  //background-color: skyblue;
+  //border: 2px solid white;
   grid-auto-flow: dense;
   column-gap: 25px;
   column-gap: 35px;
-  opacity: 1;
-  border-radius: 4px;
+  //border-radius: 4px;
   margin: 50px auto;
   padding: 15px;
   padding-left: 5px;

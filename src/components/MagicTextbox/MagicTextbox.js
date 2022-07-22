@@ -36,7 +36,7 @@ const Box = styled.div`
   max-width: 400px;
   height: auto;
   background-color: hotpink;
-  opacity: 0.85;
+  opacity: 0.95;
   border: 3px solid red;
   position: absolute;
   top: 10%;

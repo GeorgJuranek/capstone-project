@@ -73,6 +73,7 @@ const Input = styled.input`
 const CommandLineSpanL = styled.span`
   white-space: nowrap;
   color: #65ff00;
+  margin-right: 5px;
 `;
 
 const CommandLineSpanR = styled.span`

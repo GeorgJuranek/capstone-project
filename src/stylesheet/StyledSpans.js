@@ -18,6 +18,7 @@ export const CodeSpan = styled.span`
   padding: 5px;
   border-radius: 11px;
   border: 2px solid lightgrey;
+  box-shadow: 0 2px 8px #888;
 `;
 
 export const ColorSpan = styled.span`
