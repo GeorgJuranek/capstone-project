@@ -5,17 +5,22 @@ import styled from 'styled-components';
 import MagicForm from '../components/MagicForm/MagicForm.js';
 import MagicImage from '../components/MagicImage/MagicImage.js';
 import MagicList from '../components/MagicList/MagicList.js';
+import MagicTextbox from '../components/MagicTextbox/MagicTextbox.js';
 import {mazeArray} from '../data/mazeArray.js';
 import executeSpell from '../functions/executeSpell.js';
 import findCommandMessage from '../functions/finder/findCommandMessage.js';
 import findImage from '../functions/finder/findImage.js';
 import findPosition from '../functions/finder/findPosition.js';
+import logo from '../images/logo.png';
+import logoCancel from '../images/logoCancel.png';
 
 export default function Game() {
   const [currentPosition, setCurrentPosition] = useState(mazeArray[0]); //this holds a {object}
   const [savedOrders, setSavedOrders] = useState([]);
   const [isRoomEnlighten, setIsRoomEnlighten] = useState(false);
   const [triggerCurtain, setTriggerCurtain] = useState(false);
+  //
+  const [cancelActive, setCancelActive] = useState(false);
 
   const ref = useRef();
 
@@ -34,6 +39,10 @@ export default function Game() {
 
   function changeEnlighten() {
     setIsRoomEnlighten(true); //this is NOT a toggle, changed to false only in changePosition above
+  }
+
+  function changeCancel() {
+    setCancelActive(!cancelActive);
   }
 
   function processingLatestSpell(instruction) {
@@ -68,8 +77,16 @@ export default function Game() {
   return (
     <OrganizingMain>
       <TitleDiv>
-        <LogoImg src={require('../images/logo1.png')} alt="" width="45" height="40" />
+        <LogoImg src={cancelActive ? logoCancel : logo} alt="" width="45" height="40" />
         <UnderlinedHeading> SHELL_WIZARD </UnderlinedHeading>
+        <CancelImg
+          role="button"
+          onClick={() => changeCancel()}
+          src={require('../images/cancel.png')}
+          alt=""
+          width="30"
+          height="30"
+        />
       </TitleDiv>
 
       <MagicImage
@@ -83,6 +100,7 @@ export default function Game() {
         <MagicList ref={ref} savedOrders={savedOrders} />
         <MagicForm savedOrders={savedOrders} processingLatestSpell={processingLatestSpell} />
       </ZshellDiv>
+      {cancelActive && <MagicTextbox changeCancel={changeCancel} />}
     </OrganizingMain>
   );
 }
@@ -98,12 +116,20 @@ const UnderlinedHeading = styled.h1`
   text-shadow: 1px 1px 1px black, 1px -1px 1px black, -1px 1px 1px black, -1px -1px 1px black;
   font-size: 15px;
   color: lightgrey;
-  margin-left: 30px;
+  margin-left: 27px;
+  padding-left: 30px;
 `;
 
 const LogoImg = styled.img`
   position: absolute;
-  left: -15px;
+  left: 19px;
+  top: 2px;
+`;
+
+const CancelImg = styled.img`
+  position: absolute;
+  left: -20px;
+  top: 10px;
 `;
 
 const OrganizingMain = styled.main`

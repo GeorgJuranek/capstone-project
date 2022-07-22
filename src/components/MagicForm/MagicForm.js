@@ -1,8 +1,11 @@
+import {useState} from 'react';
 import styled from 'styled-components';
 
 import {ScreenReaderOnlySpan, FrameSpan} from '../../stylesheet/StyledSpans.js';
 
 export default function MagicForm({processingLatestSpell, savedOrders}) {
+  const [currentFocus, setCurrentFocus] = useState();
+
   function handleSpell(event) {
     event.preventDefault();
     const form = event.target;
@@ -14,6 +17,22 @@ export default function MagicForm({processingLatestSpell, savedOrders}) {
     }
 
     input.focus();
+    setCurrentFocus(input);
+
+    /*const focus = document.activeElement;
+    if (focus === input) {
+      focus.blur();
+      setCurrentFocus(null);
+    } else {
+      input.focus();
+      setCurrentFocus(input);
+    }*/
+  }
+
+  function changeFocus(event) {
+    const newFocus = event.target;
+    newFocus.focus();
+    setCurrentFocus(newFocus);
   }
 
   return (
@@ -21,8 +40,8 @@ export default function MagicForm({processingLatestSpell, savedOrders}) {
       <label htmlFor="input">
         <ScreenReaderOnlySpan>type in your command</ScreenReaderOnlySpan>
       </label>
-      <CommandLineSpanL>❯ ❚ </CommandLineSpanL>
-      <Input id="input" name="input" autoComplete="off" />
+      <CommandLineSpanL>❯ {currentFocus === document.activeElement ? '❚' : '▯'}</CommandLineSpanL>
+      <Input onClick={changeFocus} id="input" name="input" autoComplete="off" />
       <Button>ENTER</Button>
       <CommandLineSpanR>
         <FrameSpan>?</FrameSpan> <span data-testid="savedOrders">{savedOrders.length}</span>
@@ -43,6 +62,7 @@ const Input = styled.input`
   border: none;
   color: #65ff00;
   background-color: black;
+  outline: none;
 `;
 
 const CommandLineSpanL = styled.span`

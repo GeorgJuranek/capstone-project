@@ -37,7 +37,7 @@ export default function Title() {
           </dt>
           <StyledDd> to check on items in the rooms.</StyledDd>
         </StyledDl>
-        If done right, each of these spells will summon a magical gift that will help you on your journey...
+        If done right, each of these spells will summon a magical gift that will help you on your exam...
         <StartButton onClick={() => navigate('/game')}> START</StartButton>
       </TextDiv>
     </>
@@ -114,21 +114,30 @@ const Wizards = styled.img`
 const StyledDl = styled.dl`
   display: grid;
   justify-items: space-around;
-  align-items: start;
-  grid-template-rows: 20px 1fr;
+  align-items: center;
+
+  grid-template-columns: 20px 1fr;
   background-color: skyblue;
   border: 2px solid white;
+  grid-auto-flow: dense;
+  column-gap: 25px;
+  column-gap: 35px;
   opacity: 1;
   border-radius: 4px;
   margin: 50px auto;
   padding: 15px;
-  padding-left: 20px;
+  padding-left: 5px;
   line-break: strict;
-  width: 80%;
+  width: 50%;
 `;
 
 const StyledDd = styled.dd`
-  border-bottom: 2px dashed white;
+  //border-bottom: 2px dashed white;
   margin: 10px;
-  padding-bottom: 10px;
+  //padding-bottom: 10px;
+  //padding-left: 10px;
+  padding: 10px;
+  border-radius: 4px;
+  border: 3px solid white;
+  background-color: skyblue;
 `;
