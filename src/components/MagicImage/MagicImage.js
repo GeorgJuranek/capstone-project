@@ -45,7 +45,7 @@ const FramingDiv = styled.div`
 
   @media (orientation: landscape) {
     position: absolute;
-    width: 35%;
+    width: 40%; //35%;
     left: auto;
     margin-top: 5%;
   } ;

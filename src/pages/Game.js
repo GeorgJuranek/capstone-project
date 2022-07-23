@@ -183,11 +183,12 @@ const ZshellDiv = styled.div`
   justify-content: space-between;
 
   @media (orientation: landscape) {
-    height: 80vh;
+    height: auto; //80vh;
     max-width: 1300px;
     width: 80vw;
     margin-top: 5%;
-    margin-left: 50%;
+    margin-left: 55%;
+    margin-bottom: 20px;
   } ;
 `;
 
