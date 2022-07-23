@@ -34,9 +34,9 @@ export default function MagicImage({
 
 const FramingDiv = styled.div`
   position: relative;
-  width: auto;
+  //width: auto;
   max-width: 600px;
-  height: auto;
+  //height: auto;
   background-color: black;
   border-width: 10px 8px 16px 8px;
   border-style: ridge;
@@ -44,10 +44,9 @@ const FramingDiv = styled.div`
   box-shadow: 0 2px 50px #888;
 
   @media (orientation: landscape) {
-    position: absolute;
-    width: 40%; //35%;
+    //position: absolute;
+    //width: 100%; //35%;
     left: auto;
-    margin-top: 5%;
   } ;
 `;
 

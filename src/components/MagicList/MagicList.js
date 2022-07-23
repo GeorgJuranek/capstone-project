@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import {ScreenReaderOnlySpan, ColorSpan, ErrorChangesColorSpan} from '../../stylesheet/StyledSpans.js';
 
-const MagicList = forwardRef(({savedOrders}, ref) => {
+const MagicList = forwardRef(({savedOrders, inputInFocus}, ref) => {
   //
   function createChoices(orderOutputs) {
     return orderOutputs.map(spellEffectEntry => (
@@ -15,7 +15,7 @@ const MagicList = forwardRef(({savedOrders}, ref) => {
   }
 
   return (
-    <SavedOrdersList ref={ref} role="list">
+    <SavedOrdersList ref={ref} role="list" inputInFocus={inputInFocus}>
       {savedOrders.map(order => (
         <SavedOrderListItem key={order.id}>
           <ScreenReaderOnlySpan>you</ScreenReaderOnlySpan>
@@ -48,13 +48,13 @@ const SavedOrdersList = styled.ul`
   border: 1px solid black;
   list-style-type: '▹you ';
   overflow: scroll;
-  display: flex;
+  display: ${prop => (prop.inputInFocus ? 'none' : 'flex')}; //flex;
   flex-direction: column-reverse;
   justify-content: flex-start;
 
   @media (orientation: landscape) {
-    height: 80vh;
-    max-height: 1500px;
+    //max-height: 1500px;
+    display: flex;
   } ;
 `;
 

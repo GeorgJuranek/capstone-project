@@ -16,9 +16,12 @@ import logo from '../images/logo.png';
 import logoCancel from '../images/logoCancel.png';
 
 export default function Game() {
+  //
+  const [inputInFocus, setInputInFocus] = useState(false);
+  //
   const [currentPosition, setCurrentPosition] = useState(mazeArray[0]); //this holds a {object}
   const [savedOrders, setSavedOrders] = useState([]);
-  const [currentFocus, setCurrentFocus] = useState(null);
+  const [currentFocus, setCurrentFocus] = useState(null); //?still necessary?
   const [isRoomEnlighten, setIsRoomEnlighten] = useState(false);
   const [triggerCurtain, setTriggerCurtain] = useState(false);
   const [isCancelActive, setIsCancelActive] = useState(false);
@@ -133,12 +136,15 @@ export default function Game() {
           changeTriggerCurtain={changeTriggerCurtain}
         />
         <ZshellDiv>
-          <MagicList ref={ref} savedOrders={savedOrders} />
+          <MagicList ref={ref} savedOrders={savedOrders} inputInFocus={inputInFocus} />
           <MagicForm
             savedOrders={savedOrders}
             processingLatestSpell={processingLatestSpell}
             currentFocus={currentFocus}
             changeCurrentFocus={changeCurrentFocus}
+            //
+            setInputInFocus={setInputInFocus}
+            //
           />
         </ZshellDiv>
         {isCancelActive && <Cancel toggleCancel={toggleCancel} />}
@@ -162,6 +168,7 @@ const OrganizingMain = styled.main`
 const GameSceneDiv = styled.div`
   display: flex;
   flex-direction: column;
+  //flex-wrap: wrap;
 
   @media (orientation: landscape) {
     flex-direction: row;
@@ -171,8 +178,8 @@ const GameSceneDiv = styled.div`
 const ZshellDiv = styled.div`
   width: 90vw;
   max-width: 500px;
-  height: 35vh;
-  max-height: 700px;
+  height: auto; //35vh;
+  max-height: 350px;
   border: 2px ridge #181818;
   border-radius: 11px;
   background-image: linear-gradient(#181818, black);
@@ -183,12 +190,12 @@ const ZshellDiv = styled.div`
   justify-content: space-between;
 
   @media (orientation: landscape) {
-    height: auto; //80vh;
-    max-width: 1300px;
-    width: 80vw;
-    margin-top: 5%;
-    margin-left: 55%;
-    margin-bottom: 20px;
+    //height: auto; //80vh;
+    max-width: 1000px;
+    width: 70vw;
+    //margin-top: 5%;
+    //margin-left: 55%;
+    //margin-bottom: 20px;
   } ;
 `;
 
