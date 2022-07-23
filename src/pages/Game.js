@@ -134,6 +134,8 @@ export default function Game() {
           isRoomEnlighten={isRoomEnlighten}
           triggerCurtain={triggerCurtain}
           changeTriggerCurtain={changeTriggerCurtain}
+          //
+          inputInFocus={inputInFocus}
         />
         <ZshellDiv>
           <MagicList ref={ref} savedOrders={savedOrders} inputInFocus={inputInFocus} />
@@ -188,15 +190,6 @@ const ZshellDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
-  @media (orientation: landscape) {
-    //height: auto; //80vh;
-    max-width: 1000px;
-    width: 70vw;
-    //margin-top: 5%;
-    //margin-left: 55%;
-    //margin-bottom: 20px;
-  } ;
 `;
 
 //Header-Elements//

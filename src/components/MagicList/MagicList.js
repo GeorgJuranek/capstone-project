@@ -42,18 +42,18 @@ const SavedOrdersList = styled.ul`
   list-style-position: inside;
   padding-left: 1%;
   height: 90%;
+  min-height: 200px;
   padding-bottom: 0;
   margin-bottom: 0;
   background-color: black;
   border: 1px solid black;
   list-style-type: '▹you ';
   overflow: scroll;
-  display: ${prop => (prop.inputInFocus ? 'none' : 'flex')}; //flex;
+  display: ${prop => (prop.inputInFocus ? 'none' : 'flex')};
   flex-direction: column-reverse;
   justify-content: flex-start;
 
   @media (orientation: landscape) {
-    //max-height: 1500px;
     display: flex;
   } ;
 `;

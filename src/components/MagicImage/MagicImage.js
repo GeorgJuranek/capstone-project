@@ -11,6 +11,7 @@ export default function MagicImage({
   isRoomEnlighten,
   triggerCurtain,
   changeTriggerCurtain,
+  inputInFocus,
 }) {
   const fader = useRef();
   const curtain = useRef();
@@ -20,7 +21,7 @@ export default function MagicImage({
   }
 
   return (
-    <FramingDiv>
+    <FramingDiv inputInFocus={inputInFocus}>
       <FaderDiv ref={curtain} fadeSelect={triggerCurtain ? curtainFade : noCurtain}></FaderDiv>
       <FaderDiv ref={fader} fadeSelect={isRoomEnlighten ? fadeOutSelect : noFade}></FaderDiv>
       <BackgroundImg src={currentBackgroundImage.image} alt={currentBackgroundImage.altText} />
@@ -34,20 +35,14 @@ export default function MagicImage({
 
 const FramingDiv = styled.div`
   position: relative;
-  //width: auto;
+  width: ${prop => (prop.inputInFocus ? '50%' : '100%')}; //auto;
+  height: ${prop => (prop.inputInFocus ? '50%' : '100%')}; //auto;
   max-width: 600px;
-  //height: auto;
   background-color: black;
   border-width: 10px 8px 16px 8px;
   border-style: ridge;
   border-radius: 2%;
   box-shadow: 0 2px 50px #888;
-
-  @media (orientation: landscape) {
-    //position: absolute;
-    //width: 100%; //35%;
-    left: auto;
-  } ;
 `;
 
 //ANIMATION-ELEMENTS
