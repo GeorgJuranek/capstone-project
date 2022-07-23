@@ -40,9 +40,8 @@ export default MagicList;
 
 const SavedOrdersList = styled.ul`
   list-style-position: inside;
-  padding-left: 5%;
+  padding-left: 1%;
   height: 90%;
-  max-height: 400px;
   padding-bottom: 0;
   margin-bottom: 0;
   background-color: black;

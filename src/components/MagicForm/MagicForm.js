@@ -30,7 +30,7 @@ export default function MagicForm({processingLatestSpell, savedOrders, currentFo
         <ScreenReaderOnlySpan>type in your command</ScreenReaderOnlySpan>
       </label>
       <CommandLineSpanL>
-        ❯ {currentFocus === document.activeElement ? <ToggleSpan>❙</ToggleSpan> : '⫾'}
+        ❯ {currentFocus === document.activeElement ? <ToggleSpan>▐</ToggleSpan> : '[]'}
       </CommandLineSpanL>
       <Input onClick={changeFocus} id="input" name="input" autoComplete="off" />
       <Button onClick={changeFocus}>ENTER</Button>

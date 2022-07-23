@@ -34,22 +34,25 @@ export default function MagicImage({
 
 const FramingDiv = styled.div`
   position: relative;
-  width: auto; //80vw;
-  max-width: 700px;
+  width: auto;
+  max-width: 600px;
   height: auto;
   background-color: black;
-  border-width: 10px 5px 16px 5px;
-  border-style: ridge groove;
+  border-width: 10px 8px 16px 8px;
+  border-style: ridge;
   border-radius: 2%;
-  box-shadow: 0 2px 100px #888;
+  box-shadow: 0 2px 50px #888;
 
   @media (orientation: landscape) {
-    width: 50vw; //80vw;
-    //max-width: 1000px;
-    height: 80vh;
+    position: absolute;
+    width: 35%;
+    left: auto;
+    margin-top: 5%;
   } ;
 `;
 
+//ANIMATION-ELEMENTS
+//vessel
 const FaderDiv = styled.div`
   position: absolute;
   background-color: black;
@@ -59,9 +62,7 @@ const FaderDiv = styled.div`
   ${props => props.fadeSelect}; //for animation
 `;
 
-//ANIMATIONS
 //fader
-
 const fadeOutAnimation = keyframes`
       0%{opacity:0.8;}
       10%{opacity:0.95;}
