@@ -41,13 +41,12 @@ const FramingDiv = styled.div`
   border-radius: 2%;
   box-shadow: 0 2px 50px #888;
   //
-
-  left: 0;
+  //left: 0;
   margin: auto;
   //
   width: 80%;
   @media (orientation: landscape) {
-    width: 50%;
+    width: 40%;
   }
 `;
 
@@ -91,7 +90,6 @@ const noFade = css`
 `;
 
 //curtain
-
 const curtainAnimation = keyframes`
       0%{opacity:1;}
       100%{opacity:0;}

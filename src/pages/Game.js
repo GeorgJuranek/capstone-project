@@ -182,10 +182,10 @@ const GameSceneDiv = styled.div`
   gap: 10px;
   padding: 10px;
   min-width: 300px;
-  width: auto; //90vw;
+  width: auto;
   max-width: 1500px;
   min-height: 300px;
-  height: auto; //90vh; //auto; //90vh;
+  height: auto;
   max-height: 1000px;
 `;
 
@@ -201,12 +201,12 @@ const ZshellDiv = styled.div`
   width: 80%;
   margin: auto;
   min-height: 300px;
-  max-height: 50%; //300px;
+  max-height: 50%;
 
   @media (orientation: landscape) {
     width: 50%;
     min-height: 300px;
-    max-height: 300px; //80%;
+    max-height: 300px;
   } ;
 `;
 
