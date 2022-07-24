@@ -41,8 +41,7 @@ export default MagicList;
 const SavedOrdersList = styled.ul`
   list-style-position: inside;
   padding-left: 1%;
-  height: 90%;
-  min-height: 200px;
+  height: 100%;
   padding-bottom: 0;
   margin-bottom: 0;
   background-color: black;
@@ -51,6 +50,8 @@ const SavedOrdersList = styled.ul`
   overflow: scroll;
   display: flex;
   flex-direction: column-reverse;
+  //
+  min-height: 300px;
 `;
 
 const SavedOrderListItem = styled.li`

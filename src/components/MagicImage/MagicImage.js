@@ -40,6 +40,10 @@ const FramingDiv = styled.div`
   border-style: ridge;
   border-radius: 2%;
   box-shadow: 0 2px 50px #888;
+  //
+  width: 50%;
+  left: 0;
+  margin: auto;
 `;
 
 //ANIMATION-ELEMENTS

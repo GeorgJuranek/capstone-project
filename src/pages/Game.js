@@ -17,7 +17,18 @@ import logoCancel from '../images/logoCancel.png';
 
 export default function Game() {
   const [currentPosition, setCurrentPosition] = useState(mazeArray[0]); //this holds a {object}
-  const [savedOrders, setSavedOrders] = useState([]);
+  const [savedOrders, setSavedOrders] = useState([
+    {
+      id: nanoid(),
+      instructionValues: '',
+      commandMessage: 'Initialised Shell_Wizard',
+      commandHasError: false,
+      spellEffectMessage:
+        'welcome to your exam. Shell_wizard is a game to learn the commands of the zShell. This is your exam on wizard school, good luck fellow!',
+      spellEffectOutput: 'maze/home/',
+      spellEffectHasError: false,
+    },
+  ]);
   const [currentFocus, setCurrentFocus] = useState(null); //?still necessary?
   const [isRoomEnlighten, setIsRoomEnlighten] = useState(false);
   const [triggerCurtain, setTriggerCurtain] = useState(false);
@@ -155,6 +166,9 @@ const OrganizingMain = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
+  //
+  width: 100vw;
+  height: 100vh;
 `;
 
 const GameSceneDiv = styled.div`
@@ -163,7 +177,16 @@ const GameSceneDiv = styled.div`
 
   @media (orientation: landscape) {
     flex-direction: row;
-  } ;
+  }
+  //
+  gap: 10px;
+  padding: 10px;
+  min-width: 300px;
+  width: auto; //90vw;
+  max-width: 1500px;
+  min-height: 300px;
+  height: auto; //90vh; //auto; //90vh;
+  max-height: 1000px;
 `;
 
 const ZshellDiv = styled.div`
@@ -173,8 +196,12 @@ const ZshellDiv = styled.div`
   box-shadow: 0 10px 8px #888;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 500px;
+  //
+  //justify-content: space-around;
+  width: 50%;
+  min-height: 300px;
+  margin: auto;
+  max-height: 80%;
 `;
 
 //Header-Elements//
@@ -190,6 +217,7 @@ const Title = styled.h1`
   text-shadow: 1px 1px 1px black, 1px -1px 1px black, -1px 1px 1px black, -1px -1px 1px black;
   font-size: 15px;
   color: lightgrey;
+  margin-right: 5rem;
 `;
 
 const LogoOption = styled.img`
