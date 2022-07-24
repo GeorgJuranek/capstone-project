@@ -16,9 +16,6 @@ import logo from '../images/logo.png';
 import logoCancel from '../images/logoCancel.png';
 
 export default function Game() {
-  //
-  const [inputInFocus, setInputInFocus] = useState(false);
-  //
   const [currentPosition, setCurrentPosition] = useState(mazeArray[0]); //this holds a {object}
   const [savedOrders, setSavedOrders] = useState([]);
   const [currentFocus, setCurrentFocus] = useState(null); //?still necessary?
@@ -135,18 +132,14 @@ export default function Game() {
           triggerCurtain={triggerCurtain}
           changeTriggerCurtain={changeTriggerCurtain}
           //
-          inputInFocus={inputInFocus}
         />
         <ZshellDiv>
-          <MagicList ref={ref} savedOrders={savedOrders} inputInFocus={inputInFocus} />
+          <MagicList ref={ref} savedOrders={savedOrders} />
           <MagicForm
             savedOrders={savedOrders}
             processingLatestSpell={processingLatestSpell}
             currentFocus={currentFocus}
             changeCurrentFocus={changeCurrentFocus}
-            //
-            setInputInFocus={setInputInFocus}
-            //
           />
         </ZshellDiv>
         {isCancelActive && <Cancel toggleCancel={toggleCancel} />}
@@ -162,15 +155,11 @@ const OrganizingMain = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 500px;
-  margin: 0 auto;
-  padding: 0 30px;
 `;
 
 const GameSceneDiv = styled.div`
   display: flex;
   flex-direction: column;
-  //flex-wrap: wrap;
 
   @media (orientation: landscape) {
     flex-direction: row;
@@ -178,41 +167,35 @@ const GameSceneDiv = styled.div`
 `;
 
 const ZshellDiv = styled.div`
-  width: 90vw;
-  max-width: 500px;
-  height: auto; //35vh;
-  max-height: 350px;
   border: 2px ridge #181818;
   border-radius: 11px;
   background-image: linear-gradient(#181818, black);
   box-shadow: 0 10px 8px #888;
-  margin: 10px 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 500px;
 `;
 
 //Header-Elements//
 const Header = styled.header`
   position: relative;
   z-index: 3;
-  width: 90%;
   text-align: center;
   border-bottom: 3px double black;
+  width: 90%;
 `;
 
 const Title = styled.h1`
   text-shadow: 1px 1px 1px black, 1px -1px 1px black, -1px 1px 1px black, -1px -1px 1px black;
   font-size: 15px;
   color: lightgrey;
-  margin-left: auto;
 `;
 
 const LogoOption = styled.img`
   position: absolute;
-  left: 63%;
+  left: auto;
   top: 5px;
-  margin-left: 5px;
 `;
 
 const CancelOption = styled.img`
@@ -226,15 +209,12 @@ const BookOption = styled.img`
   right: 7px;
   top: 7px;
   width: ${props => props.isBookActive};
-  height: auto;
 `;
 
 //easteregg
 const SecretFooter = styled.footer`
   position: fixed;
-  bottom: 2px;
-  right: auto;
-  white-space: nowrap;
-  color: black;
-  z-index: -1;
+  bottom: 0;
+  right: 1em;
+  color: grey;
 `;

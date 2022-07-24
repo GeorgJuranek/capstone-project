@@ -35,9 +35,6 @@ export default function MagicImage({
 
 const FramingDiv = styled.div`
   position: relative;
-  width: ${prop => (prop.inputInFocus ? '50%' : '100%')}; //auto;
-  height: ${prop => (prop.inputInFocus ? '50%' : '100%')}; //auto;
-  max-width: 600px;
   background-color: black;
   border-width: 10px 8px 16px 8px;
   border-style: ridge;

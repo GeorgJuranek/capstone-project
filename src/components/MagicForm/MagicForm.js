@@ -3,13 +3,7 @@ import {keyframes} from 'styled-components';
 
 import {ScreenReaderOnlySpan, FrameSpan} from '../../stylesheet/StyledSpans.js';
 
-export default function MagicForm({
-  processingLatestSpell,
-  savedOrders,
-  currentFocus,
-  changeCurrentFocus,
-  setInputInFocus,
-}) {
+export default function MagicForm({processingLatestSpell, savedOrders, currentFocus, changeCurrentFocus}) {
   function handleSpell(event) {
     event.preventDefault();
     const form = event.target;
@@ -20,18 +14,14 @@ export default function MagicForm({
       form.reset();
     }
 
-    input.blur(); //focus();
-    changeCurrentFocus(null); //input);
-    //
-    setInputInFocus(false);
+    input.focus();
+    changeCurrentFocus(input);
   }
 
   function changeFocus(event) {
     const newFocus = event.target;
     newFocus.focus();
     changeCurrentFocus(newFocus);
-    //
-    setInputInFocus(true);
   }
 
   return (
