@@ -173,7 +173,7 @@ const OrganizingMain = styled.main`
 
 const GameSceneDiv = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse; // column;
 
   @media (orientation: landscape) {
     flex-direction: row;
@@ -198,10 +198,16 @@ const ZshellDiv = styled.div`
   flex-direction: column;
   //
   //justify-content: space-around;
-  width: 50%;
-  min-height: 300px;
+  width: 80%;
   margin: auto;
-  max-height: 80%;
+  min-height: 300px;
+  max-height: 50%; //300px;
+
+  @media (orientation: landscape) {
+    width: 50%;
+    min-height: 300px;
+    max-height: 300px; //80%;
+  } ;
 `;
 
 //Header-Elements//

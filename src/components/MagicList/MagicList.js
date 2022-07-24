@@ -51,7 +51,7 @@ const SavedOrdersList = styled.ul`
   display: flex;
   flex-direction: column-reverse;
   //
-  min-height: 300px;
+  min-height: 250px;
 `;
 
 const SavedOrderListItem = styled.li`

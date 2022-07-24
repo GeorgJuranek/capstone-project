@@ -41,9 +41,14 @@ const FramingDiv = styled.div`
   border-radius: 2%;
   box-shadow: 0 2px 50px #888;
   //
-  width: 50%;
+
   left: 0;
   margin: auto;
+  //
+  width: 80%;
+  @media (orientation: landscape) {
+    width: 50%;
+  }
 `;
 
 //ANIMATION-ELEMENTS
