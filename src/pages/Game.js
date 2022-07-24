@@ -201,12 +201,12 @@ const ZshellDiv = styled.div`
   width: 80%;
   margin: auto;
   min-height: 300px;
-  max-height: 50%;
+  max-height: 400px; //50%;
 
   @media (orientation: landscape) {
     width: 50%;
-    min-height: 300px;
-    max-height: 300px;
+    //min-height: 300px;
+    max-height: 500px; //300px;
   } ;
 `;
 
