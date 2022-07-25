@@ -34,7 +34,6 @@ export default function Game() {
   const [triggerCurtain, setTriggerCurtain] = useState(false);
   const [isCancelActive, setIsCancelActive] = useState(false);
   const [isBookActive, SetIsBookActive] = useState(false);
-  const [isHiddenActive, setIsHiddenActive] = useState(false);
 
   const ref = useRef();
 
@@ -66,11 +65,6 @@ export default function Game() {
 
   function toggleBook() {
     SetIsBookActive(!isBookActive);
-    setCurrentFocus(null);
-  }
-
-  function toggleFooter() {
-    setIsHiddenActive(!isHiddenActive);
     setCurrentFocus(null);
   }
 
@@ -108,24 +102,12 @@ export default function Game() {
       <Header>
         <Title>
           SHELL
-          <LogoOption
-            onClick={() => toggleFooter()}
-            src={isCancelActive ? logoCancel : logo}
-            alt=""
-            width="30"
-            height="25"
-          />
+          <LogoOption src={isCancelActive ? logoCancel : logo} alt="" width="30" height="25" />
           WIZARD
         </Title>
-        {isHiddenActive && (
-          <SecretFooter>
-            <small>{'// ©@:georg_juranek '}</small>
-          </SecretFooter>
-        )}
         <CancelOption onClick={() => toggleCancel()}>
           <img src={require('../images/cancel.png')} alt="Wanna Quit?" width="30" height="30" />
         </CancelOption>
-
         <BookOption onClick={() => toggleBook()}>
           <img src={require('../images/magicbook.png')} alt="Wanna get Info?" width={isBookActive ? '100px' : '30px'} />
         </BookOption>
@@ -156,7 +138,6 @@ export default function Game() {
 }
 
 //Structuring Wrapper//
-
 const OrganizingMain = styled.main`
   display: flex;
   flex-direction: column;
@@ -166,21 +147,21 @@ const OrganizingMain = styled.main`
 `;
 
 const GameSceneDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  @media (orientation: landscape) {
-    flex-direction: row;
-  }
-
-  gap: 10px;
-  padding: 10px;
+  gap: 3px;
   min-width: 300px;
   width: auto;
   max-width: 1500px;
   min-height: 300px;
   height: auto;
   max-height: 1000px;
+  display: flex;
+  flex-direction: column;
+
+  @media (orientation: landscape) {
+    flex-direction: row;
+    padding: 2px;
+    gap: 2%;
+  }
 `;
 
 const ZshellDiv = styled.div`
@@ -191,12 +172,12 @@ const ZshellDiv = styled.div`
   display: flex;
   flex-direction: column;
   margin: auto;
-  width: 80%;
-  height: 250px;
+  width: 90%;
+  height: 220px;
 
   @media (orientation: landscape) {
-    width: 50%;
-    height: 50%;
+    width: 55%;
+    height: 70%;
   }
 `;
 
@@ -206,6 +187,8 @@ const Header = styled.header`
   z-index: 3;
   text-align: center;
   width: 90%;
+  background-color: grey;
+  width: 100%;
 `;
 
 const Title = styled.h1`
@@ -215,6 +198,11 @@ const Title = styled.h1`
   position: relative;
   left: auto;
   top: -5px;
+  border: 3px double black;
+  border-radius: 12px;
+  background-color: darkgrey;
+  margin: 10px auto;
+  width: 10rem;
 `;
 
 const LogoOption = styled.img`
@@ -225,23 +213,17 @@ const CancelOption = styled.button`
   position: fixed;
   left: 7px;
   top: 10px;
-  border: none;
   padding: 0;
+  border: none;
+  background-color: transparent;
 `;
 
 const BookOption = styled.button`
   position: fixed;
   right: 7px;
   top: 7px;
-  border: none;
   padding: 0;
+  border: none;
+  background-color: transparent;
   width: ${props => props.isBookActive};
-`;
-
-//easteregg
-const SecretFooter = styled.footer`
-  position: fixed;
-  bottom: 0;
-  right: 1em;
-  color: grey;
 `;

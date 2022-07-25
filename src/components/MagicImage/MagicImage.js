@@ -40,13 +40,10 @@ const FramingDiv = styled.div`
   border-style: ridge;
   border-radius: 2%;
   box-shadow: 0 2px 50px #888;
-  //
-  //left: 0;
   margin: auto;
-  //
   width: 80%;
   @media (orientation: landscape) {
-    width: 40%;
+    width: 50%;
   }
 `;
 

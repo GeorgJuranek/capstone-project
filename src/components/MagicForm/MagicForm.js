@@ -93,11 +93,12 @@ const Button = styled.button`
 
 //Animation ❙
 const onOffAnim = keyframes`
-          0%{opacity:1;}
-          50%{opacity:1}
-          51%{opacity:0}
-          100%{opacity:0;}
-    `;
+  0%{opacity:1;}
+  50%{opacity:1}
+  51%{opacity:0}
+  100%{opacity:0;}
+`;
+
 const ToggleSpan = styled.span`
   animation-name: ${onOffAnim};
   animation-duration: 1s;
