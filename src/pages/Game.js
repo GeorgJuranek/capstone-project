@@ -106,34 +106,29 @@ export default function Game() {
   return (
     <OrganizingMain>
       <Header>
-        <LogoOption
-          onClick={() => toggleFooter()}
-          src={isCancelActive ? logoCancel : logo}
-          alt=""
-          width="45"
-          height="40"
-        />
-        <Title> SHELL_WIZARD </Title>
+        <Title>
+          SHELL
+          <LogoOption
+            onClick={() => toggleFooter()}
+            src={isCancelActive ? logoCancel : logo}
+            alt=""
+            width="30"
+            height="25"
+          />
+          WIZARD
+        </Title>
         {isHiddenActive && (
           <SecretFooter>
             <small>{'// ©@:georg_juranek '}</small>
           </SecretFooter>
         )}
-        <CancelOption
-          role="button"
-          onClick={() => toggleCancel()}
-          src={require('../images/cancel.png')}
-          alt="Wanna Quit?"
-          width="30"
-          height="30"
-        />
-        <BookOption
-          role="button"
-          onClick={() => toggleBook()}
-          src={require('../images/magicbook.png')}
-          alt="Wanna get Info?"
-          width={isBookActive ? '100px' : '30px'}
-        />
+        <CancelOption onClick={() => toggleCancel()}>
+          <img src={require('../images/cancel.png')} alt="Wanna Quit?" width="30" height="30" />
+        </CancelOption>
+
+        <BookOption onClick={() => toggleBook()}>
+          <img src={require('../images/magicbook.png')} alt="Wanna get Info?" width={isBookActive ? '100px' : '30px'} />
+        </BookOption>
       </Header>
       <GameSceneDiv>
         <MagicImage
@@ -166,19 +161,18 @@ const OrganizingMain = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  //
   width: 100vw;
   height: 100vh;
 `;
 
 const GameSceneDiv = styled.div`
   display: flex;
-  flex-direction: column-reverse; // column;
+  flex-direction: column;
 
   @media (orientation: landscape) {
     flex-direction: row;
   }
-  //
+
   gap: 10px;
   padding: 10px;
   min-width: 300px;
@@ -196,18 +190,14 @@ const ZshellDiv = styled.div`
   box-shadow: 0 10px 8px #888;
   display: flex;
   flex-direction: column;
-  //
-  //justify-content: space-around;
-  width: 80%;
   margin: auto;
-  min-height: 300px;
-  max-height: 400px; //50%;
+  width: 80%;
+  height: 250px;
 
   @media (orientation: landscape) {
     width: 50%;
-    //min-height: 300px;
-    max-height: 500px; //300px;
-  } ;
+    height: 50%;
+  }
 `;
 
 //Header-Elements//
@@ -215,7 +205,6 @@ const Header = styled.header`
   position: relative;
   z-index: 3;
   text-align: center;
-  border-bottom: 3px double black;
   width: 90%;
 `;
 
@@ -223,25 +212,29 @@ const Title = styled.h1`
   text-shadow: 1px 1px 1px black, 1px -1px 1px black, -1px 1px 1px black, -1px -1px 1px black;
   font-size: 15px;
   color: lightgrey;
-  margin-right: 5rem;
+  position: relative;
+  left: auto;
+  top: -5px;
 `;
 
 const LogoOption = styled.img`
-  position: absolute;
-  left: auto;
-  top: 5px;
+  display: inline;
 `;
 
-const CancelOption = styled.img`
+const CancelOption = styled.button`
   position: fixed;
   left: 7px;
   top: 10px;
+  border: none;
+  padding: 0;
 `;
 
-const BookOption = styled.img`
+const BookOption = styled.button`
   position: fixed;
   right: 7px;
   top: 7px;
+  border: none;
+  padding: 0;
   width: ${props => props.isBookActive};
 `;
 

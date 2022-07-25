@@ -50,8 +50,6 @@ const SavedOrdersList = styled.ul`
   overflow: scroll;
   display: flex;
   flex-direction: column-reverse;
-  //
-  min-height: 250px;
 `;
 
 const SavedOrderListItem = styled.li`
