@@ -73,7 +73,6 @@ const TextDiv = styled.div`
   line-height: 1.5rem;
 
   @media (min-width: 600px) {
-    //font-size: 1rem;
     line-height: 2.5rem;
   }
 `;
@@ -116,12 +115,9 @@ const StyledDl = styled.dl`
   justify-items: space-around;
   align-items: center;
   grid-template-columns: 20px 1fr;
-  //background-color: skyblue;
-  //border: 2px solid white;
   grid-auto-flow: dense;
   column-gap: 25px;
   column-gap: 35px;
-  //border-radius: 4px;
   margin: 50px auto;
   padding: 15px;
   padding-left: 5px;
@@ -130,10 +126,7 @@ const StyledDl = styled.dl`
 `;
 
 const StyledDd = styled.dd`
-  //border-bottom: 2px dashed white;
   margin: 10px;
-  //padding-bottom: 10px;
-  //padding-left: 10px;
   padding: 10px;
   border-radius: 4px;
   border: 3px solid white;
