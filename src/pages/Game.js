@@ -186,7 +186,6 @@ const Header = styled.header`
   position: relative;
   z-index: 3;
   text-align: center;
-  width: 90%;
   background-color: grey;
   width: 100%;
 `;
