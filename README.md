@@ -1,100 +1,61 @@
-# React App
+# <p align="center">Shell_Wizard <img src="./src/images/logo.png" width=100px></p>
 
-This is a template for a [Create React App](https://create-react-app.dev/) with additional tools.
+<img src="public/img/readMe.png" width=800px>
 
-- [Tech-Stack](#tech-stack)
-- [Project Setup](#project-setup)
-  - [Set up Vercel](#set-up-vercel)
-- [Getting started](#getting-started)
-- [Test Driven Development](#test-driven-development)
-- [Commands](#commands)
+#
 
-It uses the following tools/libraries:
+## 📖 Info
 
-## Tech-Stack
+<p>
+Shell_Wizard is a game to learn the zShell-commands.
+It was made during the course of a webdevelopment coding-bootcamp.
+</p>
+While you use one side of the screen for typing in the commands in a shell, you get visual feedback on the other side.
+<p>
+As a wizard you explore rooms of a maze, that resembles an office-space.
+With the commands you can find a library, private rooms and more. If you get lost on your way, you can use a Spellbook to remember the commands:
+<p/>
+<p align="center">
+<img src="./src/images/magicBook.png" width=100px>
+</p>
+<p>
+This was made as a counter draft to the learning games i played during bootcamp. I tried to make progress more natural and to create an immersive attempt on the to be conveyed content.
+<p/>
+<p>
+I will try to update this from time to time, so if you play it i would be pleased to get some feedback. 
+Please note that you can play this on your mobile, even in horizontal-mode, but the most luxerious version will be on a bigger screen.
+<p/>
 
-- [Storybook](https://storybook.js.org/)
+#
+
+<img src="public/img/imagesOverview1.png" width=800px>
+
+Here are some images i made for the game with figma (https://www.figma.com/) (representations in the game may differ)
+
+#
+
+## 💻 Tech-Stack
+
+- [React](https://reactjs.org/)
+- [React Router](https://reactrouter.com/)
+- [React Testing Library](https://testing-library.com/)
 - [Jest](https://jestjs.io/)
-- [Stylelint](https://stylelint.io/)
-- [Eslint](https://eslint.org/)
-- [Prettier](https://prettier.io/)
+- [Styled Components](https://styled-components.com/)
+- [Storybook](https://storybook.js.org/)
 
-## Project Setup
+## 💾 How to install
 
-This project uses different deployments to make code reviews easier:
+- Clone this repository
+- Install all dependencies with: `$ npm install`
+- Start the project in dev mode: `$ npm start`
 
-- Vercel (App Production)
-- Vercel (App Preview)
+## 🪄 Play
 
-### Set up Vercel
+- Please have a look at the current version https://shellwizard.vercel.app/
+- This is a text-adventure-walking-simulator.
+- use `pwd`, `cd`, `ls` and `cat` to explore the rooms.
+- Please note that not all plot-relevant events are included yet, so there's no "real ending" (plot will be fixed with future updates).
 
-Please follow this guide: https://vercel.com/docs/concepts/git
-
-## Getting started
-
-**Run the development server:**
-
-```shell
-npm run start
-```
-
-**Run storybook:**
-
-```shell
-npm run storybook
-```
-
-## Test Driven Development
-
-We jest to write unit tests. Please look at the Documentation for [Jest](https://jestjs.io/)
-and [testing-library](https://testing-library.com/docs/react-testing-library/intro/).
-
-## Commands
-
-**Run the development server:**
-
-```shell
-npm run dev
-```
-
-**Build:**
-
-```shell
-npm run build
-```
-
-**Run storybook:**
-
-```shell
-npm run storybook
-```
-
-**Build storybook:**
-
-```shell
-npm run storybook:build
-```
-
-**Run all tests:**
-
-```shell
-npm run test
-```
-
-**Run stylelint**
-
-```shell
-npm run stylelint
-```
-
-**Run eslint**
-
-```shell
-npm run eslint
-```
-
-**Run all linters**
-
-```shell
-npm run lint
-```
+<p align="center">
+<img src="./src/images/logo.png" width=100px>
+</p>

@@ -11,6 +11,7 @@ export default function MagicImage({
   isRoomEnlighten,
   triggerCurtain,
   changeTriggerCurtain,
+  inputInFocus,
 }) {
   const fader = useRef();
   const curtain = useRef();
@@ -20,7 +21,7 @@ export default function MagicImage({
   }
 
   return (
-    <FramingDiv>
+    <FramingDiv inputInFocus={inputInFocus}>
       <FaderDiv ref={curtain} fadeSelect={triggerCurtain ? curtainFade : noCurtain}></FaderDiv>
       <FaderDiv ref={fader} fadeSelect={isRoomEnlighten ? fadeOutSelect : noFade}></FaderDiv>
       <BackgroundImg src={currentBackgroundImage.image} alt={currentBackgroundImage.altText} />
@@ -34,17 +35,20 @@ export default function MagicImage({
 
 const FramingDiv = styled.div`
   position: relative;
-  width: 80vw;
-  max-width: 700px;
-  height: auto;
-  margin: 3em 0 1em 0;
   background-color: black;
-  border-width: 10px 5px 16px 5px;
-  border-style: ridge groove;
+  border-width: 10px 8px 16px 8px;
+  border-style: ridge;
   border-radius: 2%;
-  box-shadow: 0 2px 100px #888;
+  box-shadow: 0 2px 50px #888;
+  margin: auto;
+  width: 80%;
+  @media (orientation: landscape) {
+    width: 50%;
+  }
 `;
 
+//ANIMATION-ELEMENTS
+//vessel
 const FaderDiv = styled.div`
   position: absolute;
   background-color: black;
@@ -54,9 +58,7 @@ const FaderDiv = styled.div`
   ${props => props.fadeSelect}; //for animation
 `;
 
-//ANIMATIONS
 //fader
-
 const fadeOutAnimation = keyframes`
       0%{opacity:0.8;}
       10%{opacity:0.95;}
@@ -85,7 +87,6 @@ const noFade = css`
 `;
 
 //curtain
-
 const curtainAnimation = keyframes`
       0%{opacity:1;}
       100%{opacity:0;}
