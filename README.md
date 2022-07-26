@@ -28,7 +28,7 @@ Please note that you can play this on your mobile, even in horizontal-mode, but 
 
 #
 
-<img src="public/img/imagesOverview.png" width=2000px>
+<img src="public/img/imagesOverview1.png" width=800px>
 
 Here are some images i made for the game with figma (https://www.figma.com/) (representations in the game may differ)
 
